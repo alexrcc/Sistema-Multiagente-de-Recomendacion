@@ -1,0 +1,985 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY adms "http://www.w3.org/ns/adms#" >
+    <!ENTITY dcat "http://www.w3.org/ns/dcat#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY fabio "http://purl.org/spar/fabio/" >
+    <!ENTITY rad "http://www.w3.org/ns/radion#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY vcard "http://www.w3.org/2006/vcard/ns#" >
+    <!ENTITY gold "http://purl.org/linguistics/gold/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY com "http://vocab.resc.info/communication#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY nco "http://oscaf.sourceforge.net/nco.html#" >
+    <!ENTITY lcy "http://purl.org/vocab/lifecycle/schema#" >
+    <!ENTITY stac "http://securitytoolbox.appspot.com/stac#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY discovery "http://rdf-vocabulary.ddialliance.org/discovery#" >
+    <!ENTITY ebu "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" >
+    <!ENTITY smas "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#"
+     xml:base="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis"
+     xmlns:com="http://vocab.resc.info/communication#"
+     xmlns:lcy="http://purl.org/vocab/lifecycle/schema#"
+     xmlns:adms="http://www.w3.org/ns/adms#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:fabio="http://purl.org/spar/fabio/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
+     xmlns:gold="http://purl.org/linguistics/gold/"
+     xmlns:rad="http://www.w3.org/ns/radion#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:stac="http://securitytoolbox.appspot.com/stac#"
+     xmlns:discovery="http://rdf-vocabulary.ddialliance.org/discovery#"
+     xmlns:ebu="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#"
+     xmlns:smas="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#"
+     xmlns:nco="http://oscaf.sourceforge.net/nco.html#"
+     xmlns:dcat="http://www.w3.org/ns/dcat#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis">
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:AnnotationProperty rdf:about="&foaf;name">
+        <rdfs:domain rdf:resource="&smas;Composite"/>
+        <rdfs:domain rdf:resource="&smas;GeneralData"/>
+        <rdfs:domain rdf:resource="&rad;Repository"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#consistOf -->
+
+    <owl:ObjectProperty rdf:about="&smas;consistOf">
+        <rdfs:range rdf:resource="&smas;ContextualInformation"/>
+        <rdfs:range rdf:resource="&smas;GeneralData"/>
+        <rdfs:domain rdf:resource="&smas;studentProfile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#contains -->
+
+    <owl:ObjectProperty rdf:about="&smas;contains">
+        <rdfs:range rdf:resource="&smas;LearningObject"/>
+        <rdfs:domain rdf:resource="&smas;educationalResource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#has -->
+
+    <owl:ObjectProperty rdf:about="&smas;has"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasARecommendedLO -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasARecommendedLO">
+        <rdfs:range rdf:resource="&smas;LearningObject"/>
+        <rdfs:domain rdf:resource="&smas;studentProfile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasComposite -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasComposite">
+        <rdfs:domain rdf:resource="&stac;Requeriment"/>
+        <rdfs:range rdf:resource="&smas;Composite"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasContext -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasContext">
+        <rdfs:domain rdf:resource="&smas;ContextualInformation"/>
+        <rdfs:range rdf:resource="&smas;SpatialContext"/>
+        <rdfs:range rdf:resource="&smas;TechnologicalContext"/>
+        <rdfs:range rdf:resource="&smas;TemporaryContext"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasContribute -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasContribute">
+        <rdfs:domain rdf:resource="&lcy;Lifecycle"/>
+        <rdfs:range rdf:resource="&smas;Contribute"/>
+        <rdfs:domain rdf:resource="&smas;Metametadata"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasIdentifier -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasIdentifier">
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:domain rdf:resource="&smas;Metametadata"/>
+        <rdfs:domain rdf:resource="&smas;Resource"/>
+        <rdfs:range rdf:resource="&adms;Identifier"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasRequeriment -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasRequeriment">
+        <rdfs:range rdf:resource="&stac;Requeriment"/>
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasResource -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasResource">
+        <rdfs:domain rdf:resource="&smas;Relation"/>
+        <rdfs:range rdf:resource="&smas;Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasTaxon -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasTaxon">
+        <rdfs:range rdf:resource="&gold;Taxon"/>
+        <rdfs:domain rdf:resource="&smas;TaxonPath"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasTaxonPath -->
+
+    <owl:ObjectProperty rdf:about="&smas;hasTaxonPath">
+        <rdfs:domain rdf:resource="&com;Classification"/>
+        <rdfs:range rdf:resource="&smas;TaxonPath"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#inStandard -->
+
+    <owl:ObjectProperty rdf:about="&smas;inStandard">
+        <rdfs:domain rdf:resource="&fabio;Metadata"/>
+        <rdfs:range rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#inherit -->
+
+    <owl:ObjectProperty rdf:about="&smas;inherit">
+        <rdfs:domain rdf:resource="&smas;studentProfile"/>
+        <rdfs:range rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#isComposedOf -->
+
+    <owl:ObjectProperty rdf:about="&smas;isComposedOf">
+        <rdfs:range rdf:resource="&fabio;Metadata"/>
+        <rdfs:domain rdf:resource="&smas;LearningObject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#isComprisedOf -->
+
+    <owl:ObjectProperty rdf:about="&smas;isComprisedOf">
+        <rdfs:domain rdf:resource="&fabio;Metadata/Lom"/>
+        <rdfs:range rdf:resource="&lcy;Lifecycle"/>
+        <rdfs:range rdf:resource="&com;Classification"/>
+        <rdfs:range rdf:resource="&ebu;Rights"/>
+        <rdfs:range rdf:resource="&smas;Annotation"/>
+        <rdfs:range rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&smas;General"/>
+        <rdfs:range rdf:resource="&smas;Metametadata"/>
+        <rdfs:range rdf:resource="&smas;Relation"/>
+        <rdfs:range rdf:resource="&smas;Technical"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#stayIn -->
+
+    <owl:ObjectProperty rdf:about="&smas;stayIn">
+        <rdfs:domain rdf:resource="&smas;LearningObject"/>
+        <rdfs:range rdf:resource="&rad;Repository"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://oscaf.sourceforge.net/nco.html#addressLocation -->
+
+    <owl:DatatypeProperty rdf:about="&nco;addressLocation">
+        <rdfs:domain rdf:resource="&smas;GeneralData"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://oscaf.sourceforge.net/nco.html#country -->
+
+    <owl:DatatypeProperty rdf:about="&nco;country">
+        <rdfs:domain rdf:resource="&smas;SpatialContext"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&rad;Repository"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://oscaf.sourceforge.net/nco.html#emailAddress -->
+
+    <owl:DatatypeProperty rdf:about="&nco;emailAddress">
+        <rdfs:domain rdf:resource="&smas;GeneralData"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#aggregationLevel -->
+
+    <owl:DatatypeProperty rdf:about="&smas;aggregationLevel">
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#byhour -->
+
+    <owl:DatatypeProperty rdf:about="&smas;byhour">
+        <rdfs:domain rdf:resource="&smas;TemporaryContext"/>
+        <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#catalog -->
+
+    <owl:DatatypeProperty rdf:about="&smas;catalog">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&adms;Identifier"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#context -->
+
+    <owl:DatatypeProperty rdf:about="&smas;context">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#copyrightAndOtherRestrictions -->
+
+    <owl:DatatypeProperty rdf:about="&smas;copyrightAndOtherRestrictions">
+        <rdfs:domain rdf:resource="&ebu;Rights"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#cost -->
+
+    <owl:DatatypeProperty rdf:about="&smas;cost">
+        <rdfs:domain rdf:resource="&ebu;Rights"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#coverage -->
+
+    <owl:DatatypeProperty rdf:about="&smas;coverage">
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#date -->
+
+    <owl:DatatypeProperty rdf:about="&smas;date">
+        <rdfs:domain rdf:resource="&smas;Annotation"/>
+        <rdfs:domain rdf:resource="&smas;Contribute"/>
+        <rdfs:domain rdf:resource="&smas;TemporaryContext"/>
+        <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#description -->
+
+    <owl:DatatypeProperty rdf:about="&smas;description">
+        <rdfs:domain rdf:resource="&com;Classification"/>
+        <rdfs:domain rdf:resource="&ebu;Rights"/>
+        <rdfs:domain rdf:resource="&smas;Annotation"/>
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:domain rdf:resource="&smas;Resource"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#difficulty -->
+
+    <owl:DatatypeProperty rdf:about="&smas;difficulty">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#duration -->
+
+    <owl:DatatypeProperty rdf:about="&smas;duration">
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#entity -->
+
+    <owl:DatatypeProperty rdf:about="&smas;entity">
+        <rdfs:domain rdf:resource="&smas;Annotation"/>
+        <rdfs:domain rdf:resource="&smas;Contribute"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#entry -->
+
+    <owl:DatatypeProperty rdf:about="&smas;entry">
+        <rdfs:domain rdf:resource="&gold;Taxon"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&adms;Identifier"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#format -->
+
+    <owl:DatatypeProperty rdf:about="&smas;format">
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#id -->
+
+    <owl:DatatypeProperty rdf:about="&smas;id">
+        <rdfs:domain rdf:resource="&gold;Taxon"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#installationRemarks -->
+
+    <owl:DatatypeProperty rdf:about="&smas;installationRemarks">
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#intendedEndUserRole -->
+
+    <owl:DatatypeProperty rdf:about="&smas;intendedEndUserRole">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#interactivityLevel -->
+
+    <owl:DatatypeProperty rdf:about="&smas;interactivityLevel">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#interactivityType -->
+
+    <owl:DatatypeProperty rdf:about="&smas;interactivityType">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#kind -->
+
+    <owl:DatatypeProperty rdf:about="&smas;kind">
+        <rdfs:domain rdf:resource="&smas;Relation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#learningResourceType -->
+
+    <owl:DatatypeProperty rdf:about="&smas;learningResourceType">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#learningStyle -->
+
+    <owl:DatatypeProperty rdf:about="&smas;learningStyle">
+        <rdfs:domain rdf:resource="&smas;studentProfile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#location -->
+
+    <owl:DatatypeProperty rdf:about="&smas;location">
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#maximumVersion -->
+
+    <owl:DatatypeProperty rdf:about="&smas;maximumVersion">
+        <rdfs:domain rdf:resource="&smas;Composite"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#metadataScheme -->
+
+    <owl:DatatypeProperty rdf:about="&smas;metadataScheme">
+        <rdfs:domain rdf:resource="&smas;Metametadata"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#minimumVersion -->
+
+    <owl:DatatypeProperty rdf:about="&smas;minimumVersion">
+        <rdfs:domain rdf:resource="&smas;Composite"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#multipleIntelligences -->
+
+    <owl:DatatypeProperty rdf:about="&smas;multipleIntelligences">
+        <rdfs:domain rdf:resource="&smas;studentProfile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#name -->
+
+    <owl:DatatypeProperty rdf:about="&smas;name">
+        <rdfs:domain rdf:resource="&smas;Composite"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#operatingSystem -->
+
+    <owl:DatatypeProperty rdf:about="&smas;operatingSystem">
+        <rdfs:domain rdf:resource="&smas;TechnologicalContext"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#otherPlatformRequirements -->
+
+    <owl:DatatypeProperty rdf:about="&smas;otherPlatformRequirements">
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#purpose -->
+
+    <owl:DatatypeProperty rdf:about="&smas;purpose">
+        <rdfs:domain rdf:resource="&com;Classification"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#semanticDensity -->
+
+    <owl:DatatypeProperty rdf:about="&smas;semanticDensity">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#size -->
+
+    <owl:DatatypeProperty rdf:about="&smas;size">
+        <rdfs:domain rdf:resource="&smas;Technical"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#softwareVersion -->
+
+    <owl:DatatypeProperty rdf:about="&smas;softwareVersion">
+        <rdfs:domain rdf:resource="&smas;TechnologicalContext"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#source -->
+
+    <owl:DatatypeProperty rdf:about="&smas;source">
+        <rdfs:domain rdf:resource="&smas;TaxonPath"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#standard -->
+
+    <owl:DatatypeProperty rdf:about="&smas;standard">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&rad;Repository"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#structure -->
+
+    <owl:DatatypeProperty rdf:about="&smas;structure">
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#type -->
+
+    <owl:DatatypeProperty rdf:about="&smas;type">
+        <rdfs:domain rdf:resource="&smas;Composite"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#typicalAgeRange -->
+
+    <owl:DatatypeProperty rdf:about="&smas;typicalAgeRange">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#typicalLearningTime -->
+
+    <owl:DatatypeProperty rdf:about="&smas;typicalLearningTime">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#uri -->
+
+    <owl:DatatypeProperty rdf:about="&smas;uri">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&rad;Repository"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#language -->
+
+    <owl:DatatypeProperty rdf:about="&vcard;language">
+        <rdfs:domain rdf:resource="&smas;Educational"/>
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:domain rdf:resource="&smas;Metametadata"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#locality -->
+
+    <owl:DatatypeProperty rdf:about="&vcard;locality">
+        <rdfs:domain rdf:resource="&smas;SpatialContext"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#role -->
+
+    <owl:DatatypeProperty rdf:about="&vcard;role">
+        <rdfs:domain rdf:resource="&smas;Contribute"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#title -->
+
+    <owl:DatatypeProperty rdf:about="&vcard;title">
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/radion#keyword -->
+
+    <owl:DatatypeProperty rdf:about="&rad;keyword">
+        <rdfs:domain rdf:resource="&com;Classification"/>
+        <rdfs:domain rdf:resource="&smas;General"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/radion#version -->
+
+    <owl:DatatypeProperty rdf:about="&rad;version">
+        <rdfs:domain rdf:resource="&lcy;Lifecycle"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/age -->
+
+    <owl:DatatypeProperty rdf:about="&foaf;age">
+        <rdfs:domain rdf:resource="&smas;GeneralData"/>
+        <rdfs:range rdf:resource="&xsd;unsignedInt"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/gender -->
+
+    <owl:DatatypeProperty rdf:about="&foaf;gender">
+        <rdfs:domain rdf:resource="&smas;GeneralData"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/status -->
+
+    <owl:DatatypeProperty rdf:about="&foaf;status">
+        <rdfs:domain rdf:resource="&lcy;Lifecycle"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/linguistics/gold/Taxon -->
+
+    <owl:Class rdf:about="&gold;Taxon">
+        <rdfs:subClassOf rdf:resource="&smas;TaxonPath"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/spar/fabio/Metadata -->
+
+    <owl:Class rdf:about="&fabio;Metadata">
+        <rdfs:subClassOf rdf:resource="&smas;LearningObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/spar/fabio/Metadata/Lom -->
+
+    <owl:Class rdf:about="&fabio;Metadata/Lom">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/vocab/lifecycle/schema#Lifecycle -->
+
+    <owl:Class rdf:about="&lcy;Lifecycle">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://securitytoolbox.appspot.com/stac#Requeriment -->
+
+    <owl:Class rdf:about="&stac;Requeriment">
+        <rdfs:subClassOf rdf:resource="&smas;Technical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://vocab.resc.info/communication#Classification -->
+
+    <owl:Class rdf:about="&com;Classification">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Rights -->
+
+    <owl:Class rdf:about="&ebu;Rights">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Annotation -->
+
+    <owl:Class rdf:about="&smas;Annotation">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Composite -->
+
+    <owl:Class rdf:about="&smas;Composite">
+        <rdfs:subClassOf rdf:resource="&stac;Requeriment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#ContextualInformation -->
+
+    <owl:Class rdf:about="&smas;ContextualInformation">
+        <rdfs:subClassOf rdf:resource="&smas;studentProfile"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Contribute -->
+
+    <owl:Class rdf:about="&smas;Contribute">
+        <rdfs:subClassOf rdf:resource="&lcy;Lifecycle"/>
+        <rdfs:subClassOf rdf:resource="&smas;Metametadata"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Educational -->
+
+    <owl:Class rdf:about="&smas;Educational">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#General -->
+
+    <owl:Class rdf:about="&smas;General">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#GeneralData -->
+
+    <owl:Class rdf:about="&smas;GeneralData">
+        <rdfs:subClassOf rdf:resource="&smas;studentProfile"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LearningObject -->
+
+    <owl:Class rdf:about="&smas;LearningObject">
+        <rdfs:subClassOf rdf:resource="&smas;educationalResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Metametadata -->
+
+    <owl:Class rdf:about="&smas;Metametadata">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Relation -->
+
+    <owl:Class rdf:about="&smas;Relation">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Resource -->
+
+    <owl:Class rdf:about="&smas;Resource">
+        <rdfs:subClassOf rdf:resource="&smas;Relation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#SpatialContext -->
+
+    <owl:Class rdf:about="&smas;SpatialContext">
+        <rdfs:subClassOf rdf:resource="&smas;ContextualInformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#TaxonPath -->
+
+    <owl:Class rdf:about="&smas;TaxonPath">
+        <rdfs:subClassOf rdf:resource="&com;Classification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Technical -->
+
+    <owl:Class rdf:about="&smas;Technical">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#TechnologicalContext -->
+
+    <owl:Class rdf:about="&smas;TechnologicalContext">
+        <rdfs:subClassOf rdf:resource="&smas;ContextualInformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#TemporaryContext -->
+
+    <owl:Class rdf:about="&smas;TemporaryContext">
+        <rdfs:subClassOf rdf:resource="&smas;ContextualInformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#educationalResource -->
+
+    <owl:Class rdf:about="&smas;educationalResource"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#studentProfile -->
+
+    <owl:Class rdf:about="&smas;studentProfile">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/adms#Identifier -->
+
+    <owl:Class rdf:about="&adms;Identifier">
+        <rdfs:subClassOf rdf:resource="&smas;General"/>
+        <rdfs:subClassOf rdf:resource="&smas;Metametadata"/>
+        <rdfs:subClassOf rdf:resource="&smas;Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/radion#Repository -->
+
+    <owl:Class rdf:about="&rad;Repository">
+        <rdfs:subClassOf rdf:resource="&smas;educationalResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="&foaf;Person"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

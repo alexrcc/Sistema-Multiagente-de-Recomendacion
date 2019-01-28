@@ -1,5 +1,6 @@
 package sma;
 
+import com.sun.org.apache.xml.internal.utils.ObjectPool;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.TickerBehaviour;
@@ -9,15 +10,19 @@ import java.io.BufferedInputStream;
 //Externos
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.ontology.DatatypeProperty;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.ObjectProperty;
+import org.apache.jena.ontology.OntClass;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -26,13 +31,37 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 //Ontologia
-
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.vocabulary.OWL;
 
 
 
 public class AgenteGestorRepositorio extends Agent{
     private static int total_pages;
-
+    private static OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+    private static String ns = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#"; 
+    private static String adms = "http://www.w3.org/ns/adms#"; 
+    private static String dcat = "http://www.w3.org/ns/dcat#" ;
+    private static String foaf = "http://xmlns.com/foaf/0.1/" ;
+    private static String fabio = "http://purl.org/spar/fabio/" ;
+    private static String rad = "http://www.w3.org/ns/radion#" ;
+    private static String owl = "http://www.w3.org/2002/07/owl#" ;
+    private static String vcard = "http://www.w3.org/2006/vcard/ns#" ;
+    private static String gold = "http://purl.org/linguistics/gold/" ;
+    private static String xsd = "http://www.w3.org/2001/XMLSchema#" ;
+    private static String com = "http://vocab.resc.info/communication#" ;
+    private static String rdfs = "http://www.w3.org/2000/01/rdf-schema#" ;
+    private static String nco = "http://oscaf.sourceforge.net/nco.html#" ;
+    private static String lcy = "http://purl.org/vocab/lifecycle/schema#" ;
+    private static String stac = "http://securitytoolbox.appspot.com/stac#" ;
+    private static String rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+    private static String discovery = "http://rdf-vocabulary.ddialliance.org/discovery#" ;
+    private static String ebu = "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" ;
+    private static String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+    
+    
     @Override
     protected void setup(){
         System.out.println("Hola soy el : "+getAID().getName()+" estoy listo");
@@ -44,6 +73,8 @@ public class AgenteGestorRepositorio extends Agent{
             System.out.println("No se enviaron argumentos");
             doDelete();
         }
+        
+        model.read("OntologiaBase.owl","RDF/XML");
         addBehaviour(new ComportamientoAGR());
     }
 
@@ -58,9 +89,6 @@ public class AgenteGestorRepositorio extends Agent{
 //            }
 //
             try{
-                
-            OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-            model.read("file:///C://Users///alexr//Desktop//Prueba.owl","RDF/XML");
             
             String url = "https://roa.cedia.edu.ec/apis/search?type=Resource&page=";
             String url_metadata = "https://roa.cedia.edu.ec/";
@@ -83,15 +111,20 @@ public class AgenteGestorRepositorio extends Agent{
                     if(type.compareTo("Excursion")==0){
                         String[] a = id.split(":");
                         int valor = Integer.parseInt(a[1].split("@")[0]);
-                       in = (GetMetadata(url_metadata+"excursions/",valor));
+                       in = (GetMetadata(url_metadata+"excursions/",valor,id));
                     }else{
                         int v_aux = GetCodeMetadata(dir);
                         System.out.println(v_aux);
-                        in = GetMetadata(url_metadata+"activity_objects/",v_aux);
+                        in = GetMetadata(url_metadata+"activity_objects/",v_aux,id);
                     }
                 }
             }
-
+            File file = new File("Individuos.owl");
+        //Hay que capturar las Excepciones
+            if (!file.exists()){
+                 file.createNewFile();
+            }
+            model.write(new PrintWriter(file));
             }catch(Exception e){
                    System.out.println(e);
             }
@@ -132,7 +165,12 @@ public class AgenteGestorRepositorio extends Agent{
         }
         return Integer.parseInt(valor);
     }
-    private static String GetMetadata(String url,int codigo) throws Exception{
+    private static String GetMetadata(String url,int codigo, String id) throws Exception{
+
+        OntClass cls1 = model.getOntClass(ns+"LearningObject");
+        Individual LO = model.createIndividual(ns+id,cls1);
+        
+        
         String metadatos=null;
         String url_metadata = url+codigo+"/metadata.xml";
         URL Obj_metadata = new URL(url_metadata);
@@ -147,44 +185,59 @@ public class AgenteGestorRepositorio extends Agent{
             NodeList hijos = lom.getChildNodes();
             for (int i = 1; i < hijos.getLength(); i=i+2 ) {
                 String nodo = hijos.item(i).getNodeName();
+                ObjectProperty is_c_of = model.getObjectProperty(ns+"isComprisedOf");
                 switch(nodo){
                     case "general":
-                        System.out.println("general-----------");
+                        //System.out.println("general-----------");
+                        OntClass cls_gen = model.getOntClass(ns+"General");
+                        Individual ont_gen = model.createIndividual(ns+"Gen_"+id,cls_gen);
+                        LO.addProperty(is_c_of,ont_gen);
+                         
                         Node general = hijos.item(i);
                         NodeList keywords = general.getChildNodes();
                         for (int j = 1; j < keywords.getLength(); j=j+2) {
                             Element eElement = (Element) keywords.item(j);
-                            System.out.println("----"+eElement.getNodeName()+"----");
+                            //System.out.println("----"+eElement.getNodeName()+"----");
                             if(keywords.item(j).getNodeName().compareTo("identifier")==0){
-                                System.out.println("catalog : " + eElement.getElementsByTagName("catalog").item(0).getTextContent());
-                                System.out.println("entry : " + eElement.getElementsByTagName("entry").item(0).getTextContent());
+//                                System.out.println("catalog : " + eElement.getElementsByTagName("catalog").item(0).getTextContent());
+//                                System.out.println("entry : " + eElement.getElementsByTagName("entry").item(0).getTextContent());
+                                OntClass identifier = model.getOntClass(adms+"Identifier");
+                                Individual idm = model.createIndividual(ns+"Id_"+id,identifier);
+                                idm.setPropertyValue(model.getDatatypeProperty(ns+"entry"), model.createTypedLiteral(eElement.getElementsByTagName("entry").item(0).getTextContent()));
+                                idm.setPropertyValue(model.getDatatypeProperty(ns+"catalog"), model.createTypedLiteral(eElement.getElementsByTagName("catalog").item(0).getTextContent()));
+                                ObjectProperty opg = model.getObjectProperty(ns+"hasIdentifier");
+                                ont_gen.addProperty(opg,idm);
                             }
                             else if(keywords.item(j).getNodeName().compareTo("title")==0){
-                                System.out.println("Titulo : " + eElement.getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(vcard+"title"),eElement.getTextContent());
                             }
                             else if(keywords.item(j).getNodeName().compareTo("language")==0){
-                                System.out.println("Lenguaje : " + eElement.getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(vcard+"language"),eElement.getTextContent());
                             }
                             else if(keywords.item(j).getNodeName().compareTo("description")==0){
-                                System.out.println("Description : " + eElement.getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(ns+"description"),eElement.getTextContent());
                             }
                             else if(keywords.item(j).getNodeName().compareTo("keyword")==0){
-                                System.out.println("Keyword: "+eElement.getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(rad+"keyword"),eElement.getTextContent());
                             }
                             else if(keywords.item(j).getNodeName().compareTo("coverage")==0){
-                                System.out.println("Coverage: "+eElement.getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(ns+"coverage"),eElement.getTextContent());
                             }
                             else if(keywords.item(j).getNodeName().compareTo("structure")==0){
-                                System.out.println("structure : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(ns+"structure"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(keywords.item(j).getNodeName().compareTo("aggregationLevel")==0){
-                                System.out.println("Agregación : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_gen.addProperty(model.getDatatypeProperty(ns+"aggregationLevel"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                         }
                     break;
 
                     case "lifeCycle":
                         System.out.println("LifeCycle-----------");
+                        OntClass cls_lc = model.getOntClass(lcy+"Lifecycle");
+                        Individual ont_lc = model.createIndividual(ns+"Lc_"+id,cls_lc);
+                        LO.addProperty(is_c_of,ont_lc);
+                        
                         Node lifecicle = hijos.item(i);
                         NodeList lc = lifecicle.getChildNodes();
                         for (int j = 1; j < lc.getLength(); j=j+2) {
@@ -192,27 +245,35 @@ public class AgenteGestorRepositorio extends Agent{
                             System.out.println("----"+eElement.getNodeName()+"----");
 
                             if(lc.item(j).getNodeName().compareTo("version")==0){
-                                System.out.println("Version : " + eElement.getTextContent());
+                                ont_lc.addProperty(model.getDatatypeProperty(rad+"version"),eElement.getTextContent());
                             }
                             else if(lc.item(j).getNodeName().compareTo("status")==0){
-                                System.out.println("Status: " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_lc.addProperty(model.getDatatypeProperty(foaf+"status"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(lc.item(j).getNodeName().compareTo("contribute")==0){
+                                OntClass contribute = model.getOntClass(ns+"Contribute");
+                                Individual idm = model.createIndividual(ns+"CLc_"+id,contribute);
                                 NodeList cnodes = lc.item(j).getChildNodes();
                                 for (int k = 1; k < cnodes.getLength(); k=k+2) {
                                    Element cElement = (Element) cnodes.item(k);
                                    if(cnodes.item(k).getNodeName().compareTo("role")==0)
-                                    System.out.println("role : " + cElement.getElementsByTagName("value").item(0).getTextContent());
+                                    idm.addProperty(model.getDatatypeProperty(vcard+"role"), cElement.getElementsByTagName("value").item(0).getTextContent());
                                    else if(cnodes.item(k).getNodeName().compareTo("entity")==0)
-                                    System.out.println("entity : " + cElement.getTextContent());
+                                    idm.addProperty(model.getDatatypeProperty(ns+"entity"),cElement.getTextContent());
                                    else if(cnodes.item(k).getNodeName().compareTo("date")==0)
-                                    System.out.println("date : " + cElement.getElementsByTagName("dateTime").item(0).getTextContent());
+                                    idm.addProperty(model.getDatatypeProperty(ns+"date"),cElement.getElementsByTagName("dateTime").item(0).getTextContent());
                                 }
+                                ObjectProperty opg = model.getObjectProperty(ns+"hasContribute");
+                                ont_lc.addProperty(opg,idm);
                             }
                         }
                     break;
                     case "metaMetadata":
                         System.out.println("MetaMetadata-----------");
+                        OntClass cls_meta = model.getOntClass(ns+"Metametadata");
+                        Individual ont_meta = model.createIndividual(ns+"M_"+id,cls_meta);
+                        LO.addProperty(is_c_of,ont_meta);
+                        
                         Node mMeta = hijos.item(i);
                         NodeList nmeta = mMeta.getChildNodes();
                         for (int j = 1; j < nmeta.getLength(); j=j+2) {
@@ -220,31 +281,45 @@ public class AgenteGestorRepositorio extends Agent{
                             System.out.println("----"+eElement.getNodeName()+"----");
 
                             if(nmeta.item(j).getNodeName().compareTo("identifier")==0){
-                                System.out.println("catalog : " + eElement.getElementsByTagName("catalog").item(0).getTextContent());
-                                System.out.println("entry : " + eElement.getElementsByTagName("entry").item(0).getTextContent());
+                                //System.out.println("catalog : " + eElement.getElementsByTagName("catalog").item(0).getTextContent());
+                                //System.out.println("entry : " + eElement.getElementsByTagName("entry").item(0).getTextContent());
+                                OntClass identifier = model.getOntClass(adms+"Identifier");
+                                Individual idm = model.createIndividual(ns+"IdM_"+id,identifier);
+                                idm.setPropertyValue(model.getDatatypeProperty(ns+"entry"), model.createTypedLiteral(eElement.getElementsByTagName("entry").item(0).getTextContent()));
+                                idm.setPropertyValue(model.getDatatypeProperty(ns+"catalog"), model.createTypedLiteral(eElement.getElementsByTagName("catalog").item(0).getTextContent()));
+                                ObjectProperty opg = model.getObjectProperty(ns+"hasIdentifier");
+                                ont_meta.addProperty(opg,idm);
                             }
                             else if(nmeta.item(j).getNodeName().compareTo("contribute")==0){
+                                OntClass contribute = model.getOntClass(ns+"Contribute");
+                                Individual idm = model.createIndividual(ns+"CM_"+id,contribute);
                                 NodeList cnodes = nmeta.item(j).getChildNodes();
                                 for (int k = 1; k < cnodes.getLength(); k=k+2) {
                                    Element cElement = (Element) cnodes.item(k);
                                    if(cnodes.item(k).getNodeName().compareTo("role")==0)
-                                    System.out.println("role : " + cElement.getElementsByTagName("value").item(0).getTextContent());
+                                    idm.addProperty(model.getDatatypeProperty(vcard+"role"), cElement.getElementsByTagName("value").item(0).getTextContent());
                                    else if(cnodes.item(k).getNodeName().compareTo("entity")==0)
-                                    System.out.println("entity : " + cElement.getTextContent());
+                                    idm.addProperty(model.getDatatypeProperty(ns+"entity"),cElement.getTextContent());
                                    else if(cnodes.item(k).getNodeName().compareTo("date")==0)
-                                    System.out.println("date : " + cElement.getElementsByTagName("dateTime").item(0).getTextContent());
+                                    idm.addProperty(model.getDatatypeProperty(ns+"date"),cElement.getElementsByTagName("dateTime").item(0).getTextContent());
                                 }
+                                ObjectProperty opg = model.getObjectProperty(ns+"hasContribute");
+                                ont_meta.addProperty(opg,idm);
                             }
                             else if(nmeta.item(j).getNodeName().compareTo("metadataSchema")==0){
-                                System.out.println("metadataSchema: " + eElement.getTextContent());
+                                ont_meta.addProperty(model.getDatatypeProperty(ns+"metadataScheme"),eElement.getTextContent());
                             }
                             else if(nmeta.item(j).getNodeName().compareTo("language")==0){
-                                System.out.println("Lenguaje: " + eElement.getTextContent());
+                                ont_meta.addProperty(model.getDatatypeProperty(vcard+"language"),eElement.getTextContent());
                             }
                         }
                         break;
                     case "technical":
                         System.out.println("Technical-----------");
+                        OntClass cls_tech = model.getOntClass(ns+"Technical");
+                        Individual ont_tech = model.createIndividual(ns+"T_"+id,cls_tech);
+                        LO.addProperty(is_c_of,ont_tech);
+                        
                         Node tech = hijos.item(i);
                         NodeList htech = tech.getChildNodes();
                         for (int j = 1; j < htech.getLength(); j=j+2) {
@@ -252,100 +327,112 @@ public class AgenteGestorRepositorio extends Agent{
                             System.out.println("----"+eElement.getNodeName()+"----");
 
                             if(htech.item(j).getNodeName().compareTo("location")==0){
-                                System.out.println("Locacion: " + eElement.getTextContent());
+                                ont_tech.addProperty(model.getDatatypeProperty(ns+"location"),eElement.getTextContent());
                             }
                             else if(htech.item(j).getNodeName().compareTo("format")==0){
-                                System.out.println("Format: " + eElement.getTextContent());
+                                ont_tech.addProperty(model.getDatatypeProperty(ns+"format"),eElement.getTextContent());
                             }
                             else if(htech.item(j).getNodeName().compareTo("requirement")==0){
                                 NodeList cnodes = htech.item(j).getChildNodes();
                                 for (int k = 1; k < cnodes.getLength(); k=k+2) {
-
+                                    
                                    if(cnodes.item(k).getNodeName().compareTo("orComposite")==0){
                                        NodeList orcomposite = cnodes.item(k).getChildNodes();
+                                       OntClass composite = model.getOntClass(ns+"Composite");
+                                       Individual idm = model.createIndividual(ns+"Com_"+"i_"+id,composite);
                                        for (int l = 1; l < orcomposite.getLength(); l=l+2) {
 
                                            Element ocElement = (Element) orcomposite.item(l);
                                            if(orcomposite.item(l).getNodeName().compareTo("type")==0)
-                                               System.out.println("type : " + ocElement.getElementsByTagName("value").item(0).getTextContent());
+                                               idm.addProperty(model.getDatatypeProperty(ns+"type"),ocElement.getElementsByTagName("value").item(0).getTextContent());
                                            else if(orcomposite.item(l).getNodeName().compareTo("name")==0)
-                                               System.out.println("Name : " + ocElement.getElementsByTagName("value").item(0).getTextContent());
+                                               idm.addProperty(model.getDatatypeProperty(ns+"name"),ocElement.getElementsByTagName("value").item(0).getTextContent());
                                            else if(orcomposite.item(l).getNodeName().compareTo("minimumVersion")==0)
-                                               System.out.println("minimunVersion : " + ocElement.getTextContent());
+                                               idm.addProperty(model.getDatatypeProperty(ns+"minimumVersion"),ocElement.getTextContent());
                                            else if(orcomposite.item(l).getNodeName().compareTo("maximumVersion")==0)
-                                               System.out.println("maximunVersion: " + ocElement.getTextContent());
+                                               idm.addProperty(model.getDatatypeProperty(ns+"maximumVersion"),ocElement.getTextContent());
                                        }
+                                       ObjectProperty opg = model.getObjectProperty(ns+"hasComposite");
+                                       ont_tech.addProperty(opg,idm);
                                    }
                                 }
                             }
                             else if(htech.item(j).getNodeName().compareTo("installationRemarks")==0){
-                                System.out.println("installationRemarks: " + eElement.getTextContent());
+                                ont_tech.addProperty(model.getDatatypeProperty(ns+"installationRemarks"),eElement.getTextContent());
                             }
-                            else if(htech.item(j).getNodeName().compareTo("languageotherPlatformRequirements")==0){
-                                System.out.println("otherPlatformRequirements: " + eElement.getTextContent());
+                            else if(htech.item(j).getNodeName().compareTo("otherPlatformRequirements")==0){
+                                ont_tech.addProperty(model.getDatatypeProperty(ns+"otherPlatformRequirements"),eElement.getTextContent());
                             }
                             else if(htech.item(j).getNodeName().compareTo("duration")==0){
-                                System.out.println("duration: " + eElement.getTextContent());
+                                ont_tech.addProperty(model.getDatatypeProperty(ns+"duration"),eElement.getTextContent());
                             }
                             else if(htech.item(j).getNodeName().compareTo("size")==0){
-                                System.out.println("Size: " + eElement.getTextContent());
+                                ont_tech.addProperty(model.getDatatypeProperty(ns+"size"),eElement.getTextContent());
                             }
                         }
                         break;
                     case "educational":
                         System.out.println("Educational-----------");
+                        OntClass cls_educ = model.getOntClass(ns+"Educational");
+                        Individual ont_educ = model.createIndividual(ns+"Educ_"+id,cls_educ);
+                        LO.addProperty(is_c_of,ont_educ);
+                        
                         Node educational  = hijos.item(i);
                         NodeList heduc = educational.getChildNodes();
                         for (int j = 1; j < heduc.getLength(); j=j+2) {
                             Element eElement = (Element) heduc.item(j);
                             System.out.println("----"+eElement.getNodeName()+"----");
                             if(heduc.item(j).getNodeName().compareTo("interactivityType")==0){
-                                System.out.println("Inteactivity type : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"interactivityType"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("learningResourceType")==0){
-                                System.out.println("learning Type : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"learningResourceType"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("interactivityLevel")==0){
-                                System.out.println("Interactivity Level : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"interactivityLevel"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("intendedEndUserRole")==0){
-                                System.out.println("End User Role : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"intendedEndUserRole"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("context")==0){
-                                System.out.println("Context: "+eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"context"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("typicalAgeRange")==0){
-                                System.out.println("Age Range: "+eElement.getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"typicalAgeRange"),eElement.getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("difficulty")==0){
-                                System.out.println("Dificultad: " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"difficulty"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("typicalLearningTime")==0){
-                                System.out.println("Agregación : " + eElement.getElementsByTagName("duration").item(0).getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"typicalLearningTime"),eElement.getElementsByTagName("duration").item(0).getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("description")==0){
-                                System.out.println("Descripcion: " + eElement.getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(ns+"description"),eElement.getTextContent());
                             }
                             else if(heduc.item(j).getNodeName().compareTo("language")==0){
-                                System.out.println("Lenguaje: " + eElement.getTextContent());
+                                ont_educ.addProperty(model.getDatatypeProperty(vcard+"language"),eElement.getTextContent());
                             }
                         }
                         break;
                     case "rights":
                         System.out.println("Rigths-----------");
+                        OntClass cls_rigths = model.getOntClass(ns+"Rights");
+                        Individual ont_rigths = model.createIndividual(ns+"R_"+id,cls_rigths);
+                        LO.addProperty(is_c_of,ont_rigths);
+                        
                         Node rights  = hijos.item(i);
                         NodeList hrights = rights.getChildNodes();
                         for (int j = 1; j < hrights.getLength(); j=j+2) {
                             Element eElement = (Element) hrights.item(j);
                             System.out.println("----"+eElement.getNodeName()+"----");
                             if(hrights.item(j).getNodeName().compareTo("cost")==0){
-                                System.out.println("Cost : " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_rigths.addProperty(model.getDatatypeProperty(ns+"cost"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(hrights.item(j).getNodeName().compareTo("copyrightAndOtherRestrictions")==0){
-                                System.out.println("copyrightAndOtherRestrictions: " + eElement.getElementsByTagName("value").item(0).getTextContent());
+                                ont_rigths.addProperty(model.getDatatypeProperty(ns+"copyrightAndOtherRestrictions"),eElement.getElementsByTagName("value").item(0).getTextContent());
                             }
                             else if(hrights.item(j).getNodeName().compareTo("description")==0){
-                                System.out.println("Descripción : " + eElement.getTextContent());
+                                ont_rigths.addProperty(model.getDatatypeProperty(ns+"description"),eElement.getTextContent());
                             }
                         }
                         break;
