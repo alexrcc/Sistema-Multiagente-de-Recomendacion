@@ -1,14 +1,12 @@
 package sma;
 
-import com.sun.org.apache.xml.internal.utils.ObjectPool;
+//Agentes
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
-import jade.core.behaviours.TickerBehaviour;
+import jade.wrapper.AgentContainer;
 import java.io.BufferedInputStream;
 
-
 //Externos
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
@@ -16,13 +14,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.apache.jena.ontology.DatatypeProperty;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.ObjectProperty;
-import org.apache.jena.ontology.OntClass;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -34,101 +27,108 @@ import org.w3c.dom.NodeList;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.vocabulary.OWL;
-
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.ObjectProperty;
+import org.apache.jena.ontology.OntClass;
 
 
 public class AgenteGestorRepositorio extends Agent{
+    
     private static int total_pages;
     private static OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
-    private static String ns = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#"; 
-    private static String adms = "http://www.w3.org/ns/adms#"; 
-    private static String dcat = "http://www.w3.org/ns/dcat#" ;
-    private static String foaf = "http://xmlns.com/foaf/0.1/" ;
-    private static String fabio = "http://purl.org/spar/fabio/" ;
-    private static String rad = "http://www.w3.org/ns/radion#" ;
-    private static String owl = "http://www.w3.org/2002/07/owl#" ;
-    private static String vcard = "http://www.w3.org/2006/vcard/ns#" ;
-    private static String gold = "http://purl.org/linguistics/gold/" ;
-    private static String xsd = "http://www.w3.org/2001/XMLSchema#" ;
-    private static String com = "http://vocab.resc.info/communication#" ;
-    private static String rdfs = "http://www.w3.org/2000/01/rdf-schema#" ;
-    private static String nco = "http://oscaf.sourceforge.net/nco.html#" ;
-    private static String lcy = "http://purl.org/vocab/lifecycle/schema#" ;
-    private static String stac = "http://securitytoolbox.appspot.com/stac#" ;
-    private static String rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
-    private static String discovery = "http://rdf-vocabulary.ddialliance.org/discovery#" ;
-    private static String ebu = "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" ;
-    private static String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+    private static final String ns = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#"; 
+    private static final String adms = "http://www.w3.org/ns/adms#"; 
+    private static final String dcat = "http://www.w3.org/ns/dcat#" ;
+    private static final String foaf = "http://xmlns.com/foaf/0.1/" ;
+    private static final String fabio = "http://purl.org/spar/fabio/" ;
+    private static final String rad = "http://www.w3.org/ns/radion#" ;
+    private static final String owl = "http://www.w3.org/2002/07/owl#" ;
+    private static final String vcard = "http://www.w3.org/2006/vcard/ns#" ;
+    private static final String gold = "http://purl.org/linguistics/gold/" ;
+    private static final String xsd = "http://www.w3.org/2001/XMLSchema#" ;
+    private static final String com = "http://vocab.resc.info/communication#" ;
+    private static final String rdfs = "http://www.w3.org/2000/01/rdf-schema#" ;
+    private static final String nco = "http://oscaf.sourceforge.net/nco.html#" ;
+    private static final String lcy = "http://purl.org/vocab/lifecycle/schema#" ;
+    private static final String stac = "http://securitytoolbox.appspot.com/stac#" ;
+    private static final String rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+    private static final String discovery = "http://rdf-vocabulary.ddialliance.org/discovery#" ;
+    private static final String ebu = "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" ;
+    private static final String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+    private static String url_base;
     
     
     @Override
     protected void setup(){
-        System.out.println("Hola soy el : "+getAID().getName()+" estoy listo");
+        System.out.println("Agente: "+getAID().getName()+"inicializado");
         Object [] args = getArguments();
 
         if(args != null && args.length>0){
-            System.out.println("Me envian este argumento: "+args[0]+args[1]);
+            
+            System.out.println (new File (".").getAbsolutePath ());
+            System.out.println("Argumentos: "+args[0]+args[1]);
+            model.read("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//OntologiaBase.owl","RDF/XML");
+            addBehaviour(new ComportamientoAGR(args));
         }else{
             System.out.println("No se enviaron argumentos");
             doDelete();
         }
-        
-        model.read("OntologiaBase.owl","RDF/XML");
-        addBehaviour(new ComportamientoAGR());
     }
 
 
     private class ComportamientoAGR extends Behaviour{
-
+        private final Object [] args;
+        public ComportamientoAGR( Object argumentos[]){
+            args = argumentos; 
+        }
         @Override
         public void action() {
-//            Object[] args = getArguments();
-//            if (args != null) {
-//                System.out.println("Digo:" + args[0] + args[1]);
-//            }
-//
-            try{
-            
-            String url = "https://roa.cedia.edu.ec/apis/search?type=Resource&page=";
-            String url_metadata = "https://roa.cedia.edu.ec/";
+            for(int z=0;z<args.length;z++){
+                try{
+                String url_base=args[z].toString();
+                String url = url_base+"/apis/search?type=Resource&page=";
+                total_pages = GetPages(url+"1");
+                //System.out.println(total_pages);
+                for (int i = 1; total_pages !=0 && i <= 1; i++) {
+                    JSONObject learning_objects = GetLernaingObject(url+i);
+                    JSONArray results = learning_objects.getJSONArray("results");
+                    //System.out.println(results.length());
 
-            //String url = "http://vishub.org/apis/search?type=Resource&page=1";
-            total_pages = GetPages(url+"1");
-            //System.out.println(total_pages);
-            for (int i = 1; total_pages !=0 && i <= total_pages; i++) {
-                JSONObject learning_objects = GetLernaingObject(url+i);
-                JSONArray results = learning_objects.getJSONArray("results");
-                //System.out.println(results.length());
-
-                for (int j = 0; j <results.length() ; j++) { //results.length()
-                    JSONObject aux = results.getJSONObject(j);
-                    System.out.println(aux.getString("id"));
-                    String type = aux.getString("type");
-                    String id = aux.getString("id");
-                    String dir = aux.getString("url");
-                    String in ="";
-                    if(type.compareTo("Excursion")==0){
-                        String[] a = id.split(":");
-                        int valor = Integer.parseInt(a[1].split("@")[0]);
-                       in = (GetMetadata(url_metadata+"excursions/",valor,id));
-                    }else{
-                        int v_aux = GetCodeMetadata(dir);
-                        System.out.println(v_aux);
-                        in = GetMetadata(url_metadata+"activity_objects/",v_aux,id);
+                    for (int j = 0; j <3 ; j++) { //results.length()
+                        JSONObject aux = results.getJSONObject(j);
+                        System.out.println(aux.getString("id"));
+                        String type = aux.getString("type");
+                        String id = aux.getString("id");
+                        String dir = aux.getString("url");
+                        String in ="";
+                        if(type.compareTo("Excursion")==0){
+                            String[] a = id.split(":");
+                            int valor = Integer.parseInt(a[1].split("@")[0]);
+                           in = (GetMetadata(url_base+"/excursions/",valor,id));
+                        }else{
+                            int v_aux = GetCodeMetadata(dir);
+                            System.out.println(v_aux);
+                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id);
+                        }
                     }
                 }
+                
+                }catch(Exception e){
+                       System.out.println(e);
+                }
+            
             }
+            try{
             File file = new File("Individuos.owl");
-        //Hay que capturar las Excepciones
-            if (!file.exists()){
-                 file.createNewFile();
-            }
-            model.write(new PrintWriter(file));
+           
+                if (!file.exists()){
+                     file.createNewFile();
+                }
+                model.write(new PrintWriter(file));
             }catch(Exception e){
-                   System.out.println(e);
+                System.out.println("Error al guardar el modelo: "+e);
             }
-            }
+        }
 
         @Override
         public boolean done() {
@@ -141,6 +141,13 @@ public class AgenteGestorRepositorio extends Agent{
         }
 
     }
+    
+    
+    
+    
+    
+    
+    
     private static int GetCodeMetadata(String url)throws Exception{
 
         URL url_aux = new URL(url);
@@ -188,7 +195,7 @@ public class AgenteGestorRepositorio extends Agent{
                 ObjectProperty is_c_of = model.getObjectProperty(ns+"isComprisedOf");
                 switch(nodo){
                     case "general":
-                        //System.out.println("general-----------");
+                        System.out.println("general-----------");
                         OntClass cls_gen = model.getOntClass(ns+"General");
                         Individual ont_gen = model.createIndividual(ns+"Gen_"+id,cls_gen);
                         LO.addProperty(is_c_of,ont_gen);
@@ -197,10 +204,8 @@ public class AgenteGestorRepositorio extends Agent{
                         NodeList keywords = general.getChildNodes();
                         for (int j = 1; j < keywords.getLength(); j=j+2) {
                             Element eElement = (Element) keywords.item(j);
-                            //System.out.println("----"+eElement.getNodeName()+"----");
+                            System.out.println("----"+eElement.getNodeName()+"----");
                             if(keywords.item(j).getNodeName().compareTo("identifier")==0){
-//                                System.out.println("catalog : " + eElement.getElementsByTagName("catalog").item(0).getTextContent());
-//                                System.out.println("entry : " + eElement.getElementsByTagName("entry").item(0).getTextContent());
                                 OntClass identifier = model.getOntClass(adms+"Identifier");
                                 Individual idm = model.createIndividual(ns+"Id_"+id,identifier);
                                 idm.setPropertyValue(model.getDatatypeProperty(ns+"entry"), model.createTypedLiteral(eElement.getElementsByTagName("entry").item(0).getTextContent()));
@@ -462,9 +467,6 @@ public class AgenteGestorRepositorio extends Agent{
             in.close();
             myResponse = new JSONObject(response.toString());
 
-//            System.out.println("--------"+myResponse);
-//            String dir = myResponse.getString("results");
-//            System.out.println(dir);
         }
         return myResponse;
     }

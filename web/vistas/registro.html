@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalTitle" aria-hidden="true" ng-controller="controladorRegistro">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="_divRegistroModal">      
+      <div class="modal-content">      
+        <form action="model/guardar_registro.php" method="post" class="needs-validation" novalidate="">
+          <div class="modal-header">
+            <h5 class="modal-title" id="_registroModalLongTitle">Registro TBook</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="_btnCerrarModal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="_divRegistroModalBody">    
+            <div class="form-group">
+              <div>
+                <label for="validationCustom01" id="_lblNombres">Nombres</label>
+                <input type="text" name="_iptNombres" id="_iptNombres" placeholder="Nombres" class="form-control" required class="form-control" id="validationCustom01">
+                <div class="invalid-feedback">
+                  Debe ingresar su nombre.
+                </div>
+              </div>
+              <div>
+                <label id="_lblApellidos">Apellidos</label>
+                <input type="text" name="_iptApellidos" id="_iptApellidos" placeholder="Apellidos" class="form-control" required>
+                <div class="invalid-feedback">
+                  Debe ingresar su apellido.
+                </div>
+              </div>
+              <div>
+                <label id="_lblEmail">Email</label>
+                <input type="email" name="_iptEmail" id="_iptEmail" placeholder="Email" class="form-control" required>
+                <div class="invalid-feedback">
+                  Debe ingresar su correo.
+                </div>
+              </div>
+              <div>
+                <label id="_lblEmail">Contraseña</label>
+                <input type="password" name="_iptPassword" id="_iptPassword" placeholder="Contraseña" class="form-control" ng-model="Password1" required>
+                <div class="invalid-feedback">
+                  Debe ingresar su contraseña.
+                </div>
+              </div>
+              <div>
+                <label id="_lblEmail">Repita Contraseña </label><label id="_lblError">{{mensajeError}}</label>
+                <input type="password" id="_iptRepeatPassword" placeholder="Contraseña" class="form-control" ng-model="Password2" ng-blur="validarPassword(Password1,Password2)" required>                
+                <div class="invalid-feedback">
+                  Debe repetir su contraseña.
+                </div>
+              </div>
+              
+              <div>
+                <label id="_lblGenero">Género</label><br>
+                <select class="custom-select mr-sm-2" name="_slctGenero" id="_slctGenero" required>
+                  <option value="">Género...</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                  <option value="O">Otros</option>
+                </select>
+                <div class="invalid-feedback">
+                  Debe ingresar su género.
+                </div>
+                <label id="_lblTerminos" style="font-size: 80%;padding-top: 5%;">
+                  Al hacer click en registrarse, aceptas las <a target="_blank" href="view/politicas.php">politicas y condiciones de uso de tbook.</a>
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">          
+            <input type="submit" id="_btnRegistro" class="btn btn-primary" value="REGISTRARSE">
+          </div>
+        </form> 
+      </div>
+             
+    </div>
+  </div>
+<!-- FIN VENTANA MODAL -->

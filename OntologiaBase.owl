@@ -168,7 +168,7 @@
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasResource -->
 
     <owl:ObjectProperty rdf:about="&smas;hasResource">
-        <rdfs:domain rdf:resource="&smas;Relation"/>
+        <rdfs:domain rdf:resource="&com;Relation"/>
         <rdfs:range rdf:resource="&smas;Resource"/>
     </owl:ObjectProperty>
     
@@ -225,12 +225,12 @@
         <rdfs:domain rdf:resource="&fabio;Metadata/Lom"/>
         <rdfs:range rdf:resource="&lcy;Lifecycle"/>
         <rdfs:range rdf:resource="&com;Classification"/>
+        <rdfs:range rdf:resource="&com;Relation"/>
         <rdfs:range rdf:resource="&ebu;Rights"/>
         <rdfs:range rdf:resource="&smas;Annotation"/>
         <rdfs:range rdf:resource="&smas;Educational"/>
         <rdfs:range rdf:resource="&smas;General"/>
         <rdfs:range rdf:resource="&smas;Metametadata"/>
-        <rdfs:range rdf:resource="&smas;Relation"/>
         <rdfs:range rdf:resource="&smas;Technical"/>
     </owl:ObjectProperty>
     
@@ -467,7 +467,7 @@
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#kind -->
 
     <owl:DatatypeProperty rdf:about="&smas;kind">
-        <rdfs:domain rdf:resource="&smas;Relation"/>
+        <rdfs:domain rdf:resource="&com;Relation"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -805,6 +805,14 @@
     
 
 
+    <!-- http://vocab.resc.info/communication#Relation -->
+
+    <owl:Class rdf:about="&com;Relation">
+        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Rights -->
 
     <owl:Class rdf:about="&ebu;Rights">
@@ -886,18 +894,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Relation -->
-
-    <owl:Class rdf:about="&smas;Relation">
-        <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Resource -->
 
     <owl:Class rdf:about="&smas;Resource">
-        <rdfs:subClassOf rdf:resource="&smas;Relation"/>
+        <rdfs:subClassOf rdf:resource="&com;Relation"/>
     </owl:Class>
     
 
