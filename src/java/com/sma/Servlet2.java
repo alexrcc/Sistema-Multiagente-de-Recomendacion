@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ecodeup.com;
+package com.sma;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,8 +26,8 @@ import sma.*;
  *
  * @author alexr
  */
-@WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
-public class Servlet extends HttpServlet{  
+@WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
+public class Servlet2 extends HttpServlet{  
    AgentController agenteController;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,7 +41,7 @@ public class Servlet extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, StaleProxyException, ControllerException {
         response.setContentType("text/html;charset=UTF-8");
-        Object args [] = {request.getParameter("nombre").toString()};
+        Object args [] = {request.getParameter("nombre2").toString()};
         //Agente que gestiona el SMA
     AgentController agenteController;
     
@@ -50,7 +50,8 @@ public class Servlet extends HttpServlet{
     //CreateMainContainer necesita un Profile que guarda las configuraciones necesarias para iniciar JADE
     Profile profile = new ProfileImpl(null, 1099, null);
     AgentContainer mainContainer = runtime.createMainContainer(profile);
-    agenteController = mainContainer.createNewAgent("AgenteControlador",AgenteInterfaz.class.getName(),args);
+    Object argumentos[] = {"https://roa.cedia.edu.ec", "http://vishub.org"};
+    agenteController = mainContainer.createNewAgent("AgenteGR",AgenteGestorRepositorio.class.getName(),argumentos);
     agenteController.start();
     
         try (PrintWriter out = response.getWriter()) {

@@ -1,9 +1,7 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% String user = (String)session.getAttribute("user");%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
     <head>
         <title>NAV</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -28,9 +26,14 @@ and open the template in the editor.
 		<li><a href="#">Acerca de</a></li>
 		<li><a href="#">Contacto</a></li>
                 <li><a href="#">Administrador</a></li>
-                <li class="ingreso"><a href="#" id="sesion" >Iniciar sesi&oacute;n</a></li>
-                <li class="ingreso"><a href="#" id="registro" data-toggle="modal" data-target="#registroModal">Reg&iacute;strate</a></li>
+                <% if(user==null){
+                    out.print("<li class=\"ingreso\"><a href=\"#\" id=\"sesion\" >Iniciar sesi&oacute;n</a></li>");
+                    out.print("<li class=\"ingreso\"><a href=\"#\" id=\"registro\" data-toggle=\"modal\" data-target=\"#registroModal\">Regístrate</a></li>");
+                    }
+                %>
+                
+                
             </ul>
 	</nav>
     </header>
-
+   <jsp:include page="registro.jsp"/>
