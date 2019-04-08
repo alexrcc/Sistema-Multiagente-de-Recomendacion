@@ -35,30 +35,30 @@ header nav ul {
         margin-bottom: 0;
 }
  
-header nav ul li {
+header nav ul li:not(.ingreso):not(.avatar) {
 	display:inline-block;
 	position: relative;
         margin: 10px 5px;
 }
  
-header nav ul li:hover {
-	background:rgb(251, 167, 7);
-        border-radius: 3px;
+header nav ul li:hover:not(.ingreso):not(.avatar) {
+	background:#011826;
         
        
 }
  
 header nav ul li a {
-	color:#fff;
+	color:hsla(0,0%,100%,.7);
 	display:block;
 	text-decoration:none;
 	padding: 10px;
         font-family: sans-serif;
-        font-size: 1em;
-        font-weight: 500;
+        font-size: 0.9em;
+        font-weight: 600;
 }
-header nav ul li a:hover {
+header nav ul li a:hover{
 	text-decoration:none;
+        color: #fba707;
 }
 header nav ul li a:visited {
 	text-decoration:none;
@@ -75,13 +75,14 @@ header nav ul li .children {
 	display: none;
 	background:#011826;
 	position: absolute;
-	width: 150%;
+	width: 120%;
 	z-index:1000;
 }
  
 header nav ul li .children li {
 	display:block;
-	overflow: hidden;
+        overflow: hidden;
+        width: 93%;
 	border-bottom: 1px solid rgba(255,255,255,.5);
 }
  
@@ -106,23 +107,149 @@ header nav ul li .caret {
 
 .ingreso{
     float: right;
+    margin: 9px 5px;
     
 }
 #sesion{
     border: solid 1px #FBA707;
     border-radius: 3px;
     color: #FBA707;
+    margin: 0px 5px;
 }
 #registro{
    border: solid 1px #FBA707;
     border-radius: 3px;
     color: #FBA707;
+    margin: 0px 5px;
 }
 .ingreso a:hover{
     background:#FBA707;
     color: #333 !important;
     
 }
+
+.avatar{
+    float: right;
+    display: block;
+    margin-top:9px;
+}
+.avatar span:not(.text_user){
+    color:#fba707;
+    font-size: 1.7rem;
+    margin-left: 3px;
+}
+
+.avatar a:hover{
+    text-decoration: none;
+    color: #f2f2f2;
+    
+}
+.text_user{
+    color:#fba707;
+    float: left;
+    margin-top:4px; 
+}
+/*INICION AVATAR PARA SESION ID=AVATAR EN INDEX*/
+
+.opc_avatar{
+        width: 22%; 
+	display: none;
+	position: absolute;
+	right: 0px;
+	background: #fff;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	z-index: 200;
+	margin-right: 3%;
+	border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-o-border-radius: 5px;
+	}
+        
+        .opc_avatar .contedor{
+            width: 100%;
+            float: left;
+        }
+        .opc_avatar .exit{
+            float: left;
+            width: 94%;
+            border-top: solid 1px #FBA707;
+            margin-left: 3%;
+            margin-right: 3%;
+            padding-top: 3%;
+        }
+        .opc_avatar .contenedor .img{
+            width: 28%;
+            float: left;
+            margin: 3% auto;
+        }
+        .img span{
+            font-size: 3.5rem;
+            margin-left: 2%;
+        }
+        .opc_avatar .contenedor .datos{
+            width: 50%;
+            float: left;
+            margin: 3% auto;
+        }
+        .datos .nombre{
+           font-weight: 600;
+           width: 100%;
+           float: left;
+           
+        }
+        .datos .correo{
+           width: 100%;
+           float: left;
+           
+        }
+        .datos a{
+            border: solid 1px #FBA707;
+            border-radius: 3px;
+            color: #fff;
+            float: left;
+            padding: 5px 10px;
+            background: #FBA707;
+            margin-top: 4%; 
+            width: 70%;
+            text-align: center;
+            text-decoration: none;
+        }
+        .exit{
+         
+            
+        }
+        .exit a{
+           color: #000; 
+           text-decoration: none;
+        }
+        .exit a span{
+            float: right;
+        }
+        .exit a:hover{
+           color: #FBA707; 
+        }
+.opc_avatar ul{
+	float: right;
+	list-style: none;
+}
+.opc_avatar li{
+	
+	padding: 2px;
+}
+.opc_avatar li a{
+	text-decoration: none;
+	color: #fff;
+}
+.opc_avatar li a:hover{
+	text-decoration: none;
+	color: #999;
+}
+
+
+/*FIN AVATAR PARA SESION ID=AVATAR EN INDEX*/
  
 @media screen and (max-width: 800px) {
 	body {

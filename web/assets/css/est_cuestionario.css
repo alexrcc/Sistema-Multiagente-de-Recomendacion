@@ -1,0 +1,68 @@
+#encabezado{
+    
+    margin: 2% 5% 2% 5%;
+    width: 90%;
+    
+}
+#cuestionario{
+    width: 80%;
+    margin: auto;
+    display:block;
+    margin-bottom: 5%;
+}
+.seccion_preg{
+    width: 100%;
+    border-top: solid 1px #ced4da;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+.numero{
+  
+    width: 10%;
+    float: left;
+}
+.pregunta{
+    width: 90%;
+    float:left;
+}
+#cuestionario .item{
+    width: 100%;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.form-check label{
+    font-size: 1.1rem;
+}
+.circle
+  {
+    float: right;
+    margin-right: 30%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; 
+    background: #212529;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding-top:3px;
+    color: #fff;
+  }
+  #footer_btn{
+      width: 100%;
+      float: left;
+      border-top: solid 1px #ced4da;
+      
+  }
+  #cuestionario button{
+      width: 20%;
+      font-size: 1.6rem;
+      margin: 2%;
+  }
+  #mensaje_modal .modal-header h5{
+      font-weight: 700;
+  }
+  #mensaje_modal .modal-footer button{
+      background: #fba707 !important;
+      border-color:#fba707;
+  }

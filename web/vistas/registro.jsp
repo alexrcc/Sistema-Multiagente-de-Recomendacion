@@ -1,10 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%  String variable = (String)session.getAttribute("error");
+    String user = (String)session.getAttribute("user");
+%>
 <!DOCTYPE html>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<div class="modal fade" id="registroModal" role="dialog">
+ <!-- VENTANA MODAL -->  
+    <div class="modal fade" id="registroModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="_divRegistroModal">      
       <div class="modal-content">      
-        <form action="model/guardar_registro.php" method="post" class="needs-validation" novalidate="">
+        <form action="Registrar" method="POST" class="needs-validation" novalidate="">
           <div class="modal-header">
             <h5 class="modal-title" id="_registroModalLongTitle">Regístrate</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="_btnCerrarModal">
@@ -12,9 +16,12 @@
             </button>
           </div>
           <div class="modal-body" id="_divRegistroModalBody"> 
-              <center><span>Ingresar con google</span>
-                  <a href="#" class="google"><span class="fab fa-google"></span></a>
+              <div id="sesion_google">
+              <center><span>Regístrate con google</span>
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
               <span>o</span></center>
+                  <% if(variable!=null){out.print("<span class=\"error\">"+"*Error: "+variable+"</span>");session.removeAttribute("error");}%>
+              </div>
             <div class="form-group">
              <div class="sub-group">
                  <div class="icon-log"><span class="fas fa-user"></span></div>
@@ -37,9 +44,9 @@
                   Debe ingresar su contraseña.
                 </div>
               </div>
-              <div class="sub-group" >
-                  <a id="forgotpass" href="#">¿Has olvidado tu contraseña?</a>
-              </div>
+             <label id="_lblTerminos" style="font-size: 80%;padding-top: 5%;">
+                  Al hacer click en registrarse, aceptas las <a target="_blank" href="vistas/politicas.jsp  ">politicas y condiciones de uso.</a>
+                </label>
             </div>
 
           </div>
@@ -51,3 +58,10 @@
              
     </div>
   </div>
+  <% if(user==null)
+        out.print("<script src=\"assets/js/oauth2.js\"></script>");
+  
+  %>
+  
+<!-- FIN VENTANA MODAL -->  
+         

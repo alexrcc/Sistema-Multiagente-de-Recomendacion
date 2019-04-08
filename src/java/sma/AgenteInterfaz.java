@@ -18,9 +18,9 @@ public class AgenteInterfaz extends GatewayAgent{
     @Override
     protected void setup(){
         System.out.println("Hola"+getAID().getName()+"estoy listo");
-       Object [] args = getArguments();
+        Object [] args = getArguments();
         System.out.println(args[0].toString());
-    
+        
     }
     
     @Override

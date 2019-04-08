@@ -75,11 +75,12 @@ public class Registrar extends HttpServlet {
                         try {
                             d.conectar();
                                 if(d.isEmailRegistered(emailUsuario)){
-                                    respuesta.setAttribute("error", "Esa direeción de correo ya fue registrada");
+                                    respuesta.setAttribute("error", "Esa direción de correo ya fue registrada");
                                 } else {
                                     //Legado a este punto significa que todo esta correcto, por lo tanto ingreso a la DB
-                                    d.registerUser(emailUsuario, password, nombreUsuario);
+                                    d.registerUser(emailUsuario, password, nombreUsuario,0,0);
                                     respuesta.setAttribute("user",emailUsuario);
+                                    respuesta.setAttribute("name",nombreUsuario);
                                 }
                             
                             d.desconectar();
@@ -96,7 +97,9 @@ public class Registrar extends HttpServlet {
             }
         }
         
-        response.sendRedirect("index.jsp");
-        
+        if(respuesta.getAttribute("error")!=null)
+            response.sendRedirect("index.jsp");
+        else
+            response.sendRedirect("cuestionario.jsp");
     }
 }

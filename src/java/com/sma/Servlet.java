@@ -99,6 +99,7 @@ public class Servlet extends HttpServlet{
          try{
         processRequest(request, response);
         }catch(Exception e){
+             System.out.println(e);
         }
     }
 

@@ -438,92 +438,6 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#studentProfile"/>
   </owl:DatatypeProperty>
-  <smas:LearningObject rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Picture:81@roa.cedia.edu.ec">
-    <smas:isComprisedOf>
-      <rdf:Description rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#R_Picture:81@roa.cedia.edu.ec">
-        <smas:description>
-      License: 'Creative Commons Attribution-NonCommercial'.
-    </smas:description>
-        <smas:copyrightAndOtherRestrictions>yes</smas:copyrightAndOtherRestrictions>
-        <smas:cost>no</smas:cost>
-      </rdf:Description>
-    </smas:isComprisedOf>
-    <smas:isComprisedOf>
-      <smas:Educational rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Educ_Picture:81@roa.cedia.edu.ec">
-        <smas:typicalAgeRange>
-      0 - 29
-    </smas:typicalAgeRange>
-        <smas:intendedEndUserRole>learner</smas:intendedEndUserRole>
-      </smas:Educational>
-    </smas:isComprisedOf>
-    <smas:isComprisedOf>
-      <smas:Technical rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#T_Picture:81@roa.cedia.edu.ec">
-        <smas:hasComposite>
-          <smas:Composite rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Com_i_Picture:81@roa.cedia.edu.ec">
-            <smas:name>any</smas:name>
-            <smas:type>browser</smas:type>
-          </smas:Composite>
-        </smas:hasComposite>
-        <smas:location>http://roa.cedia.edu.ec/pictures/81</smas:location>
-      </smas:Technical>
-    </smas:isComprisedOf>
-    <smas:isComprisedOf>
-      <smas:Metametadata rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#M_Picture:81@roa.cedia.edu.ec">
-        <vcard:language>en</vcard:language>
-        <smas:metadataScheme>LOMv1.0</smas:metadataScheme>
-        <smas:hasContribute>
-          <smas:Contribute rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#CM_Picture:81@roa.cedia.edu.ec">
-            <smas:date>2018-11-11</smas:date>
-            <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Sandy&amp;#xD;FN:Sandy&amp;#xD;END:VCARD</smas:entity>
-            <vcard:role>creator</vcard:role>
-          </smas:Contribute>
-        </smas:hasContribute>
-        <smas:hasIdentifier>
-          <adms:Identifier rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#IdM_Picture:81@roa.cedia.edu.ec">
-            <smas:catalog>URI</smas:catalog>
-            <smas:entry>http://roa.cedia.edu.ec/activity_objects/283/metadata.xml</smas:entry>
-          </adms:Identifier>
-        </smas:hasIdentifier>
-      </smas:Metametadata>
-    </smas:isComprisedOf>
-    <smas:isComprisedOf>
-      <lcy:Lifecycle rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Lc_Picture:81@roa.cedia.edu.ec">
-        <smas:hasContribute>
-          <smas:Contribute rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#CLc_Picture:81@roa.cedia.edu.ec">
-            <smas:date>2018-11-11</smas:date>
-            <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Sandy&amp;#xD;FN:Sandy&amp;#xD;END:VCARD</smas:entity>
-            <vcard:role>author</vcard:role>
-          </smas:Contribute>
-        </smas:hasContribute>
-        <foaf:status>final</foaf:status>
-        <rad:version>
-      v2018.11.11
-    </rad:version>
-      </lcy:Lifecycle>
-    </smas:isComprisedOf>
-    <smas:isComprisedOf>
-      <smas:General rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Gen_Picture:81@roa.cedia.edu.ec">
-        <rad:keyword>
-      familias
-    </rad:keyword>
-        <rad:keyword>
-      familia
-    </rad:keyword>
-        <smas:description>
-      Aquí encontraras los tipos de familia más comunes
-    </smas:description>
-        <vcard:title>
-      Tipos de familia
-    </vcard:title>
-        <smas:hasIdentifier>
-          <adms:Identifier rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Id_Picture:81@roa.cedia.edu.ec">
-            <smas:catalog>URI</smas:catalog>
-            <smas:entry>http://roa.cedia.edu.ec/pictures/81</smas:entry>
-          </adms:Identifier>
-        </smas:hasIdentifier>
-      </smas:General>
-    </smas:isComprisedOf>
-  </smas:LearningObject>
   <smas:LearningObject rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Webapp:18@roa.cedia.edu.ec">
     <smas:isComprisedOf>
       <rdf:Description rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#R_Webapp:18@roa.cedia.edu.ec">
@@ -635,6 +549,94 @@ bibliografía respectiva.
     <rdfs:domain rdf:resource="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#GeneralData"/>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Composite"/>
   </owl:AnnotationProperty>
+  <smas:LearningObject rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Scormfile:29@roa.cedia.edu.ec">
+    <smas:isComprisedOf>
+      <rdf:Description rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#R_Scormfile:29@roa.cedia.edu.ec">
+        <smas:description>
+      License: 'Creative Commons Attribution-NonCommercial'.
+    </smas:description>
+        <smas:copyrightAndOtherRestrictions>yes</smas:copyrightAndOtherRestrictions>
+        <smas:cost>no</smas:cost>
+      </rdf:Description>
+    </smas:isComprisedOf>
+    <smas:isComprisedOf>
+      <smas:Educational rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Educ_Scormfile:29@roa.cedia.edu.ec">
+        <vcard:language>es</vcard:language>
+        <smas:intendedEndUserRole>learner</smas:intendedEndUserRole>
+      </smas:Educational>
+    </smas:isComprisedOf>
+    <smas:isComprisedOf>
+      <smas:Technical rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#T_Scormfile:29@roa.cedia.edu.ec">
+        <smas:hasComposite>
+          <smas:Composite rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Com_i_Scormfile:29@roa.cedia.edu.ec">
+            <smas:name>any</smas:name>
+            <smas:type>browser</smas:type>
+          </smas:Composite>
+        </smas:hasComposite>
+        <smas:location>http://roa.cedia.edu.ec/scormfiles/29</smas:location>
+      </smas:Technical>
+    </smas:isComprisedOf>
+    <smas:isComprisedOf>
+      <smas:Metametadata rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#M_Scormfile:29@roa.cedia.edu.ec">
+        <vcard:language>en</vcard:language>
+        <smas:metadataScheme>LOMv1.0</smas:metadataScheme>
+        <smas:hasContribute>
+          <smas:Contribute rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#CM_Scormfile:29@roa.cedia.edu.ec">
+            <smas:date>2018-04-05</smas:date>
+            <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Luis Miguel Orquera Andrade&amp;#xD;FN:Luis Miguel Orquera Andrade&amp;#xD;END:VCARD</smas:entity>
+            <vcard:role>creator</vcard:role>
+          </smas:Contribute>
+        </smas:hasContribute>
+        <smas:hasIdentifier>
+          <adms:Identifier rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#IdM_Scormfile:29@roa.cedia.edu.ec">
+            <smas:catalog>URI</smas:catalog>
+            <smas:entry>http://roa.cedia.edu.ec/activity_objects/128/metadata.xml</smas:entry>
+          </adms:Identifier>
+        </smas:hasIdentifier>
+      </smas:Metametadata>
+    </smas:isComprisedOf>
+    <smas:isComprisedOf>
+      <lcy:Lifecycle rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Lc_Scormfile:29@roa.cedia.edu.ec">
+        <smas:hasContribute>
+          <smas:Contribute rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#CLc_Scormfile:29@roa.cedia.edu.ec">
+            <smas:date>2018-04-05</smas:date>
+            <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Luis Miguel Orquera Andrade&amp;#xD;FN:Luis Miguel Orquera Andrade&amp;#xD;END:VCARD</smas:entity>
+            <vcard:role>author</vcard:role>
+          </smas:Contribute>
+        </smas:hasContribute>
+        <foaf:status>final</foaf:status>
+        <rad:version>
+      v2018.04.05
+    </rad:version>
+      </lcy:Lifecycle>
+    </smas:isComprisedOf>
+    <smas:isComprisedOf>
+      <smas:General rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Gen_Scormfile:29@roa.cedia.edu.ec">
+        <rad:keyword>
+      Datos
+    </rad:keyword>
+        <rad:keyword>
+      Computación
+    </rad:keyword>
+        <rad:keyword>
+      Informática
+    </rad:keyword>
+        <smas:description>
+      Este objeto de aprendizaje va dirigido a estudiantes de educación superior que estén cursando una carrera de Informática o afines, en el área de diseño de bases de datos. Describe las formas en las que se pueden relacionar elementos de dos conjuntos de entidades de los que se quiere almacenar información, y la forma en la que se representa estas relaciones en un diagrama Entidad Relación.
+    </smas:description>
+        <vcard:language>es</vcard:language>
+        <vcard:title>
+      CARDINALIDAD Y PARTICIPACIÓN
+    </vcard:title>
+        <smas:hasIdentifier>
+          <adms:Identifier rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Id_Scormfile:29@roa.cedia.edu.ec">
+            <smas:catalog>URI</smas:catalog>
+            <smas:entry>http://roa.cedia.edu.ec/scormfiles/29</smas:entry>
+          </adms:Identifier>
+        </smas:hasIdentifier>
+      </smas:General>
+    </smas:isComprisedOf>
+  </smas:LearningObject>
   <smas:LearningObject rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Excursion:618@vishub.org">
     <smas:isComprisedOf>
       <rdf:Description rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#R_Excursion:618@vishub.org">
@@ -725,6 +727,9 @@ bibliografía respectiva.
     </vcard:title>
         <smas:aggregationLevel>2</smas:aggregationLevel>
         <rad:keyword>
+      Computerscience
+    </rad:keyword>
+        <rad:keyword>
       Technology
     </rad:keyword>
         <smas:structure>hierarchical</smas:structure>
@@ -737,10 +742,10 @@ bibliografía respectiva.
         <rad:keyword>
       javascript
     </rad:keyword>
-        <vcard:language>es</vcard:language>
         <smas:description>
       Herramienta para probar el código javascript y los ejemplos de la módulo 2 del curso @HTML5MOOC de FirefoxOS
     </smas:description>
+        <vcard:language>es</vcard:language>
         <rad:keyword>
       Telecommunications
     </rad:keyword>
@@ -785,7 +790,7 @@ bibliografía respectiva.
     <smas:isComprisedOf>
       <smas:Technical rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#T_Excursion:2209@vishub.org">
         <smas:otherPlatformRequirements>
-      HTML5-compliant web browser and ViSH Viewer v.0.9.3 (http://github.com/ging/vish_editor).
+      HTML5-compliant web browser and ViSH Viewer v.0.9.4 (http://github.com/ging/vish_editor).
     </smas:otherPlatformRequirements>
         <smas:installationRemarks>
       Unzip the zip file and launch excursion.html in your browser.
@@ -806,7 +811,7 @@ bibliografía respectiva.
         <smas:metadataScheme>LOMv1.0</smas:metadataScheme>
         <smas:hasContribute>
           <smas:Contribute rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#CM_Excursion:2209@vishub.org">
-            <smas:date>2019-01-24</smas:date>
+            <smas:date>2019-03-29</smas:date>
             <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Enrique&amp;#xD;FN:Enrique&amp;#xD;END:VCARD</smas:entity>
             <vcard:role>creator</vcard:role>
           </smas:Contribute>
@@ -823,25 +828,31 @@ bibliografía respectiva.
       <lcy:Lifecycle rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Lc_Excursion:2209@vishub.org">
         <smas:hasContribute>
           <smas:Contribute rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#CLc_Excursion:2209@vishub.org">
-            <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Authoring Tool ViSH Editor v.0.9.3 (http://github.com/ging/vish_editor)&amp;#xD;FN:Authoring Tool ViSH Editor v.0.9.3 (http://github.com/ging/vish_editor)&amp;#xD;END:VCARD</smas:entity>
+            <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Authoring Tool ViSH Editor v.0.9.4 (http://github.com/ging/vish_editor)&amp;#xD;FN:Authoring Tool ViSH Editor v.0.9.4 (http://github.com/ging/vish_editor)&amp;#xD;END:VCARD</smas:entity>
             <vcard:role>technical implementer</vcard:role>
-            <smas:date>2019-01-24</smas:date>
+            <smas:date>2019-03-29</smas:date>
             <smas:entity>BEGIN:VCARD&amp;#xD;VERSION:3.0&amp;#xD;N:Enrique&amp;#xD;FN:Enrique&amp;#xD;END:VCARD</smas:entity>
             <vcard:role>author</vcard:role>
           </smas:Contribute>
         </smas:hasContribute>
         <foaf:status>final</foaf:status>
         <rad:version>
-      v2019.01.24
+      v2019.03.29
     </rad:version>
       </lcy:Lifecycle>
     </smas:isComprisedOf>
     <smas:isComprisedOf>
       <smas:General rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Gen_Excursion:2209@vishub.org">
+        <rad:keyword>
+      CSS
+    </rad:keyword>
         <smas:aggregationLevel>2</smas:aggregationLevel>
         <smas:structure>hierarchical</smas:structure>
         <rad:keyword>
       Telecommunications
+    </rad:keyword>
+        <rad:keyword>
+      Computerscience
     </rad:keyword>
         <smas:hasIdentifier>
           <adms:Identifier rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Id_Excursion:2209@vishub.org">
@@ -854,9 +865,6 @@ bibliografía respectiva.
 Ejemplos sobre HTML5, CSS y JavaScript.
     </smas:description>
         <rad:keyword>
-      mooc
-    </rad:keyword>
-        <rad:keyword>
       Software Engineering
     </rad:keyword>
         <vcard:title>
@@ -868,6 +876,12 @@ Ejemplos sobre HTML5, CSS y JavaScript.
     </rad:keyword>
         <rad:keyword>
       html5
+    </rad:keyword>
+        <rad:keyword>
+      JavaScript
+    </rad:keyword>
+        <rad:keyword>
+      MOOC
     </rad:keyword>
       </smas:General>
     </smas:isComprisedOf>
@@ -1054,6 +1068,9 @@ Dentro del Objeto contamos con conceptos básicos, recomendaciones,  ejemplos pr
       <smas:General rdf:about="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Gen_Excursion:628@vishub.org">
         <rad:keyword>
       mooc
+    </rad:keyword>
+        <rad:keyword>
+      Computerscience
     </rad:keyword>
         <rad:keyword>
       javascript
