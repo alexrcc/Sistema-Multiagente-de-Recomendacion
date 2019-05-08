@@ -43,7 +43,7 @@ public class AgenteCoordinador extends Agent {
                         //Mensaje mensaje = (Mensaje)args ;
                         //msg.setContentObject(mensaje);
                         send(reply);
-                        doDelete();
+                       
                       
                     } catch (IOException ex) {
                         System.out.println("error");
@@ -53,7 +53,10 @@ public class AgenteCoordinador extends Agent {
                         Logger.getLogger(AgenteCoordinador.class.getName()).log(Level.SEVERE, null, ex);
                     }
             
-            }   
+            }
+                 else{
+                    block();
+                }
          
          }
          

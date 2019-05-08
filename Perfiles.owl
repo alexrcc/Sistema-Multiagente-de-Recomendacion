@@ -1,0 +1,440 @@
+@prefix :      <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#> .
+@prefix com:   <http://vocab.resc.info/communication#> .
+@prefix lcy:   <http://purl.org/vocab/lifecycle/schema#> .
+@prefix adms:  <http://www.w3.org/ns/adms#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix gold:  <http://purl.org/linguistics/gold/> .
+@prefix rad:   <http://www.w3.org/ns/radion#> .
+@prefix stac:  <http://securitytoolbox.appspot.com/stac#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix discovery: <http://rdf-vocabulary.ddialliance.org/discovery#> .
+@prefix smas:  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#> .
+@prefix ebu:   <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix nco:   <http://oscaf.sourceforge.net/nco.html#> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+smas:ContextualInformation
+        a                owl:Class ;
+        rdfs:subClassOf  smas:studentProfile .
+
+smas:kinesthetic  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:LearningStyle ;
+        rdfs:range   rdfs:Literal .
+
+stac:Requeriment  a      owl:Class ;
+        rdfs:subClassOf  smas:Technical .
+
+<http://purl.org/spar/fabio/Metadata/Lom>
+        a                owl:Class ;
+        rdfs:subClassOf  fabio:Metadata .
+
+smas:learningStyle  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:studentProfile ;
+        rdfs:range   xsd:string .
+
+smas:has  a     owl:ObjectProperty .
+
+lcy:Lifecycle  a         owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:duration  a     owl:DatatypeProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   xsd:string .
+
+smas:SpatialContext  a   owl:Class ;
+        rdfs:subClassOf  smas:ContextualInformation .
+
+smas:kind  a         owl:DatatypeProperty ;
+        rdfs:domain  com:Relation ;
+        rdfs:range   xsd:string .
+
+smas:softwareVersion  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:TechnologicalContext ;
+        rdfs:range   xsd:string .
+
+smas:GeneralData  a      owl:Class ;
+        rdfs:subClassOf  smas:studentProfile .
+
+smas:aural  a        owl:DatatypeProperty ;
+        rdfs:domain  smas:LearningStyle ;
+        rdfs:range   rdfs:Literal .
+
+smas:LearningStyle  a    owl:Class ;
+        rdfs:subClassOf  smas:studentProfile .
+
+com:Relation  a          owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+rad:version  a       owl:DatatypeProperty ;
+        rdfs:domain  lcy:Lifecycle ;
+        rdfs:range   xsd:string .
+
+smas:id  a           owl:DatatypeProperty ;
+        rdfs:domain  gold:Taxon ;
+        rdfs:range   xsd:string .
+
+smas:educationalResource
+        a       owl:Class .
+
+smas:typicalLearningTime
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+gold:Taxon  a            owl:Class ;
+        rdfs:subClassOf  smas:TaxonPath .
+
+smas:hasTaxon  a     owl:ObjectProperty ;
+        rdfs:domain  smas:TaxonPath ;
+        rdfs:range   gold:Taxon .
+
+smas:minimumVersion  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:Composite ;
+        rdfs:range   xsd:string .
+
+smas:date  a         owl:DatatypeProperty ;
+        rdfs:domain  smas:TemporaryContext , smas:Contribute , smas:Annotation ;
+        rdfs:range   xsd:dateTimeStamp .
+
+smas:hasContribute  a  owl:ObjectProperty ;
+        rdfs:domain  smas:Metametadata , lcy:Lifecycle ;
+        rdfs:range   smas:Contribute .
+
+foaf:gender  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:GeneralData ;
+        rdfs:range   xsd:string .
+
+smas:hasRequeriment  a  owl:ObjectProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   stac:Requeriment .
+
+smas:Annotation  a       owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:LearningObject  a   owl:Class ;
+        rdfs:subClassOf  smas:educationalResource .
+
+vcard:title  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:General ;
+        rdfs:range   xsd:string .
+
+smas:hasARecommendedLO
+        a            owl:ObjectProperty ;
+        rdfs:domain  smas:studentProfile ;
+        rdfs:range   smas:LearningObject .
+
+smas:consistOf  a    owl:ObjectProperty ;
+        rdfs:domain  smas:studentProfile ;
+        rdfs:range   smas:LearningStyle , smas:GeneralData , smas:ContextualInformation .
+
+foaf:status  a       owl:DatatypeProperty ;
+        rdfs:domain  lcy:Lifecycle ;
+        rdfs:range   xsd:string .
+
+ebu:Rights  a            owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:hasComposite  a  owl:ObjectProperty ;
+        rdfs:domain  stac:Requeriment ;
+        rdfs:range   smas:Composite .
+
+smas:studentProfile  a   owl:Class ;
+        rdfs:subClassOf  foaf:Person .
+
+vcard:language  a    owl:DatatypeProperty ;
+        rdfs:domain  smas:Metametadata , smas:General , smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:Composite  a        owl:Class ;
+        rdfs:subClassOf  stac:Requeriment .
+
+smas:format  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   xsd:string .
+
+smas:installationRemarks
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   xsd:string .
+
+smas:General  a          owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:operatingSystem  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:TechnologicalContext ;
+        rdfs:range   xsd:string .
+
+smas:multipleIntelligences
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:studentProfile ;
+        rdfs:range   xsd:string .
+
+nco:emailAddress  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:GeneralData ;
+        rdfs:range   xsd:string .
+
+smas:Resource  a         owl:Class ;
+        rdfs:subClassOf  com:Relation .
+
+smas:otherPlatformRequirements
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   xsd:string .
+
+smas:catalog  a      owl:DatatypeProperty ;
+        rdfs:domain  adms:Identifier ;
+        rdfs:range   xsd:string .
+
+smas:interactivityType
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+nco:addressLocation  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:GeneralData ;
+        rdfs:range   xsd:string .
+
+smas:byhour  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:TemporaryContext ;
+        rdfs:range   xsd:dateTimeStamp .
+
+smas:hasResource  a  owl:ObjectProperty ;
+        rdfs:domain  com:Relation ;
+        rdfs:range   smas:Resource .
+
+smas:description  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:Resource , smas:General , smas:Educational , smas:Annotation , ebu:Rights , com:Classification ;
+        rdfs:range   xsd:string .
+
+smas:typicalAgeRange  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:standard  a     owl:DatatypeProperty ;
+        rdfs:domain  rad:Repository ;
+        rdfs:range   xsd:string .
+
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis>
+        a               owl:Ontology ;
+        owl:versionIRI  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis/1.0.0> .
+
+smas:interactivityLevel
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:inherit  a      owl:ObjectProperty ;
+        rdfs:domain  smas:studentProfile ;
+        rdfs:range   foaf:Person .
+
+smas:isComprisedOf  a  owl:ObjectProperty ;
+        rdfs:domain  <http://purl.org/spar/fabio/Metadata/Lom> ;
+        rdfs:range   com:Classification , smas:Educational , smas:Metametadata , smas:Annotation , lcy:Lifecycle , smas:Technical , ebu:Rights , smas:General , com:Relation .
+
+smas:intendedEndUserRole
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:hasContext  a   owl:ObjectProperty ;
+        rdfs:domain  smas:ContextualInformation ;
+        rdfs:range   smas:TemporaryContext , smas:TechnologicalContext , smas:SpatialContext .
+
+smas:semanticDensity  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:structure  a    owl:DatatypeProperty ;
+        rdfs:domain  smas:General ;
+        rdfs:range   xsd:string .
+
+smas:name  a         owl:DatatypeProperty ;
+        rdfs:domain  smas:Composite ;
+        rdfs:range   xsd:string .
+
+smas:inStandard  a   owl:ObjectProperty ;
+        rdfs:domain  fabio:Metadata ;
+        rdfs:range   <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:Metametadata  a     owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:stayIn  a       owl:ObjectProperty ;
+        rdfs:domain  smas:LearningObject ;
+        rdfs:range   rad:Repository .
+
+fabio:Metadata  a        owl:Class ;
+        rdfs:subClassOf  smas:LearningObject .
+
+smas:coverage  a     owl:DatatypeProperty ;
+        rdfs:domain  smas:General ;
+        rdfs:range   xsd:string .
+
+foaf:name  a         owl:AnnotationProperty ;
+        rdfs:domain  rad:Repository , smas:GeneralData , smas:Composite .
+
+smas:uri  a          owl:DatatypeProperty ;
+        rdfs:domain  rad:Repository ;
+        rdfs:range   xsd:string .
+
+smas:difficulty  a   owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:TaxonPath  a        owl:Class ;
+        rdfs:subClassOf  com:Classification .
+
+smas:Educational  a      owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:context  a      owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:Contribute  a       owl:Class ;
+        rdfs:subClassOf  smas:Metametadata , lcy:Lifecycle .
+
+smas:location  a     owl:DatatypeProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   xsd:string .
+
+foaf:age  a          owl:DatatypeProperty ;
+        rdfs:domain  smas:GeneralData ;
+        rdfs:range   xsd:unsignedInt .
+
+smas:hasIdentifier  a  owl:ObjectProperty ;
+        rdfs:domain  smas:Resource , smas:Metametadata , smas:General ;
+        rdfs:range   adms:Identifier .
+
+smas:purpose  a      owl:DatatypeProperty ;
+        rdfs:domain  com:Classification ;
+        rdfs:range   xsd:string .
+
+smas:entry  a        owl:DatatypeProperty ;
+        rdfs:domain  adms:Identifier , gold:Taxon ;
+        rdfs:range   xsd:string .
+
+smas:cost  a         owl:DatatypeProperty ;
+        rdfs:domain  ebu:Rights ;
+        rdfs:range   xsd:string .
+
+smas:learningResourceType
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:Educational ;
+        rdfs:range   xsd:string .
+
+smas:type  a         owl:DatatypeProperty ;
+        rdfs:domain  smas:Composite ;
+        rdfs:range   xsd:string .
+
+smas:TechnologicalContext
+        a                owl:Class ;
+        rdfs:subClassOf  smas:ContextualInformation .
+
+com:Classification  a    owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:aggregationLevel
+        a            owl:DatatypeProperty ;
+        rdfs:domain  smas:General ;
+        rdfs:range   xsd:string .
+
+vcard:role  a        owl:DatatypeProperty ;
+        rdfs:domain  smas:Contribute ;
+        rdfs:range   xsd:string .
+
+smas:visual  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:LearningStyle ;
+        rdfs:range   rdfs:Literal .
+
+adms:Identifier  a       owl:Class ;
+        rdfs:subClassOf  smas:Resource , smas:Metametadata , smas:General .
+
+foaf:Person  a  owl:Class .
+
+smas:copyrightAndOtherRestrictions
+        a            owl:DatatypeProperty ;
+        rdfs:domain  ebu:Rights ;
+        rdfs:range   xsd:string .
+
+vcard:locality  a    owl:DatatypeProperty ;
+        rdfs:domain  smas:SpatialContext ;
+        rdfs:range   xsd:string .
+
+smas:isComposedOf  a  owl:ObjectProperty ;
+        rdfs:domain  smas:LearningObject ;
+        rdfs:range   fabio:Metadata .
+
+smas:source  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:TaxonPath ;
+        rdfs:range   xsd:string .
+
+smas:entity  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:Contribute , smas:Annotation ;
+        rdfs:range   xsd:string .
+
+smas:size  a         owl:DatatypeProperty ;
+        rdfs:domain  smas:Technical ;
+        rdfs:range   xsd:string .
+
+nco:country  a       owl:DatatypeProperty ;
+        rdfs:domain  rad:Repository , smas:SpatialContext ;
+        rdfs:range   xsd:string .
+
+smas:metadataScheme  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:Metametadata ;
+        rdfs:range   xsd:string .
+
+smas:contains  a     owl:ObjectProperty ;
+        rdfs:domain  smas:educationalResource ;
+        rdfs:range   smas:LearningObject .
+
+smas:Technical  a        owl:Class ;
+        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+
+smas:read-write  a   owl:DatatypeProperty ;
+        rdfs:domain  smas:LearningStyle ;
+        rdfs:range   rdfs:Literal .
+
+smas:hasTaxonPath  a  owl:ObjectProperty ;
+        rdfs:domain  com:Classification ;
+        rdfs:range   smas:TaxonPath .
+
+smas:maximumVersion  a  owl:DatatypeProperty ;
+        rdfs:domain  smas:Composite ;
+        rdfs:range   xsd:string .
+
+smas:TemporaryContext
+        a                owl:Class ;
+        rdfs:subClassOf  smas:ContextualInformation .
+
+rad:keyword  a       owl:DatatypeProperty ;
+        rdfs:domain  smas:General , com:Classification ;
+        rdfs:range   xsd:string .
+
+rad:Repository  a        owl:Class ;
+        rdfs:subClassOf  smas:educationalResource .
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#sdcartuchem@unl.edu.ec>
+        a               smas:studentProfile ;
+        smas:consistOf  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-sdcartuchem@unl.edu.ec> .
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-sdcartuchem@unl.edu.ec>
+        a                 smas:LearningStyle ;
+        smas:aural        "0"^^xsd:int ;
+        smas:kinesthetic  "2"^^xsd:int ;
+        smas:read-write   "0"^^xsd:int ;
+        smas:visual       "0"^^xsd:int .
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#alexrcc17@gmail.com>
+        a               smas:studentProfile ;
+        smas:consistOf  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com> .
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com>
+        a                 smas:LearningStyle ;
+        smas:aural        "1"^^xsd:int ;
+        smas:kinesthetic  "3"^^xsd:int ;
+        smas:read-write   "0"^^xsd:int ;
+        smas:visual       "0"^^xsd:int .
+        

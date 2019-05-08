@@ -74,5 +74,13 @@ public class Dao {
         }
         return -1;
     }
-
+     public boolean setPerfilInteligente(String email) throws SQLException{
+        String sql = "UPDATE usuarios SET inteligente WHERE email='"+email+"'";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            return true;
+        }
+        return false;
+    }
 }

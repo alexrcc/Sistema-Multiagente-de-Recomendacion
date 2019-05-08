@@ -21,6 +21,8 @@ public class main extends Agent{
     public static void main(String args []) throws StaleProxyException, Throwable{
         System.out.println("***Bienvenido al SMA para recomendación de OAS***");
         Object argumentos[] = {"https://roa.cedia.edu.ec", "http://vishub.org"};
+        agenteController = mainContainer.createNewAgent("AgenteEstudiante",AgentePerfilEstudiante.class.getName(),null);
+        agenteController.start();
         agenteController = mainContainer.createNewAgent("AgenteCoordinador",AgenteCoordinador.class.getName(),null);
         agenteController.start();
 //agenteController = mainContainer.createNewAgent("AI",AgenteInterfaz.class.getName(),null);

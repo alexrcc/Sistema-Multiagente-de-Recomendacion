@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1548693546607" name="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis" uri="OntologiaBase.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1557329253065" name="duplicate:http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis" uri="OntologiaBase%20-%20copia.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1557329253065" name="duplicate:http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis" uri="OntologiaBase.owl"/>
     </group>
 </catalog>

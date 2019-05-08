@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/index.jsp</file>
             <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgenteInterfaz.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgenteRecomendador.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/servlets/IniciarAgentes.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/admin.jsp</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgentePerfilEstudiante.java</file>
             <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgenteCoordinador.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/main.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/servlets/Servlet.java</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgenteGestorRepositorio.java</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/servlets/VarkTest.java</file>
         </group>
     </open-files>
 </project-private>

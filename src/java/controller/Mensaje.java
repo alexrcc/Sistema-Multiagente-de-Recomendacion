@@ -4,6 +4,7 @@ public class Mensaje implements java.io.Serializable{
     private String mensaje = new String("");
     private Object obj;
     private Object respuesta;
+    private String user;
     public void setMensaje (String mensaje){
         this.mensaje = mensaje;
     }
@@ -21,6 +22,12 @@ public class Mensaje implements java.io.Serializable{
     }
     public Object getRespuesta(){
         return respuesta;
+    }
+    public void setUsuario(String user){
+        this.user = user;
+    }
+    public String getUsuario(){
+        return user;
     }
     
 }
