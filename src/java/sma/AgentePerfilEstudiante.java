@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class AgentePerfilEstudiante extends Agent{
-   // private static Mensaje mensaje;
+    public static Mensaje mensaje;
     @Override
     protected void setup(){
         System.out.println("Hola"+getAID().getName()+" soy Agente Estudiante");
@@ -38,13 +39,14 @@ public class AgentePerfilEstudiante extends Agent{
                 ACLMessage msg = receive();
                 if(msg != null){
                     try {
-                        Mensaje mensaje = (Mensaje)msg.getContentObject();
+                        mensaje = (Mensaje)msg.getContentObject();
                         System.out.println("Agent " +
                                 myAgent.getAID().getLocalName() +
                                 " Argumentos = " + mensaje.getMensaje()
                         );
-                        addBehaviour(new EstiloAprendizaje(mensaje));
-                        mensaje.setRespuesta("Perfil Guardado Correctamente");
+                         EstiloAprendizaje();
+                        System.out.println("la respuesta que voy a devolver: "+mensaje.getRespuesta());
+                        //mensaje.setRespuesta("Perfil Guardado Correctamente");
                         //ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.PROPOSE);
@@ -61,6 +63,7 @@ public class AgentePerfilEstudiante extends Agent{
                 block();
                 }
         } 
+            
        });
              
         
@@ -68,20 +71,13 @@ public class AgentePerfilEstudiante extends Agent{
         
     }
     
-    public class EstiloAprendizaje extends Behaviour{
-         private final Object args;
-         private static final String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
-         private int estilos [] = {0,0,0,0}; //estilos de aprendizaje[visual,auditivo,lectura/escritura,Quinestésico]
+    private void EstiloAprendizaje(){
+        
          
-        public EstiloAprendizaje(Object mensaje){
-            args = mensaje; 
-        }
-        @Override
-        public void action() {
-            System.out.println("Aqui voy a calcular el EA");
-            Mensaje msg = (Mensaje)args;
-            System.out.println(msg.getMensaje());
-            String a [][] = (String [][])msg.getArgumentos();
+         int estilos [] = {0,0,0,0}; //estilos de aprendizaje[visual,auditivo,lectura/escritura,Quinestésico]
+
+            System.out.println(mensaje.getMensaje());
+            String a [][] = (String [][])mensaje.getArgumentos();
             
             for (int i = 0; i <16; i++) {
                 for (int j = 0; j < 4; j++) {
@@ -95,58 +91,47 @@ public class AgentePerfilEstudiante extends Agent{
                         estilos[3]++;
                 }  
             }
-            
-           
-            System.out.println("Visual "+estilos[0]);
-            System.out.println("Auditivo "+estilos[1]);
-            System.out.println("L/E "+estilos[2]);
-            System.out.println("Quinestésico "+estilos[3]);
-            GuardarPerfil(estilos,msg.getUsuario());
+             try {
+                 if(GuardarPerfil(estilos,mensaje.getUsuario()))
+                    mensaje.setRespuesta("Perfil Guardado Correctamente");
+             } catch (SQLException | ClassNotFoundException ex) {
+                 Logger.getLogger(AgentePerfilEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+             }
             
              
         }
-        @Override
-        public boolean done() {
-
-            System.out.println("Finaliza el Comportamiento PE " + this.getBehaviourName());
-            System.out.println("--------------------------------------------------");
-            return true;
-        }
-        private void GuardarPerfil(int array [], String user){
-            OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-            
+        
+        private boolean GuardarPerfil(int array [], String user) throws SQLException, ClassNotFoundException{
+            String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+            OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);           
             model.read("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//OntologiaBase.owl","RDF/XML");
+            Dao d = new Dao();
+            d.conectar();
+            //Guardar bandera en la base de Datos
+            try{
+                if(d.getPefil(user)==1){
+                    System.out.println("Entra");
+                    mensaje.setRespuesta("Sus datos ya estan registrados");
+                    return false;
+                }else if(!d.setPerfilInteligente(user,1)){
+                    mensaje.setRespuesta("Ocurrió un error, porfavor intente nuevamente.");
+                    return false;
+                }
+            }catch(SQLException ex){
+                System.out.println("Exception: "+ex);
+                mensaje.setRespuesta("Ocurrió un error, porfavor intente nuevamente.");
+                return false;
+            }
             
-//            
-//            System.out.println("IND: "+ model.getIndividual(smas+"arcondoyc@unl.edu.ec"));
-//            
-//
-//            OntClass cls1 = model.getOntClass(smas+"studentProfile");
-//            Individual person = model.createIndividual(smas+user,cls1);
-//            //Individual person1 = model.createIndividual(smas+"--..asa",cls1);
-//            
-//            
-//            ObjectProperty co = model.getObjectProperty(smas+"consistOf");
-//            
-//            OntClass le_sty = model.getOntClass(smas+"LearningStyle");
-//            Individual styles = model.createIndividual(smas+"LE-"+user,le_sty); 
-//            
-//            styles.setPropertyValue(model.getDatatypeProperty(smas+"visual"),model.createTypedLiteral(array[0]));
-//            styles.setPropertyValue(model.getDatatypeProperty(smas+"aural"),model.createTypedLiteral(array[1]));
-//            styles.setPropertyValue(model.getDatatypeProperty(smas+"read-write"),model.createTypedLiteral(array[2]));
-//            styles.setPropertyValue(model.getDatatypeProperty(smas+"kinesthetic"),model.createTypedLiteral(array[3]));
-//            person.addProperty(co,styles);
-//            
-
-             try{
-            File file = new File("Perfiles.owl");
-           
+            //Guardar resultados del test de VARK en la Ontología
+            try{
+                File file = new File("Perfiles.owl");
                 if (!file.exists()){
-                    System.out.println("Entró");
-                     file.createNewFile();
-                     model.write(new PrintWriter(file),"Turtle");
+                    file.createNewFile();
+                    System.out.println("Se creo el archivo");
+                    model.write(new PrintWriter(file),"Turtle");
                }
-               
+                
                 FileWriter fichero = null;
                 PrintWriter pw = null;       
                 fichero = new FileWriter("Perfiles.owl",true);
@@ -157,23 +142,23 @@ public class AgentePerfilEstudiante extends Agent{
                 
                 pw.println("<"+smas+"LE-"+user+">\n" +
                             "        a                 smas:LearningStyle ;\n" +
-                            "        smas:aural        \""+array[0]+"\"^^xsd:int ;\n" +
-                            "        smas:kinesthetic  \""+array[1]+"\"^^xsd:int ;\n" +
-                            "        smas:read-write   \""+array[2]+"\"^^xsd:int ;\n" +
-                            "        smas:visual       \""+array[3]+"\"^^xsd:int .");
+                            "        smas:visual        \""+array[0]+"\" ;\n" +
+                            "        smas:aural  \""+array[1]+"\" ;\n" +
+                            "        smas:readwrite   \""+array[2]+"\" ;\n" +
+                            "        smas:kinesthetic  \""+array[3]+"\" .");
                fichero.close();
                pw.close();
-               Dao d = new Dao();
-               d.conectar();
-               if(!d.setPerfilInteligente(user))
-                     System.out.println("Ocurrió un error al ingresar la bandera en la BD");
+               
             }catch(Exception e){
-                System.out.println("Error al guardar el modelo: "+e);
+                System.out.println("Error al guardar el modelo en la Ontología: "+e);
+                mensaje.setRespuesta("Ocurrió un error, porfavor intente nuevamente.");
+                d.setPerfilInteligente(user,0);
+                return false;
             }
+            
+            
+            return true;
         }
-    
-    }
-    
     @Override
     protected void takeDown() {
         System.out.println("Finaliza el "
@@ -181,4 +166,6 @@ public class AgentePerfilEstudiante extends Agent{
         System.out.println("---------");
        // this.doDelete();
     }
-}
+    }
+    
+    

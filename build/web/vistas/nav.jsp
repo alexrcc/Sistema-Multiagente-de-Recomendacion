@@ -46,7 +46,7 @@
                         out.print("<div class='datos'>");
                         out.print("<span class='nombre'>"+name_user+"</span>");
                         out.print("<span class='correo'>"+user+"</span>");
-                        out.print("<a class='perfil'  href='#'>Ver Perfil</a>");
+                        out.print("<a class='perfil'  href='perfil.jsp'>Ver Perfil</a>");
                         out.print("</div>");
                         out.print("</div>");
                         out.print("<div class='exit'>");

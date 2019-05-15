@@ -63,11 +63,16 @@ public class VarkTest extends HttpServlet {
             }catch(Exception e){
                 e.printStackTrace();
             }
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.print("Contestación :" +mensaje.getRespuesta()+"<br>");
-            out.flush();
-            out.close();
+            if(mensaje.getRespuesta().toString().compareToIgnoreCase("Perfil Guardado Correctamente")!=0){
+                 request.setAttribute("errors",mensaje.getRespuesta());
+                request.getRequestDispatcher("cuestionario.jsp").forward(request, response);
+            }else{
+                request.setAttribute("msgAP",mensaje.getRespuesta());
+                request.getRequestDispatcher("perfil.jsp").forward(request, response);
+            }               
+                
+            
+           
             
             
         

@@ -591,9 +591,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#read-write -->
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#readwrite -->
 
-    <owl:DatatypeProperty rdf:about="&smas;read-write">
+    <owl:DatatypeProperty rdf:about="&smas;readwrite">
         <rdfs:domain rdf:resource="&smas;LearningStyle"/>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>

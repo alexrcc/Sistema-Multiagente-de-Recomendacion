@@ -1,8 +1,12 @@
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 #encabezado{
     
     margin: 2% 5% 2% 5%;
-    width: 90%;
-    
+    width: 90%;  
+}
+#encabezado h1{
+  font-family: "Montserrat";  
 }
 #cuestionario{
     width: 80%;
@@ -59,10 +63,61 @@
       font-size: 1.6rem;
       margin: 2%;
   }
-  #mensaje_modal .modal-header h5{
-      font-weight: 700;
+ #mensaje_modal .icon-box {
+        color: #fff;		
+        width: 95px;
+        height: 95px;
+        display: inline-block;
+        border-radius: 50%;
+        z-index: 9;
+        border: 5px solid #fff;
+        padding: 15px;
+        text-align: center;
+        margin: auto;
+}
+#mensaje_modal .icon-box i {
+        font-size: 55PX;
+        margin: -2px 0 0 -2px;
+}
+  #mensaje_modal h5{
+      color:#434e65;
+      font-size: 2em;  
+      text-align: CENTER;   
   }
-  #mensaje_modal .modal-footer button{
-      background: #fba707 !important;
-      border-color:#fba707;
+
+   #mensaje_modal .modal-body p{
+     margin:0 5% 2% 5%;
+     font-size: 1.2em;
+     color:#434e65;
   }
+ #mensaje_modal .modal-body .btn {
+    color: #fff;
+    font-size: 1.3em;
+    border-radius: 30px;
+        background: #434e65;
+        text-decoration: none;
+        transition: all 0.4s;
+    line-height: normal;    
+        margin-top: 10px;
+        padding: 6px 20px;
+        min-width: 150px;
+border: none;
+margin-bottom: 5%;
+
+}
+ #mensaje_modal .modal-body .btn:hover, .modal-body .btn:focus {
+        background: #4C687D;
+        outline: none;
+}
+
+#mensaje_modal .close {
+position: absolute;
+        top: 15px;
+        right: 15px;
+        color: #fff;
+        text-shadow: none;
+        opacity: 0.5;
+}
+#mensaje_modal .close:hover {
+        opacity: 0.8;
+}

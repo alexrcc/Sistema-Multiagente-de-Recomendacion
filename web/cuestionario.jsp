@@ -17,49 +17,54 @@
         <script src="assets/js/busqueda.js"></script>
         <link rel="stylesheet" type="text/css" href="assets/css/search.css"/>
         <link rel="stylesheet" href="assets/css/est_cuestionario.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/error_modal.css"/>
         <title>JSP Page</title>
     </head>
-    <%  out.print("<script>$(document).ready(function(){$(\"#mensaje_modal\").modal(\"show\");});</script>");%>
+    <%  if(request.getAttribute("errors")!=null)
+            out.print("<script>$(document).ready(function(){$(\"#myModal\").modal(\"show\");});</script>");
+        else
+            out.print("<script>$(document).ready(function(){$(\"#mensaje_modal\").modal(\"show\");});</script>");%>
     <jsp:include page="vistas/nav.jsp"/>
     <body>
         <div id="encabezado">
         <h1>Test de estilos de aprendizaje de VARK</h1>
-        <span> El siguiente cuestionario permite determinar su estilo de aprendizaje. Su contestación es boligatoria
-            si desea realizar una búsqueda avanzada de Objetos de Aprendizaje. <br>
-            Sus respuestas serán guardadas bajo la mas estricta confidencialidad. Usted podra visualizar sus resultados unicamente iniciando sesión<br>
+        <span> Con este cuestionario se tiene el propósito de saber acerca de sus preferencias para trabajar con información.
+            Seguramente tiene un estilo de aprendizaje preferido
+            y una parte de ese Estilo de Aprendizaje es su preferencia para capturar, procesar y entregar ideas e información.
+            <br><br><strong>Elija las respuestas que mejor expliquen su preferencia
+           y marque la casilla de su elección.Puede seleccionar más de una respuesta a una pregunta si una sola no encaja con su percepción. Deje enblanco toda pregunta 
+            que no se apliqué a sus preferencias</strong><br>
             <br>
-           
-            
-            Por favor, selecciona la respuesta que más se acerque a tus preferencias, puedes seleccionar más de una respuesta si una sola no encaja con tu percepción. Deja en blanco aquellas preguntas que no sepas qué contestar, pero intenta que sean las menos posibles. </span>
+        </span>
         </div>
         <div id="cuestionario">
             <form action="VarkTest" method="POST">
             <div class="seccion_preg">
                 <div class="numero"><span class="circle">1</span></div>
             <div class="pregunta">
-                <span class="item">Usted cocinará algo especial para su familia. Usted haría:</span>
+                <span class="item">Usted cocinará algo especial para su familia. Ud:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p1">
                     <label class="form-check-label" for="p1r1">
-                      Preguntar a amigos por sugerencias.
+                      pediría sugerencias a sus amigos.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p1">
                     <label class="form-check-label" for="p1r2">
-                      Dar una vista al recetario por ideas de las fotos.
+                      hojearía un libro de cocina para tomar ideas de las fotografías.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p1">
                     <label class="form-check-label" for="p1r3">
-                      Usar un libro de cocina donde usted sabe hay una buena receta.
+                      utilizaría un libro de cocina donde sabe que hay una buena receta.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p1">
                     <label class="form-check-label" for="p1r4">
-                      Cocinar algo que usted sabe sin la necesidad de instrucciones.
+                      cocinaría algo que conoce sin la necesidad de instrucciones.
                     </label>
                 </div>
             </div>
@@ -68,29 +73,29 @@
          <div class="seccion_preg">
                 <div class="numero"><span class="circle">2</span></div>
             <div class="pregunta">
-                <span class="item">Usted escogerá alimento en un restaurante o un café. Usted haría:</span>
+                <span class="item">Usted escogerá alimento en un restaurante o un café. Ud:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p2">
                     <label class="form-check-label" for="p2r1">
-                      Escuchar al mesero o pedir que amigos recomienden opciones.
+                      escucharía al mesero o pediría recomendaciones a sus amigos.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p2">
                     <label class="form-check-label" for="p2r2">
-                      Mirar lo qué otros comen o mirar dibujos de cada platillo.
+                      observaría lo que otros están comiendo o las fotografías de cada platillo.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p2">
                     <label class="form-check-label" for="p2r3">
-                      Escoger de las descripciones en el menú.
+                      elegiría a partir de las descripciones del menú.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p2">
                     <label class="form-check-label" for="p2r4">
-                      Escoger algo que tienes o has tenido antes.
+                      elegiría algo que ya ha probado en ese lugar.
                     </label>
                 </div>
             </div>
@@ -99,29 +104,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">3</span></div>
             <div class="pregunta">
-                <span class="item">Aparte del precio, qué más te influenciaría para comprar un libro de ciencia ficción</span>
+                <span class="item">Además del precio, ¿qué influiría más en su decisión de comprar un nuevo libro de ciencia ficción</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p3">
                     <label class="form-check-label" for="p3r1">
-                      Un amigo habla acerca de él y te lo recomienda.
+                      un amigo le habla del libro y se lo recomienda.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p3">
                     <label class="form-check-label" for="p3r2">
-                      Tienes historias reales, experiencias y ejemplos.
+                      tiene historias, experiencias y ejemplos de la vida real.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p3">
                     <label class="form-check-label" for="p3r3">
-                      Leyendo rápidamente partes de él.
+                      una lectura rápida de algunas partes del libro.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p3">
                     <label class="form-check-label" for="p3r4">
-                      El diseño de la pasta es atractivo.
+                      la apariencia le resulta atractiva.
                     </label>
                 </div>
             </div>
@@ -131,29 +136,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">4</span></div>
             <div class="pregunta">
-                <span class="item">Usted ha terminado una competencia o un examen y le gustaría tener alguna retroalimentación. Te gustaría retroalimentarte:</span>
+                <span class="item">Ha acabado una competencia o una prueba y quisiera una retroalimentación. Quisiera tener la retroalimentación:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p4">
                     <label class="form-check-label" for="p4r1">
-                      Usando descripciones escritas de los resultados.
+                      utilizando una descripción escrita de sus resultados.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p4">
                     <label class="form-check-label" for="p4r2">
-                      Usando ejemplos de lo que usted ha hecho.
+                      utilizando ejemplos de lo que ha hecho.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p4">
                     <label class="form-check-label" for="p4r3">
-                      Usando gráficos que muestran lo que usted ha logrado.
+                      utilizando gráficas que muestren lo que ha conseguido.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p4">
                     <label class="form-check-label" for="p4r4">
-                      De alguien que habla por usted.
+                      escuchando a alguien haciendo una revisión detallada de su desempeño.
                     </label>
                 </div>
             </div>
@@ -162,29 +167,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">5</span></div>
             <div class="pregunta">
-                <span class="item">Usted tiene un problema con la rodilla. Usted preferiría que el doctor:</span>
+                <span class="item">Usted un problema con su rodilla. Preferiría que el doctor:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p5">
                     <label class="form-check-label" for="p5r1">
-                      Use un modelo de plástico y te enseñe lo que está mal.
+                      utilizara el modelo plástico de una rodilla para mostrarle qué está mal.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p5">
                     <label class="form-check-label" for="p5r2">
-                      Te de una página de internet o algo para leer.
+                      le diera una dirección web o algo para leer sobre el asunto.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p5">
                     <label class="form-check-label" for="p5r3">
-                      Te describa lo qué está mal.
+                      le describiera qué está mal.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p5">
                     <label class="form-check-label" for="p5r4">
-                      Te enseñe un diagrama lo que está mal.
+                      le mostrara con un diagrama qué es lo que está mal.
                     </label>
                 </div>
             </div>
@@ -193,29 +198,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">6</span></div>
             <div class="pregunta">
-                <span class="item">Usted está a punto de comprar una cámara digital o teléfono o móvil. ¿Aparte del precio qué más influirá en tomar tu decisión?.</span>
+                <span class="item">Usted está a punto de comprar una cámara digital o teléfono o móvil.  ¿Además del precio, qué másinfluye en su decisión?.</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p6">
                     <label class="form-check-label" for="p6r1">
-                      Probándolo.
+                      lo utiliza o lo prueba.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p6">
                     <label class="form-check-label" for="p6r2">
-                      Es un diseño moderno y se mira bien.
+                      el diseño del aparato es moderno y parece bueno.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p6">
                     <label class="form-check-label" for="p6r3">
-                      Leer los detalles acerca de sus características.
+                      la lectura de los detalles acerca de las características del aparato.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p6">
                     <label class="form-check-label" for="p6r4">
-                      El vendedor me informa acerca de sus características.
+                      los comentarios del vendedor acerca de las características del aparato.
                     </label>
                 </div>
             </div>
@@ -225,29 +230,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">7</span></div>
             <div class="pregunta">
-                <span class="item">Usted no está seguro como se deletrea trascendente o tracendente ¿Ud. qué haría?.</span>
+                <span class="item">Usted no está seguro como se deletrea "trascendente" o "tracendente", ¿Ud. qué haría?.</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p7">
                     <label class="form-check-label" for="p7r1">
-                      Escribir ambas palabras en un papel y escojo una.
+                      escribiría ambas palabras y elegiría una.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p7">
                     <label class="form-check-label" for="p7r2">
-                      Pienso cómo suena cada palabra y escojo una.
+                      pensaría en cómo suena cada palabra y elegiría una.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p7">
                     <label class="form-check-label" for="p7r3">
-                      Busco la palabra en un diccionario.
+                      las buscaría en un diccionario.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p7">
                     <label class="form-check-label" for="p7r4">
-                      Veo la palabra en mi mente y escojo según como la veo.
+                      vería las palabras en su mente y elegiría la que mejor luce.
                     </label>
                 </div>
             </div>
@@ -256,29 +261,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">8</span></div>
             <div class="pregunta">
-                <span class="item">Me gustan páginas de Internet que tienen:</span>
+                <span class="item">Le gustan los sitios web que tienen:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p8">
                     <label class="form-check-label" for="p8r1">
-                      Interesantes descripciones escritas, listas y explicaciones.
+                      descripciones escritas interesantes, características  y explicaciones.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p8">
                     <label class="form-check-label" for="p8r2">
-                      Diseño interesante y características visuales.
+                      un diseño interesante y características visuales.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p8">
                     <label class="form-check-label" for="p8r3">
-                      Cosas que con un click pueda cambiar o examinar.
+                      cosas que se pueden picar, mover o probar.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p8">
                     <label class="form-check-label" for="p8r4">
-                      Canales donde puedo oír música, programas de radio o entrevistas.
+                      canales de audio para oír música, programas o entrevistas.
                     </label>
                 </div>
             </div>
@@ -291,25 +296,25 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p9">
                     <label class="form-check-label" for="p9r1">
-                      Usa un mapa o página de Internet para mostrarles los lugares.
+                      utilizaría un mapa o un sitio web para mostrar los lugares. 
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p9">
                     <label class="form-check-label" for="p9r2">
-                      Describe algunos de los puntos sobresalientes.
+                      describiría algunos de los atractivos del viaje.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p9">
                     <label class="form-check-label" for="p9r3">
-                      Darles una copia del itinerario impreso.
+                      les daría una copia del itinerario impreso.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p9">
                     <label class="form-check-label" for="p9r4">
-                      Llamarles por teléfono o mandar mensaje por correo electrónico.
+                      les llamaría por teléfono, les escribiría o les enviaría un e-mail.
                     </label>
                 </div>
             </div>
@@ -323,25 +328,25 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value=A name="p10">
                     <label class="form-check-label" for="p10r1">
-                      Una oportunidad de hacer preguntas acerca de la cámara y sus características.
+                      la oportunidad de hacer preguntas y que le hablen sobre la cámara y sus características.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p10">
                     <label class="form-check-label" for="p10r2">
-                      Esquemas o diagramas que muestran la cámara y la función de cada parte.
+                      diagramas que muestren la cámara y qué hace cada una de sus partes.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p10">
                     <label class="form-check-label" for="p10r3">
-                      Ejemplos de buenas y malas fotos y cómo mejorarlas.
+                      muchos ejemplos de fotografías buenas y malas y cómo mejorar éstas.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p10">
                     <label class="form-check-label" for="p10r4">
-                      Aclarar las instrucciones escritas con listas y puntos sobre qué hacer.
+                      instrucciones escritas con claridad, con características y puntos sobre qué hacer.
                     </label>
                 </div>
             </div>
@@ -350,29 +355,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">11</span></div>
             <div class="pregunta">
-                <span class="item">Usted quiere aprender un programa nuevo, habilidad o juego en una computadora. Usted qué hace:</span>
+                <span class="item">Usted quiere aprender un programa nuevo, habilidad o juego en una computadora. Usted qué haría:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p11">
                     <label class="form-check-label" for="p11r1">
-                      Hablar con gente que sabe acerca del programa.
+                      platicar con personas que conocen el programa.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p11">
                     <label class="form-check-label" for="p11r2">
-                      Leer las instrucciones que vienen en el programa.
+                      leer las instrucciones escritas que vienen con el programa.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p11">
                     <label class="form-check-label" for="p11r3">
-                      Seguir los esquemas en el libro que acompaña el programa.
+                      seguir los diagramas del libro que vienen con el programa.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p11">
                     <label class="form-check-label" for="p11r4">
-                      Use los controles o el teclado.
+                      utilizar los controles o el teclado.
                     </label>
                 </div>
             </div>
@@ -382,29 +387,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">12</span></div>
             <div class="pregunta">
-                <span class="item">Estás ayudando a alguien que quiere a ir al aeropuerto, al centro del pueblo o la estación del ferrocarril. Usted hace:</span>
+                <span class="item">Estás ayudando a alguien que quiere a ir al aeropuerto, al centro del pueblo o la estación del ferrocarril. Ud.:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p12">
                     <label class="form-check-label" for="p12r1">
-                      Va con la persona.
+                      iría con la persona.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p12">
                     <label class="form-check-label" for="p12r2">
-                      Anote las direcciones en un papel (sin mapa).
+                      le daría las indicaciones por escrito (sin un mapa).
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p12">
                     <label class="form-check-label" for="p12r3">
-                      Les dice las direcciones.
+                      le diría cómo llegar.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p12">
                     <label class="form-check-label" for="p12r4">
-                      Les dibuja un croquis o les da un mapa.
+                      Le dibuja un croquis o le da un mapa.
                     </label>
                 </div>
             </div>
@@ -417,25 +422,25 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p13">
                     <label class="form-check-label" for="p13r1">
-                      Viendo una demostración.
+                      viendo una demostración.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p13">
                     <label class="form-check-label" for="p13r2">
-                      Con instrucciones escritas, en un manual o libro de texto.
+                      siguiendo instrucciones escritas en un manual o libro de texto.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p13">
                     <label class="form-check-label" for="p13r3">
-                      Escuchando a alguien explicarlo o haciendo preguntas.
+                      escuchando la explicación de alguien y haciendo preguntas.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p13">
                     <label class="form-check-label" for="p13r4">
-                      Con esquemas y diagramas o pistas visuales.
+                      siguiendo pistas visuales en diagramas y gráficas.
                     </label>
                 </div>
             </div>
@@ -444,29 +449,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">14</span></div>
             <div class="pregunta">
-                <span class="item">Ud. Prefiere un maestro o conferencista que use:</span>
+                <span class="item">Ud. Prefiere a un profesor o un expositor que utiliza:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p14">
                     <label class="form-check-label" for="p14r1">
-                      Demostraciones, modelos o sesiones prácticas.
+                      demostraciones, modelos o sesiones prácticas.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p14">
                     <label class="form-check-label" for="p14r2">
-                      Folletos, libros o lecturas.
+                      folletos, libros o lecturas.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p14">
                     <label class="form-check-label" for="p14r3">
-                      Diagramas, esquemas o gráficos.
+                      diagramas, esquemas o gráficos.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p14">
                     <label class="form-check-label" for="p14r4">
-                      Preguntas y respuestas, pláticas y oradores invitados.
+                      preguntas y respuestas, charlas, grupos de discusión u oradores invitados.
                     </label>
                 </div>
             </div>
@@ -480,25 +485,25 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p15">
                     <label class="form-check-label" for="p15r1">
-                      Los acompaña a un parque o reserva natural.
+                      los llevaría a un parque o reserva y daría una caminata con ellos.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p15">
                     <label class="form-check-label" for="p15r2">
-                      Les da un libro o folleto acerca de parques o reservas naturales.
+                      les daría libros o folletos sobre parques o reservas de vida salvaje.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p15">
                     <label class="form-check-label" for="p15r3">
-                      Les da una plática acerca de parques o reservas naturales.
+                      les daría una plática acerca de parques o reservas de vida salvaje.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p15">
                     <label class="form-check-label" for="p15r4">
-                      Les muestra imágenes de Internet, fotos o libros con dibujos.
+                      les mostraría figuras de Internet, fotografías o libros con imágenes.
                     </label>
                 </div>
             </div>
@@ -508,29 +513,29 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">16</span></div>
             <div class="pregunta">
-                <span class="item">Usted tiene que hacer un discurso para una conferencia u ocasión especial. Usted hace:</span>
+                <span class="item">Usted tiene que hacer un discurso para una conferencia u ocasión especial. Ud.:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p16">
                     <label class="form-check-label" for="p16r1">
-                      Escribir el discurso y aprendérselo leyéndolo varias veces.
+                      escribiría su discurso y se lo aprendería leyéndolo varias veces.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p16">
                     <label class="form-check-label" for="p16r2">
-                      Reunir muchos ejemplos e historias para hacer el discurso verdadero y práctico.
+                      conseguiría muchos ejemplos e historias para hacer la charla real y práctica.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p16">
                     <label class="form-check-label" for="p16r3">
-                      Escribir algunas palabras claves y practicar el discurso repetidas veces.
+                      escribiría algunas palabras clave y práctica su discurso repetidamente.
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p16">
                     <label class="form-check-label" for="p16r4">
-                      Hacer diagramas o esquemas que te ayuden a explicar las cosas.
+                      elaboraría diagramas o conseguiría gráficos que le ayuden a explicar las ideas.
                     </label>
                 </div>
             </div>
@@ -541,24 +546,44 @@
             </form>  
         </div>
     </body>
-  <div class="modal" id="mensaje_modal" tabindex="-1" role="dialog">
+            <!-- Modal Error -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+                                    <i class="fas fa-exclamation"></i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body text-center">
+				<h3>Ooops!</h3>	
+				<h4>${errors}.</h4>
+				<button class="btn btn-success" data-dismiss="modal">Volver a intentar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" id="mensaje_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Aviso</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header bg-warning">
+          <div class="icon-box">
+            <i class="fas fa-exclamation"></i>
+            </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+          <h5 class="modal-title">Aviso</h5>
         <p>Para realizar búsquedas avanzadas debe contestar el test de estilos de 
-            aprendizaje de VARK.</p>
-      </div>
-      <div class="modal-footer">
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-      </div>
+            aprendizaje de VARK!</p>
+        <center><button class="btn btn-success" data-dismiss="modal">Continuar</button></center>
+      </div> 
     </div>
   </div>
 </div>
-</html>
+
+  </html>

@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+#cprincipal{
+    width: 80%;
+    margin: 3% auto;
+}
+.inf_personal{
+    width: 30%;
+    float: left;
+    border-radius: 7px;
+    border:solid 1px #999;
+    text-align: center;
+}
+.inf_personal div{
+    margin-top:3%;
+    display: block;
+}
+.inf_personal .img span{
+    font-size: 12em;
+    margin-left: 0;
+}
+.inf_personal .fila{
+    padding: 2px;
+    width: 80%;
+    margin:3px auto;
+    border: solid 1px #d9d9d9;
+    border-radius: 7px;
+    float: left;
+    margin-left: 10%;
+}
+.inf_personal .datos .etiqueta{
+    float: left;
+    width: 30%;
+    font-weight: 600;
+}
+.inf_personal .datos .valor{
+   float: left;
+ 
+   width: 70%;
+   text-align: left;
+}
+ 
+
+
+.inf_personal a{
+    color:#434e65;
+    width: 100%;
+    float: left;
+    background:#FBA707;
+    border: none;
+    border-radius: 7px;
+}
+.inf_personal a:hover{
+    opacity: 0.7;
+}
+.inf_personal a span{
+    margin-left: 3%;
+}
+.inf_personal a:hover{
+    text-decoration: none;
+    //text-decoration-line: none;
+}
+.perfil{
+    text-align: left;
+    width: 50%;
+    float:left;
+    margin: auto 5%;
+    float: left;
+    text-align: center;
+}
+.perfil>div{
+    border-radius: 7px;
+    border:solid 1px #999;
+    float: left;
+    width: 100%;
+    padding: 3% 5% 3% 5%;
+}
+.perfil .if_estilos{
+    margin-bottom: 3%;
+
+}
+.perfil .if_estilos> span:not(.help){
+    margin-bottom:3%;
+    float: left;
+    width: 95%;
+    font-size: 1.4em;
+    //font-weight: 600;
+    font-family: "Montserrat";
+
+}
+.help:not(.texto){
+    width: 5%;
+    font-size: 1.7em;
+}
+
+.help:hover #help_ea{
+    display:block;
+    
+}
+.estilo{
+    width: 100%;
+    float: left;
+    margin-bottom: 1.2%;
+}
+.estilo .v_etiqueta{
+    float: left;
+    width: 15%;
+    text-align: left;
+    font-weight: 600;
+    
+}
+.estilo .progress{
+    width: 85%;
+}
+#help_ea{
+    width: 30%;
+    position: absolute;
+    padding: 2%;
+    border:none;
+    border-radius: 7px;
+    margin-top: 13px;
+    right: 12%;
+    text-align: justify;
+    background:#fff;
+    border:solid 1px #d9d9d9;
+    display:none;
+    
+}
+#help_ea .texto{
+    font-size: 1.2rem;
+    text-justify: distribute;
+}
+
+.triangle{
+    position: absolute;
+    padding: 7%;
+    margin: 1em 0 3em;
+    color: #000;
+    border-radius: 10px;
+    top:-25px;
+}
+
+/* creates triangle */
+.triangle:after {
+  content: "";
+  display: block; /* reduce the damage in FF3.0 */
+  position: absolute;
+  top: -17px;
+  right: -530%;
+  width: 0;
+  border-width: 0 15px 15px;
+  border-style: solid;
+  border-color: #d9d9d9 transparent;
+}
+
+.progress{
+    height: 20px;
+}
+
+.perfil .if_inteligencias> span:not(.help){
+    margin-bottom:3%;
+    float: left;
+    width: 95%;
+    font-size: 1.4em;
+    //font-weight: 600;
+    font-family: "Montserrat";
+
+}
