@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 04/01/2019, 08:32:12 AM
-    Author     : alexr
---%>
-
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
@@ -27,22 +21,15 @@
                     out.print("<script>$(document).ready(function(){$(\"#iniciarSesion\").modal(\"show\");});</script>");
             %>
         </head>
-<f:view>
    
         <jsp:include page="vistas/nav.jsp"/>
        
         <body>
             <div id="fondo">
-                
-                    <div id="izq">
-                        <span><bold>El sistema de recomendación de Objetos de Aprendizaje</bold>
+                <div id="izq">
+                    <span><bold>El sistema de recomendación de Objetos de Aprendizaje</bold>
                             brinda una búsqueda según su estilo de aprendizaje, para ello se recomienda que registre su Perfil</span>
-                    </div>
-
-                    <!--<div id="der">
-                        <a href="#" >Registrar perfil</a>
-                    </div>-->
-                
+                </div>
                 <div id="asearch_header">
                     <center><h1>Buscar</h1></center>
                   <div class="search">
@@ -58,7 +45,6 @@
                 </div>
             </div>
             <br>
-
-</body>
-</f:view>
-    </html>
+    </body>
+    <jsp:include page="vistas/footer.jsp"/>
+</html>

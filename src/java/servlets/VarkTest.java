@@ -41,17 +41,20 @@ public class VarkTest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Se reinicia los valores por si se recarga la página
+            for (int i = 1; i <= 16; i++) {
+                for (int j = 0;  j<4; j++) {
+                    resp_vark[i-1][j]=null;
+                }
+            }
             HttpSession session = request.getSession(true);
             String user = (String)session.getAttribute("user");
             Mensaje mensaje = new Mensaje();
             for (int i = 1; i <=16; i++) {
-                System.out.println("p"+i);
                 String checkboxValues  []= request.getParameterValues("p"+i);
-                // System.out.println("dddddddddddd"+checkboxValues[0]);
                 if(checkboxValues != null){
                     for (int j = 0;  j<checkboxValues.length; j++) {
                         resp_vark[i-1][j]=checkboxValues[j];
-                        // System.out.println(checkboxValues[j]);
                     }
                 }
             }
@@ -64,11 +67,11 @@ public class VarkTest extends HttpServlet {
                 e.printStackTrace();
             }
             if(mensaje.getRespuesta().toString().compareToIgnoreCase("Perfil Guardado Correctamente")!=0){
-                 request.setAttribute("errors",mensaje.getRespuesta());
-                request.getRequestDispatcher("cuestionario.jsp").forward(request, response);
+                session.setAttribute("errors",mensaje.getRespuesta());
+                response.sendRedirect("cuestionario.jsp");
             }else{
-                request.setAttribute("msgAP",mensaje.getRespuesta());
-                request.getRequestDispatcher("perfil.jsp").forward(request, response);
+                session.setAttribute("msgAP",mensaje.getRespuesta());
+                response.sendRedirect("perfil.jsp");
             }               
                 
             

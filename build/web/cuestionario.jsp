@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%  String user = (String)session.getAttribute("user");
-    String variable = (String)session.getAttribute("error");
-    String e_sesion = (String)session.getAttribute("serror");
+    String errors = (String)session.getAttribute("errors");
+    String msg = (String)session.getAttribute("msg_registro");
     if(user==null)
         response.sendRedirect("index.jsp");
 %>
@@ -18,9 +18,9 @@
         <link rel="stylesheet" type="text/css" href="assets/css/search.css"/>
         <link rel="stylesheet" href="assets/css/est_cuestionario.css"/>
         <link rel="stylesheet" type="text/css" href="assets/css/error_modal.css"/>
-        <title>JSP Page</title>
+        <title>SMA-WEB</title>
     </head>
-    <%  if(request.getAttribute("errors")!=null)
+    <%  if(errors!=null)
             out.print("<script>$(document).ready(function(){$(\"#myModal\").modal(\"show\");});</script>");
         else
             out.print("<script>$(document).ready(function(){$(\"#mensaje_modal\").modal(\"show\");});</script>");%>
@@ -28,11 +28,14 @@
     <body>
         <div id="encabezado">
         <h1>Test de estilos de aprendizaje de VARK</h1>
-        <span> Con este cuestionario se tiene el propósito de saber acerca de sus preferencias para trabajar con información.
+        <span> Con este cuestionario se tiene el propósito de saber acerca de sus 
+            preferencias para trabajar con información.
             Seguramente tiene un estilo de aprendizaje preferido
-            y una parte de ese Estilo de Aprendizaje es su preferencia para capturar, procesar y entregar ideas e información.
+            y una parte de ese Estilo de Aprendizaje es su preferencia para capturar, 
+            procesar y entregar ideas e información.
             <br><br><strong>Elija las respuestas que mejor expliquen su preferencia
-           y marque la casilla de su elección.Puede seleccionar más de una respuesta a una pregunta si una sola no encaja con su percepción. Deje enblanco toda pregunta 
+           y marque la casilla de su elección.Puede seleccionar más de una respuesta 
+           a una pregunta si una sola no encaja con su percepción. Deje enblanco toda pregunta 
             que no se apliqué a sus preferencias</strong><br>
             <br>
         </span>
@@ -167,7 +170,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">5</span></div>
             <div class="pregunta">
-                <span class="item">Usted un problema con su rodilla. Preferiría que el doctor:</span>
+                <span class="item">Usted tiene un problema con su rodilla. Preferiría que el doctor:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p5">
                     <label class="form-check-label" for="p5r1">
@@ -198,7 +201,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">6</span></div>
             <div class="pregunta">
-                <span class="item">Usted está a punto de comprar una cámara digital o teléfono o móvil.  ¿Además del precio, qué másinfluye en su decisión?.</span>
+                <span class="item">Usted está a punto de comprar una cámara digital o teléfono o móvil.  ¿Además del precio, qué más influye en su decisión?.</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p6">
                     <label class="form-check-label" for="p6r1">
@@ -546,23 +549,24 @@
             </form>  
         </div>
     </body>
+    <jsp:include page="vistas/footer.jsp"/>
             <!-- Modal Error -->
 <div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="icon-box">
-                                    <i class="fas fa-exclamation"></i>
-				</div>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body text-center">
-				<h3>Ooops!</h3>	
-				<h4>${errors}.</h4>
-				<button class="btn btn-success" data-dismiss="modal">Volver a intentar</button>
-			</div>
-		</div>
+    <div class="modal-dialog modal-confirm">
+	<div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="fas fa-exclamation"></i>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>Ooops!</h3>	
+                    <h4>${errors}.<%if(errors!=null)request.getSession().removeAttribute("errors");%></h4>
+                    <button class="btn btn-success" data-dismiss="modal">Volver a intentar</button>
+                </div>
 	</div>
+    </div>
 </div>
 <div class="modal" id="mensaje_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -577,13 +581,16 @@
         </button>
       </div>
       <div class="modal-body">
-          <h5 class="modal-title">Aviso</h5>
-        <p>Para realizar búsquedas avanzadas debe contestar el test de estilos de 
+          <%if(msg==null)msg="Aviso";%>
+          <h5 class="modal-title"><%out.print(msg);request.getSession().removeAttribute("msg_registro");%></h5>
+          <br>
+          <p>Para realizar búsquedas avanzadas debe contestar el test de estilos de 
             aprendizaje de VARK!</p>
         <center><button class="btn btn-success" data-dismiss="modal">Continuar</button></center>
       </div> 
     </div>
   </div>
 </div>
+          
 
-  </html>
+</html>

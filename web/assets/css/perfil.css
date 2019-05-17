@@ -87,6 +87,18 @@
     font-family: "Montserrat";
 
 }
+.if_estilos a{
+    font-weight: 600;
+    float: right;
+    margin-top: 1%;
+    background-color: #434e65;
+    color:#fff;
+}
+.if_estilos a:hover{
+    color:#fff;
+    opacity: 0.8;
+    font-weight: 600;
+}
 .help:not(.texto){
     width: 5%;
     font-size: 1.7em;
@@ -110,6 +122,11 @@
 }
 .estilo .progress{
     width: 85%;
+}
+.alert{
+    margin-top:2%;
+    height: auto;
+    z-index:-1;
 }
 #help_ea{
     width: 30%;

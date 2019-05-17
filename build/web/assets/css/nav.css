@@ -1,12 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 04/02/2019, 05:23:52 PM
-    Author     : alexr
-*/
 * {
 	padding:0;
 	margin:0;
@@ -63,7 +54,7 @@ header nav ul li a:hover{
 header nav ul li a:visited {
 	text-decoration:none;
 } 
-header nav ul li a span {
+header nav ul li a span:not(.fas) {
 	margin-right:10px;
 }
  
@@ -144,11 +135,18 @@ header nav ul li .caret {
     color: #f2f2f2;
     
 }
+.avatar i{
+    color:#fba707;
+    margin-left: 3px;
+    margin-top: 0px;
+}
 .text_user{
     color:#fba707;
-    float: left;
-    margin-top:4px; 
+    float: right;
+    margin-top:3px;
+    margin-left: 5px;
 }
+
 /*INICION AVATAR PARA SESION ID=AVATAR EN INDEX*/
 
 .opc_avatar{
@@ -231,6 +229,26 @@ header nav ul li .caret {
         .exit a:hover{
            color: #FBA707; 
         }
+.opc_avatar .triangle{
+    position: absolute;
+    padding: 0%;
+    margin: 1em 0 3em;
+    border-radius: 10px;
+    top:-25px;
+}
+
+/* creates triangle */
+.opc_avatar .triangle:after {
+  content: "";
+  display: block; /* reduce the damage in FF3.0 */
+  position: absolute;
+  top: -5px;
+  left: -530%;
+  width: 0;
+  border-width: 0 15px 15px;
+  border-style: solid;
+  border-color: #fff transparent;
+}
 .opc_avatar ul{
 	float: right;
 	list-style: none;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -17,23 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Dao;
 
-/**
- *
- * @author alexr
- */
+
 @WebServlet(name = "Registrar", urlPatterns = {"/Registrar"})
 public class Registrar extends HttpServlet {
-    
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,7 +25,6 @@ public class Registrar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession respuesta = request.getSession(true);
-        PrintWriter out = response.getWriter();
         //Declaro e inicio las variables
         String nombreUsuario = request.getParameter("_iptNombres");
         String emailUsuario = request.getParameter("_iptEmail");
@@ -53,11 +34,6 @@ public class Registrar extends HttpServlet {
         Validador v = new Validador();
         Dao d = new Dao();
         //Comienzo con las validaciones
-        /*
-         * Podemos hacer un monton de validaciones, por ejemplo:
-         * Campos no vacios, direccion de email valida, nombre de usuario y contraseña
-         * sin espacios y/o caracteres especiales.
-         */
         
         //campos vacios
         if(nombreUsuario.isEmpty() || emailUsuario.isEmpty() || password.isEmpty()){
@@ -82,7 +58,6 @@ public class Registrar extends HttpServlet {
                                     respuesta.setAttribute("user",emailUsuario);
                                     respuesta.setAttribute("name",nombreUsuario);
                                 }
-                            
                             d.desconectar();
                              
                         } catch (Exception e) { System.out.println("Ocurrio la sig exception: " +e); }
@@ -90,7 +65,6 @@ public class Registrar extends HttpServlet {
                     
                 } else {
                     respuesta.setAttribute("error", "La contraseña no es válida");
-                   
                 }
                 
                 
@@ -99,7 +73,9 @@ public class Registrar extends HttpServlet {
         
         if(respuesta.getAttribute("error")!=null)
             response.sendRedirect("index.jsp");
-        else
+        else{
+            respuesta.setAttribute("msg_registro","Se ha registrado Correctamente");
             response.sendRedirect("cuestionario.jsp");
+        }
     }
 }

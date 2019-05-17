@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -16,15 +11,12 @@ import javax.servlet.http.HttpSession;
 import model.IdTokenVerifierAndParser;
 import model.Dao;
 
-/**
- *
- * @author alexr
- */
 @WebServlet(name = "RegistrarGoogle", urlPatterns = {"/RegistrarGoogle"})
 public class RegistrarGoogle extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession respuesta = request.getSession(true);
         response.setContentType("text/html");
         Dao d = new Dao();
         boolean exist = true; 
@@ -34,10 +26,7 @@ public class RegistrarGoogle extends HttpServlet {
             GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
             String name = (String) payLoad.get("name");
             String email = payLoad.getEmail();
-            //System.out.println("User name: " + name);
-            //System.out.println("User email: " + email);
-            HttpSession respuesta = request.getSession(true);
-            try {
+       
                 d.conectar();
                 if(!d.isEmailRegistered(email)){
                     d.registerUser(email, "*", name,1,0);
@@ -47,20 +36,19 @@ public class RegistrarGoogle extends HttpServlet {
                 respuesta.setAttribute("name",name);
                 
             if(!exist&&(d.getPefil(email)!=1)){
+                respuesta.setAttribute("msg_registro","Se ha registrado Correctamente");
                 response.sendRedirect("cuestionario.jsp");
-                d.desconectar();
+
             }
             else{
                 response.sendRedirect("index.jsp");
-                d.desconectar();
             }
-
-        } catch (Exception e) { System.out.println("Ocurrio la sig exception: " +e); }
-            
-            
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        d.desconectar();
+        } catch (Exception e) { 
+            System.out.println("Ocurrio la sig exception: " +e);
+            respuesta.setAttribute("error","Ha ocurrido un error durante el Registro.");
+            response.sendRedirect("index.jsp");
+                
         }
     }
 

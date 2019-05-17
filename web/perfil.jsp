@@ -1,46 +1,47 @@
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
+<%@page import="virtuoso.jena.driver.VirtModel"%>
 <%@page import="org.apache.jena.rdf.model.Resource"%>
 <%@page import="org.apache.jena.query.QuerySolution"%>
 <%@page import="org.apache.jena.graph.Triple"%>
 <%@page import="java.io.FileInputStream"%>
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
-<%@ page import="org.apache.jena.query.ResultSetFormatter" %>
 <%@ page import="org.apache.jena.query.ResultSet" %>
 <%@ page import="org.apache.jena.query.QueryExecutionFactory"%>
 <%@ page import="org.apache.jena.query.QueryExecution"%>
 <%@ page import="org.apache.jena.query.QueryFactory"%>
 <%@ page import="org.apache.jena.query.Query"%>
-<%@ page import="org.apache.jena.rdf.model.ModelFactory"%>
-<%@ page import="org.apache.jena.ontology.OntModelSpec"%>
-<%@ page import="org.apache.jena.ontology.OntModel"%>
+
 
 <%  String user = (String)session.getAttribute("user");
-    String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
-    int estilos[] = new int[4]; //{v,a,r,k}
-    int procent[] = new int[4];
     String name_user = (String)session.getAttribute("name");
+    boolean band=false;
     if(user==null)
         response.sendRedirect("index.jsp");
+    String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+    int estilos[] = new int[4]; //{v,a,r,k}
+    int porcent[] = new int[4];
 %>
 
 <%
-    //Recuperar Datos del Perfil de Ontología
-    OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);           
-    model.read(new FileInputStream("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//Perfiles.owl"),null,"TTL");
-    String stringQuery = 
-      "PREFIX smas: <"+smas+">"
-            + "SELECT * WHERE {"
-            + "<"+smas+"LE-"+user+"> smas:visual ?visual."
-            + "<"+smas+"LE-"+user+"> smas:aural ?aural."
-            + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
-            + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";
- 
- 
-    Query query = QueryFactory.create(stringQuery);
-    // Ejecutar la consulta y obtener los resultados
-    QueryExecution qe = QueryExecutionFactory.create(query, model);
-    try {
-       ResultSet results = qe.execSelect();
+    String URL = "jdbc:virtuoso://localhost:1111";
+    String uid = "dba";
+    String pwd = "dba";
+    VirtModel model=null;
+    try{
+        model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
+        String stringQuery = 
+        "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "<"+smas+"LE-"+user+"> smas:visual ?visual."
+              + "<"+smas+"LE-"+user+"> smas:aural ?aural."
+              + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
+              + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";     
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        
+        ResultSet results = qe.execSelect();
        while(results.hasNext()){
+           band=true;
            QuerySolution qs = results.next();
            estilos[0]=qs.getLiteral("visual").getInt();
            estilos[1]=qs.getLiteral("aural").getInt();
@@ -51,15 +52,16 @@
        for(int v:estilos){
            suma = suma+v;
        }
+       double aux []= new double[4];
        for(int i =0;i<estilos.length;i++){
-           procent[i]=Math.round((estilos[i]*100)/suma);
+           aux[i]=(double)(estilos[i]*100)/suma;
+           porcent[i]=(int)(Math.round(aux[i]));
        }
-       
-       
-    
-       
-       //ResultSetFormatter.out(System.out, results, query) ;
-    } finally { qe.close() ; }
+       qe.close();
+    }catch(Exception e){
+        out.print("<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
+                + "No se puede conectar con VIRTUSO OPENLIK!</center></div>");
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -88,7 +90,7 @@
                         </div>
                     <br>
                     <div class="fila">
-                        <a href='#' onClick='signOut();'>Salir<span class='fas fa-power-off'></span></a>
+                        <a href='#' onClick='signOut();'>Cerrar sesión<span class='fas fa-power-off'></span></a>
                     </div>
             </div>
             </div>
@@ -99,28 +101,33 @@
                                 sensorial al procesar información. Las preferencias modales sensoriales son (Visual= Visual, Aural = Auditivo, 
                                 Read/Write = lectura/escritura, Kinesthetic = Quinestésico por las siglas en inglés)."</span>
                         </div>
+                        
                     </span>
-                    <%%>
+                    <% if(!band)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
+                                + "cuestionario de VARK para determinar su estilo de aprendizaje predominante.</div>");
+                        %>
                     <div class="estilo"><span class="v_etiqueta">Visual: </span>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-primary" style="width: <%out.print(procent[0]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(procent[0]);%>%</div>
+                            <div class="progress-bar progress-bar-striped bg-primary" style="width: <%out.print(porcent[0]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[0]);%>%</div>
                         </div>
                     </div>
                     <div class="estilo"><span class="v_etiqueta">Aural: </span>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" style="width: <%out.print(procent[1]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(procent[1]);%>%</div>
+                            <div class="progress-bar progress-bar-striped bg-success" style="width: <%out.print(porcent[1]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[1]);%>%</div>
                         </div>
                     </div>
                     <div class="estilo"><span class="v_etiqueta">Read-write: </span>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" style="width: <%out.print(procent[2]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(procent[2]);%>%</div>
+                            <div class="progress-bar progress-bar-striped bg-info" style="width: <%out.print(porcent[2]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[2]);%>%</div>
                         </div>
                     </div>
                     <div class="estilo"><span class="v_etiqueta">Kinesthetic: </span>
                          <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-danger" style="width: <%out.print(procent[3]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(procent[3]);%>%</div>
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: <%out.print(porcent[3]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[3]);%>%</div>
                         </div>
                     </div>
+                        
+                        <a class="btn" href="cuestionario.jsp" role="button"><%if(!band){out.print("Realizar Test");}else{out.print("Repetir Test");}%></a>
                 </div>
                 <div class="if_inteligencias">
                     <span>Inteligencias múltiples</span><span class="help far fa-question-circle">
@@ -131,4 +138,5 @@
             </div>
         </div>
     </body>
+    <jsp:include page="vistas/footer.jsp"/>
 </html>

@@ -30,16 +30,15 @@
 				<li><a href="#">ViSH</a></li>
 			</ul>
 		</li>
-		<li><a href="#">Acerca de</a></li>
-		<li><a href="#">Contacto</a></li>
+		<li><a href="#">Acerca de</a></li>  
                 <li><a href="#">Administrador</a></li>
                 <% if(user==null){
                     out.print("<li class=\"ingreso\"><a href=\"#\" id=\"sesion\" data-toggle=\"modal\" data-target=\"#iniciarSesion\" >Iniciar sesi&oacute;n</a></li>");
                     out.print("<li class=\"ingreso\"><a href=\"#\" id=\"registro\" data-toggle=\"modal\" data-target=\"#registroModal\">Regístrate</a></li>");
                     }else{
-                        out.print("<li class=\"avatar\"><a href=\"javascript:opcAvatar();\" ><span class=\"text_user\">"+user+"</span><span class=\"fas fa-user-circle\"></span></a></li>");
+                        out.print("<li class=\"avatar\"><a href=\"javascript:opcAvatar();\" ><span class=\"fas fa-user-circle\"></span><span class=\"text_user\">"+name_user.split(" ")[0]+"<i class=\"fas fa-caret-down\"></i></span></a></li>");
                         out.print("<div class='opc_avatar'>");
-                        out.print("<div class='contenedor'>");
+                        out.print("<div class='contenedor'><span class=\"triangle\"></span>");
                         out.print("<div class='img'><span class=\"fas fa-user-circle\"></span>");
                         
                         out.print("</div>");

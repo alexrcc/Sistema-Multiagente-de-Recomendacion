@@ -96,4 +96,5 @@
             </form>
         </div>
     </body>
+    <jsp:include page="vistas/footer.jsp"/>
 </html>
