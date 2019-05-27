@@ -30,11 +30,18 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.ObjectProperty;
 import org.apache.jena.ontology.OntClass;
+import static sma.AgentePerfilEstudiante.URL;
+import virtuoso.jena.driver.VirtGraph;
+import virtuoso.jena.driver.VirtModel;
 
 
-public class AgenteGestorRepositorio extends Agent{
+public class AgenteGestorRepositorioVirtuoso extends Agent{
     
     private static int total_pages;
+    static final String uid = "dba";
+    static final String pwd = "dba";
+    static final String URL = "jdbc:virtuoso://localhost:1111";
+    VirtModel set;
     private static OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
     private static final String ns = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#"; 
     private static final String adms = "http://www.w3.org/ns/adms#"; 
@@ -68,6 +75,8 @@ public class AgenteGestorRepositorio extends Agent{
             System.out.println (new File (".").getAbsolutePath ());
             System.out.println("Argumentos: "+args[0]+args[1]);
             model.read("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//OntologiaBase.owl","RDF/XML");
+
+            set  = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
             addBehaviour(new ComportamientoAGR(args));
         }else{
             System.out.println("No se enviaron argumentos");
@@ -89,12 +98,13 @@ public class AgenteGestorRepositorio extends Agent{
                 String url = url_base+"/apis/search?type=Resource&page=";
                 total_pages = GetPages(url+"1");
                 //System.out.println(total_pages);
-                for (int i = 1; total_pages !=0 && i <= 1; i++) {
+                for (int i = 1; total_pages !=0 && i <= total_pages; i++) {
+                    System.out.println("-----------------------PÁGINA ACTUAL "+i+"--------------------------");
                     JSONObject learning_objects = GetLernaingObject(url+i);
                     JSONArray results = learning_objects.getJSONArray("results");
                     //System.out.println(results.length());
 
-                    for (int j = 0; j <3 ; j++) { //results.length()
+                    for (int j = 0; j <results.length() ; j++) { //results.length()
                         JSONObject aux = results.getJSONObject(j);
                         System.out.println(aux.getString("id"));
                         String type = aux.getString("type");
@@ -125,6 +135,7 @@ public class AgenteGestorRepositorio extends Agent{
                      file.createNewFile();
                 }
                 model.write(new PrintWriter(file));
+                set.add(model);
             }catch(Exception e){
                 System.out.println("Error al guardar el modelo: "+e);
             }
@@ -170,23 +181,28 @@ public class AgenteGestorRepositorio extends Agent{
             }
             in_aux.close();
         }
+        con_aux.disconnect();
         return Integer.parseInt(valor);
     }
     private static String GetMetadata(String url,int codigo, String id) throws Exception{
 
-        OntClass cls1 = model.getOntClass(ns+"LearningObject");
-        Individual LO = model.createIndividual(ns+id,cls1);
+        
         
         
         String metadatos=null;
         String url_metadata = url+codigo+"/metadata.xml";
         URL Obj_metadata = new URL(url_metadata);
+        
         HttpURLConnection metadata = (HttpURLConnection) Obj_metadata.openConnection();
+        System.out.println("URL-META"+Obj_metadata);
         int rspmetadata = metadata.getResponseCode();
         if(rspmetadata!=404&&rspmetadata!=500){
+            System.out.println("LLEGAAAAAAAAAAA");
             InputStream in = new BufferedInputStream(metadata.getInputStream());
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = (Document) db.parse(in);
+            OntClass cls1 = model.getOntClass(ns+"LearningObject");
+            Individual LO = model.createIndividual(ns+id,cls1);
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             Node lom = doc.getDocumentElement();
             NodeList hijos = lom.getChildNodes();
@@ -446,8 +462,10 @@ public class AgenteGestorRepositorio extends Agent{
                 }
 
             }
-        }
-
+        }else{
+            System.out.println("No se pudo conectar: "+rspmetadata);
+            }
+        metadata.disconnect();
         return metadatos;
     }
     private static JSONObject GetLernaingObject(String url)throws Exception{
@@ -468,6 +486,7 @@ public class AgenteGestorRepositorio extends Agent{
             myResponse = new JSONObject(response.toString());
 
         }
+        con.disconnect();
         return myResponse;
     }
     private int GetPages(String url) throws Exception{
@@ -488,7 +507,10 @@ public class AgenteGestorRepositorio extends Agent{
             myResponse = new JSONObject(response.toString());
             pages = myResponse.getInt("total_pages");
 
+        }else{
+            System.out.println("NO se ha podido conectar: EROR CODE "+responseCode);
         }
+        con.disconnect();
         return pages;
     }
 

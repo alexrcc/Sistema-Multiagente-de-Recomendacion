@@ -1,430 +1,1166 @@
-@prefix :      <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#> .
-@prefix com:   <http://vocab.resc.info/communication#> .
-@prefix lcy:   <http://purl.org/vocab/lifecycle/schema#> .
-@prefix adms:  <http://www.w3.org/ns/adms#> .
-@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#> .
+@prefix com: <http://vocab.resc.info/communication#> .
+@prefix ebu: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix lcy: <http://purl.org/vocab/lifecycle/schema#> .
+@prefix nco: <http://oscaf.sourceforge.net/nco.html#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rad: <http://www.w3.org/ns/radion#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gold: <http://purl.org/linguistics/gold/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix smas: <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#> .
+@prefix stac: <http://securitytoolbox.appspot.com/stac#> .
 @prefix fabio: <http://purl.org/spar/fabio/> .
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-@prefix gold:  <http://purl.org/linguistics/gold/> .
-@prefix rad:   <http://www.w3.org/ns/radion#> .
-@prefix stac:  <http://securitytoolbox.appspot.com/stac#> .
-@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix discovery: <http://rdf-vocabulary.ddialliance.org/discovery#> .
-@prefix smas:  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#> .
-@prefix ebu:   <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
-@prefix nco:   <http://oscaf.sourceforge.net/nco.html#> .
-@prefix dcat:  <http://www.w3.org/ns/dcat#> .
-@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@base <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis> .
 
-smas:ContextualInformation
-        a                owl:Class ;
-        rdfs:subClassOf  smas:studentProfile .
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis> rdf:type owl:Ontology ;
+                                                                     
+                                                                     owl:versionIRI <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis/1.0.0> .
 
-smas:kinesthetic  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:LearningStyle ;
-        rdfs:range   rdfs:Literal .
 
-stac:Requeriment  a      owl:Class ;
-        rdfs:subClassOf  smas:Technical .
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
 
-<http://purl.org/spar/fabio/Metadata/Lom>
-        a                owl:Class ;
-        rdfs:subClassOf  fabio:Metadata .
 
-smas:learningStyle  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:studentProfile ;
-        rdfs:range   xsd:string .
+###  http://xmlns.com/foaf/0.1/name
 
-smas:has  a     owl:ObjectProperty .
+foaf:name rdf:type owl:AnnotationProperty ;
+          
+          rdfs:domain :Composite ,
+                      :GeneralData ,
+                      rad:Repository .
 
-lcy:Lifecycle  a         owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
 
-smas:duration  a     owl:DatatypeProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   xsd:string .
 
-smas:SpatialContext  a   owl:Class ;
-        rdfs:subClassOf  smas:ContextualInformation .
 
-smas:kind  a         owl:DatatypeProperty ;
-        rdfs:domain  com:Relation ;
-        rdfs:range   xsd:string .
 
-smas:softwareVersion  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:TechnologicalContext ;
-        rdfs:range   xsd:string .
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
 
-smas:GeneralData  a      owl:Class ;
-        rdfs:subClassOf  smas:studentProfile .
 
-smas:aural  a        owl:DatatypeProperty ;
-        rdfs:domain  smas:LearningStyle ;
-        rdfs:range   rdfs:Literal .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#consistOf
 
-smas:LearningStyle  a    owl:Class ;
-        rdfs:subClassOf  smas:studentProfile .
+:consistOf rdf:type owl:ObjectProperty ;
+           
+           rdfs:range :ContextualInformation ,
+                      :GeneralData ,
+                      :LearningStyle ,
+                      :MultipleIntelligences ;
+           
+           rdfs:domain :studentProfile .
 
-com:Relation  a          owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
 
-rad:version  a       owl:DatatypeProperty ;
-        rdfs:domain  lcy:Lifecycle ;
-        rdfs:range   xsd:string .
 
-smas:id  a           owl:DatatypeProperty ;
-        rdfs:domain  gold:Taxon ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#contains
 
-smas:educationalResource
-        a       owl:Class .
+:contains rdf:type owl:ObjectProperty ;
+          
+          rdfs:range :LearningObject ;
+          
+          rdfs:domain :educationalResource .
 
-smas:typicalLearningTime
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
 
-gold:Taxon  a            owl:Class ;
-        rdfs:subClassOf  smas:TaxonPath .
 
-smas:hasTaxon  a     owl:ObjectProperty ;
-        rdfs:domain  smas:TaxonPath ;
-        rdfs:range   gold:Taxon .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#has
 
-smas:minimumVersion  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:Composite ;
-        rdfs:range   xsd:string .
+:has rdf:type owl:ObjectProperty .
 
-smas:date  a         owl:DatatypeProperty ;
-        rdfs:domain  smas:TemporaryContext , smas:Contribute , smas:Annotation ;
-        rdfs:range   xsd:dateTimeStamp .
 
-smas:hasContribute  a  owl:ObjectProperty ;
-        rdfs:domain  smas:Metametadata , lcy:Lifecycle ;
-        rdfs:range   smas:Contribute .
 
-foaf:gender  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:GeneralData ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasARecommendedLO
 
-smas:hasRequeriment  a  owl:ObjectProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   stac:Requeriment .
+:hasARecommendedLO rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:range :LearningObject ;
+                   
+                   rdfs:domain :studentProfile .
 
-smas:Annotation  a       owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
 
-smas:LearningObject  a   owl:Class ;
-        rdfs:subClassOf  smas:educationalResource .
 
-vcard:title  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:General ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasComposite
 
-smas:hasARecommendedLO
-        a            owl:ObjectProperty ;
-        rdfs:domain  smas:studentProfile ;
-        rdfs:range   smas:LearningObject .
+:hasComposite rdf:type owl:ObjectProperty ;
+              
+              rdfs:domain stac:Requeriment ;
+              
+              rdfs:range :Composite .
 
-smas:consistOf  a    owl:ObjectProperty ;
-        rdfs:domain  smas:studentProfile ;
-        rdfs:range   smas:LearningStyle , smas:GeneralData , smas:ContextualInformation .
 
-foaf:status  a       owl:DatatypeProperty ;
-        rdfs:domain  lcy:Lifecycle ;
-        rdfs:range   xsd:string .
 
-ebu:Rights  a            owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasContext
 
-smas:hasComposite  a  owl:ObjectProperty ;
-        rdfs:domain  stac:Requeriment ;
-        rdfs:range   smas:Composite .
+:hasContext rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain :ContextualInformation ;
+            
+            rdfs:range :SpatialContext ,
+                       :TechnologicalContext ,
+                       :TemporaryContext .
 
-smas:studentProfile  a   owl:Class ;
-        rdfs:subClassOf  foaf:Person .
 
-vcard:language  a    owl:DatatypeProperty ;
-        rdfs:domain  smas:Metametadata , smas:General , smas:Educational ;
-        rdfs:range   xsd:string .
 
-smas:Composite  a        owl:Class ;
-        rdfs:subClassOf  stac:Requeriment .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasContribute
 
-smas:format  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   xsd:string .
+:hasContribute rdf:type owl:ObjectProperty ;
+               
+               rdfs:domain lcy:Lifecycle ;
+               
+               rdfs:range :Contribute ;
+               
+               rdfs:domain :Metametadata .
 
-smas:installationRemarks
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   xsd:string .
 
-smas:General  a          owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
 
-smas:operatingSystem  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:TechnologicalContext ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasIdentifier
 
-smas:multipleIntelligences
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:studentProfile ;
-        rdfs:range   xsd:string .
+:hasIdentifier rdf:type owl:ObjectProperty ;
+               
+               rdfs:domain :General ,
+                           :Metametadata ,
+                           :Resource ;
+               
+               rdfs:range adms:Identifier .
 
-nco:emailAddress  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:GeneralData ;
-        rdfs:range   xsd:string .
 
-smas:Resource  a         owl:Class ;
-        rdfs:subClassOf  com:Relation .
 
-smas:readwrite  a    owl:DatatypeProperty ;
-        rdfs:domain  smas:LearningStyle ;
-        rdfs:range   rdfs:Literal .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasRequeriment
 
-smas:otherPlatformRequirements
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   xsd:string .
+:hasRequeriment rdf:type owl:ObjectProperty ;
+                
+                rdfs:range stac:Requeriment ;
+                
+                rdfs:domain :Technical .
 
-smas:catalog  a      owl:DatatypeProperty ;
-        rdfs:domain  adms:Identifier ;
-        rdfs:range   xsd:string .
 
-smas:interactivityType
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
 
-nco:addressLocation  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:GeneralData ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasResource
 
-smas:byhour  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:TemporaryContext ;
-        rdfs:range   xsd:dateTimeStamp .
+:hasResource rdf:type owl:ObjectProperty ;
+             
+             rdfs:domain com:Relation ;
+             
+             rdfs:range :Resource .
 
-smas:hasResource  a  owl:ObjectProperty ;
-        rdfs:domain  com:Relation ;
-        rdfs:range   smas:Resource .
 
-smas:description  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:Resource , smas:General , smas:Educational , smas:Annotation , ebu:Rights , com:Classification ;
-        rdfs:range   xsd:string .
 
-smas:typicalAgeRange  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasTaxon
 
-smas:standard  a     owl:DatatypeProperty ;
-        rdfs:domain  rad:Repository ;
-        rdfs:range   xsd:string .
+:hasTaxon rdf:type owl:ObjectProperty ;
+          
+          rdfs:range gold:Taxon ;
+          
+          rdfs:domain :TaxonPath .
 
-<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis>
-        a               owl:Ontology ;
-        owl:versionIRI  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis/1.0.0> .
 
-smas:interactivityLevel
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
 
-smas:inherit  a      owl:ObjectProperty ;
-        rdfs:domain  smas:studentProfile ;
-        rdfs:range   foaf:Person .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#hasTaxonPath
 
-smas:isComprisedOf  a  owl:ObjectProperty ;
-        rdfs:domain  <http://purl.org/spar/fabio/Metadata/Lom> ;
-        rdfs:range   com:Classification , smas:Educational , smas:Metametadata , smas:Annotation , lcy:Lifecycle , smas:Technical , ebu:Rights , smas:General , com:Relation .
+:hasTaxonPath rdf:type owl:ObjectProperty ;
+              
+              rdfs:domain com:Classification ;
+              
+              rdfs:range :TaxonPath .
 
-smas:intendedEndUserRole
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
 
-smas:hasContext  a   owl:ObjectProperty ;
-        rdfs:domain  smas:ContextualInformation ;
-        rdfs:range   smas:TemporaryContext , smas:TechnologicalContext , smas:SpatialContext .
 
-smas:semanticDensity  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#inStandard
 
-smas:structure  a    owl:DatatypeProperty ;
-        rdfs:domain  smas:General ;
-        rdfs:range   xsd:string .
+:inStandard rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain fabio:Metadata ;
+            
+            rdfs:range <http://purl.org/spar/fabio/Metadata/Lom> .
 
-smas:name  a         owl:DatatypeProperty ;
-        rdfs:domain  smas:Composite ;
-        rdfs:range   xsd:string .
 
-smas:inStandard  a   owl:ObjectProperty ;
-        rdfs:domain  fabio:Metadata ;
-        rdfs:range   <http://purl.org/spar/fabio/Metadata/Lom> .
 
-smas:Metametadata  a     owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#inherit
 
-smas:stayIn  a       owl:ObjectProperty ;
-        rdfs:domain  smas:LearningObject ;
-        rdfs:range   rad:Repository .
+:inherit rdf:type owl:ObjectProperty ;
+         
+         rdfs:domain :studentProfile ;
+         
+         rdfs:range foaf:Person .
 
-fabio:Metadata  a        owl:Class ;
-        rdfs:subClassOf  smas:LearningObject .
 
-smas:coverage  a     owl:DatatypeProperty ;
-        rdfs:domain  smas:General ;
-        rdfs:range   xsd:string .
 
-foaf:name  a         owl:AnnotationProperty ;
-        rdfs:domain  rad:Repository , smas:GeneralData , smas:Composite .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#isComposedOf
 
-smas:uri  a          owl:DatatypeProperty ;
-        rdfs:domain  rad:Repository ;
-        rdfs:range   xsd:string .
+:isComposedOf rdf:type owl:ObjectProperty ;
+              
+              rdfs:range fabio:Metadata ;
+              
+              rdfs:domain :LearningObject .
 
-smas:difficulty  a   owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
 
-smas:TaxonPath  a        owl:Class ;
-        rdfs:subClassOf  com:Classification .
 
-smas:Educational  a      owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#isComprisedOf
 
-smas:context  a      owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
+:isComprisedOf rdf:type owl:ObjectProperty ;
+               
+               rdfs:domain <http://purl.org/spar/fabio/Metadata/Lom> ;
+               
+               rdfs:range lcy:Lifecycle ,
+                          com:Classification ,
+                          com:Relation ,
+                          ebu:Rights ,
+                          :Annotation ,
+                          :Educational ,
+                          :General ,
+                          :Metametadata ,
+                          :Technical .
 
-smas:Contribute  a       owl:Class ;
-        rdfs:subClassOf  smas:Metametadata , lcy:Lifecycle .
 
-smas:location  a     owl:DatatypeProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   xsd:string .
 
-foaf:age  a          owl:DatatypeProperty ;
-        rdfs:domain  smas:GeneralData ;
-        rdfs:range   xsd:unsignedInt .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#stayIn
 
-smas:hasIdentifier  a  owl:ObjectProperty ;
-        rdfs:domain  smas:Resource , smas:Metametadata , smas:General ;
-        rdfs:range   adms:Identifier .
+:stayIn rdf:type owl:ObjectProperty ;
+        
+        rdfs:domain :LearningObject ;
+        
+        rdfs:range rad:Repository .
 
-smas:purpose  a      owl:DatatypeProperty ;
-        rdfs:domain  com:Classification ;
-        rdfs:range   xsd:string .
 
-smas:entry  a        owl:DatatypeProperty ;
-        rdfs:domain  adms:Identifier , gold:Taxon ;
-        rdfs:range   xsd:string .
 
-smas:cost  a         owl:DatatypeProperty ;
-        rdfs:domain  ebu:Rights ;
-        rdfs:range   xsd:string .
 
-smas:learningResourceType
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:Educational ;
-        rdfs:range   xsd:string .
 
-smas:type  a         owl:DatatypeProperty ;
-        rdfs:domain  smas:Composite ;
-        rdfs:range   xsd:string .
+#################################################################
+#
+#    Data properties
+#
+#################################################################
 
-smas:TechnologicalContext
-        a                owl:Class ;
-        rdfs:subClassOf  smas:ContextualInformation .
 
-com:Classification  a    owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
+###  http://oscaf.sourceforge.net/nco.html#addressLocation
 
-smas:aggregationLevel
-        a            owl:DatatypeProperty ;
-        rdfs:domain  smas:General ;
-        rdfs:range   xsd:string .
+nco:addressLocation rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:domain :GeneralData ;
+                    
+                    rdfs:range xsd:string .
 
-vcard:role  a        owl:DatatypeProperty ;
-        rdfs:domain  smas:Contribute ;
-        rdfs:range   xsd:string .
 
-smas:visual  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:LearningStyle ;
-        rdfs:range   rdfs:Literal .
 
-adms:Identifier  a       owl:Class ;
-        rdfs:subClassOf  smas:Resource , smas:Metametadata , smas:General .
+###  http://oscaf.sourceforge.net/nco.html#country
 
-foaf:Person  a  owl:Class .
+nco:country rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain :SpatialContext ;
+            
+            rdfs:range xsd:string ;
+            
+            rdfs:domain rad:Repository .
 
-smas:copyrightAndOtherRestrictions
-        a            owl:DatatypeProperty ;
-        rdfs:domain  ebu:Rights ;
-        rdfs:range   xsd:string .
 
-vcard:locality  a    owl:DatatypeProperty ;
-        rdfs:domain  smas:SpatialContext ;
-        rdfs:range   xsd:string .
 
-smas:isComposedOf  a  owl:ObjectProperty ;
-        rdfs:domain  smas:LearningObject ;
-        rdfs:range   fabio:Metadata .
+###  http://oscaf.sourceforge.net/nco.html#emailAddress
 
-smas:source  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:TaxonPath ;
-        rdfs:range   xsd:string .
+nco:emailAddress rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :GeneralData ;
+                 
+                 rdfs:range xsd:string .
 
-smas:entity  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:Contribute , smas:Annotation ;
-        rdfs:range   xsd:string .
 
-smas:size  a         owl:DatatypeProperty ;
-        rdfs:domain  smas:Technical ;
-        rdfs:range   xsd:string .
 
-nco:country  a       owl:DatatypeProperty ;
-        rdfs:domain  rad:Repository , smas:SpatialContext ;
-        rdfs:range   xsd:string .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#aggregationLevel
 
-smas:metadataScheme  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:Metametadata ;
-        rdfs:range   xsd:string .
+:aggregationLevel rdf:type owl:DatatypeProperty ;
+                  
+                  rdfs:domain :General ;
+                  
+                  rdfs:range xsd:string .
 
-smas:contains  a     owl:ObjectProperty ;
-        rdfs:domain  smas:educationalResource ;
-        rdfs:range   smas:LearningObject .
 
-smas:Technical  a        owl:Class ;
-        rdfs:subClassOf  <http://purl.org/spar/fabio/Metadata/Lom> .
 
-smas:hasTaxonPath  a  owl:ObjectProperty ;
-        rdfs:domain  com:Classification ;
-        rdfs:range   smas:TaxonPath .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#aural
 
-smas:maximumVersion  a  owl:DatatypeProperty ;
-        rdfs:domain  smas:Composite ;
-        rdfs:range   xsd:string .
+:aural rdf:type owl:DatatypeProperty ;
+       
+       rdfs:domain :LearningStyle ;
+       
+       rdfs:range rdfs:Literal .
 
-smas:TemporaryContext
-        a                owl:Class ;
-        rdfs:subClassOf  smas:ContextualInformation .
 
-rad:keyword  a       owl:DatatypeProperty ;
-        rdfs:domain  smas:General , com:Classification ;
-        rdfs:range   xsd:string .
 
-rad:Repository  a        owl:Class ;
-        rdfs:subClassOf  smas:educationalResource .
-<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#alexrcc17@gmail.com>
-        a               smas:studentProfile ;
-        smas:consistOf  <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com> .
-<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com>
-        a                 smas:LearningStyle ;
-        smas:visual        "1" ;
-        smas:aural  "0" ;
-        smas:readwrite   "2" ;
-        smas:kinesthetic  "0" .
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#byhour
+
+:byhour rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :TemporaryContext ;
+        
+        rdfs:range xsd:dateTimeStamp .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#catalog
+
+:catalog rdf:type owl:DatatypeProperty ;
+         
+         rdfs:range xsd:string ;
+         
+         rdfs:domain adms:Identifier .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#context
+
+:context rdf:type owl:DatatypeProperty ;
+         
+         rdfs:domain :Educational ;
+         
+         rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#copyrightAndOtherRestrictions
+
+:copyrightAndOtherRestrictions rdf:type owl:DatatypeProperty ;
+                               
+                               rdfs:domain ebu:Rights ;
+                               
+                               rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#cost
+
+:cost rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain ebu:Rights ;
+      
+      rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#coverage
+
+:coverage rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :General ;
+          
+          rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#date
+
+:date rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain :Annotation ,
+                  :Contribute ,
+                  :TemporaryContext ;
+      
+      rdfs:range xsd:dateTimeStamp .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#description
+
+:description rdf:type owl:DatatypeProperty ;
+             
+             rdfs:domain com:Classification ,
+                         ebu:Rights ,
+                         :Annotation ,
+                         :Educational ,
+                         :General ,
+                         :Resource ;
+             
+             rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#difficulty
+
+:difficulty rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain :Educational ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#duration
+
+:duration rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :Technical ;
+          
+          rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#entity
+
+:entity rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :Annotation ,
+                    :Contribute ;
+        
+        rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#entry
+
+:entry rdf:type owl:DatatypeProperty ;
+       
+       rdfs:domain gold:Taxon ;
+       
+       rdfs:range xsd:string ;
+       
+       rdfs:domain adms:Identifier .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#format
+
+:format rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :Technical ;
+        
+        rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#id
+
+:id rdf:type owl:DatatypeProperty ;
+    
+    rdfs:domain gold:Taxon ;
+    
+    rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#installationRemarks
+
+:installationRemarks rdf:type owl:DatatypeProperty ;
+                     
+                     rdfs:domain :Technical ;
+                     
+                     rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#intendedEndUserRole
+
+:intendedEndUserRole rdf:type owl:DatatypeProperty ;
+                     
+                     rdfs:domain :Educational ;
+                     
+                     rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#interactivityLevel
+
+:interactivityLevel rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:domain :Educational ;
+                    
+                    rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#interactivityType
+
+:interactivityType rdf:type owl:DatatypeProperty ;
+                   
+                   rdfs:domain :Educational ;
+                   
+                   rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#interpersonal
+
+:interpersonal rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :MultipleIntelligences ;
+               
+               rdfs:range rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#intrapersonal
+
+:intrapersonal rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :MultipleIntelligences ;
+               
+               rdfs:range rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#kind
+
+:kind rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain com:Relation ;
+      
+      rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#kinesthetic
+
+:kinesthetic rdf:type owl:DatatypeProperty ;
+             
+             rdfs:domain :LearningStyle ,
+                         :MultipleIntelligences ;
+             
+             rdfs:range rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#learningResourceType
+
+:learningResourceType rdf:type owl:DatatypeProperty ;
+                      
+                      rdfs:domain :Educational ;
+                      
+                      rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#learningStyle
+
+:learningStyle rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :studentProfile ;
+               
+               rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#location
+
+:location rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :Technical ;
+          
+          rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#logicalmath
+
+:logicalmath rdf:type owl:DatatypeProperty ;
+             
+             rdfs:domain :MultipleIntelligences ;
+             
+             rdfs:range rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#maximumVersion
+
+:maximumVersion rdf:type owl:DatatypeProperty ;
+                
+                rdfs:domain :Composite ;
+                
+                rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#metadataScheme
+
+:metadataScheme rdf:type owl:DatatypeProperty ;
+                
+                rdfs:domain :Metametadata ;
+                
+                rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#minimumVersion
+
+:minimumVersion rdf:type owl:DatatypeProperty ;
+                
+                rdfs:domain :Composite ;
+                
+                rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#multipleIntelligences
+
+:multipleIntelligences rdf:type owl:DatatypeProperty ;
+                       
+                       rdfs:domain :studentProfile ;
+                       
+                       rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#musical
+
+:musical rdf:type owl:DatatypeProperty ;
+         
+         rdfs:domain :MultipleIntelligences ;
+         
+         rdfs:range xsd:int .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#name
+
+:name rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain :Composite ;
+      
+      rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#operatingSystem
+
+:operatingSystem rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :TechnologicalContext ;
+                 
+                 rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#otherPlatformRequirements
+
+:otherPlatformRequirements rdf:type owl:DatatypeProperty ;
+                           
+                           rdfs:domain :Technical ;
+                           
+                           rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#purpose
+
+:purpose rdf:type owl:DatatypeProperty ;
+         
+         rdfs:domain com:Classification ;
+         
+         rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#readwrite
+
+:readwrite rdf:type owl:DatatypeProperty ;
+           
+           rdfs:domain :LearningStyle ;
+           
+           rdfs:range rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#semanticDensity
+
+:semanticDensity rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :Educational ;
+                 
+                 rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#size
+
+:size rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain :Technical ;
+      
+      rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#softwareVersion
+
+:softwareVersion rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :TechnologicalContext ;
+                 
+                 rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#source
+
+:source rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :TaxonPath ;
+        
+        rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#standard
+
+:standard rdf:type owl:DatatypeProperty ;
+          
+          rdfs:range xsd:string ;
+          
+          rdfs:domain rad:Repository .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#structure
+
+:structure rdf:type owl:DatatypeProperty ;
+           
+           rdfs:domain :General ;
+           
+           rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#type
+
+:type rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain :Composite ;
+      
+      rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#typicalAgeRange
+
+:typicalAgeRange rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :Educational ;
+                 
+                 rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#typicalLearningTime
+
+:typicalLearningTime rdf:type owl:DatatypeProperty ;
+                     
+                     rdfs:domain :Educational ;
+                     
+                     rdfs:range xsd:string .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#uri
+
+:uri rdf:type owl:DatatypeProperty ;
+     
+     rdfs:range xsd:string ;
+     
+     rdfs:domain rad:Repository .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#verbal
+
+:verbal rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :MultipleIntelligences ;
+        
+        rdfs:range rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#visual
+
+:visual rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :LearningStyle ,
+                    :MultipleIntelligences ;
+        
+        rdfs:range rdfs:Literal .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#language
+
+vcard:language rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :Educational ,
+                           :General ,
+                           :Metametadata ;
+               
+               rdfs:range xsd:string .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#locality
+
+vcard:locality rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :SpatialContext ;
+               
+               rdfs:range xsd:string .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#role
+
+vcard:role rdf:type owl:DatatypeProperty ;
+           
+           rdfs:domain :Contribute ;
+           
+           rdfs:range xsd:string .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#title
+
+vcard:title rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain :General ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://www.w3.org/ns/radion#keyword
+
+rad:keyword rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain com:Classification ,
+                        :General ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://www.w3.org/ns/radion#version
+
+rad:version rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain lcy:Lifecycle ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://xmlns.com/foaf/0.1/age
+
+foaf:age rdf:type owl:DatatypeProperty ;
+         
+         rdfs:domain :GeneralData ;
+         
+         rdfs:range xsd:unsignedInt .
+
+
+
+###  http://xmlns.com/foaf/0.1/gender
+
+foaf:gender rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain :GeneralData ;
+            
+            rdfs:range xsd:string .
+
+
+
+###  http://xmlns.com/foaf/0.1/status
+
+foaf:status rdf:type owl:DatatypeProperty ;
+            
+            rdfs:domain lcy:Lifecycle ;
+            
+            rdfs:range xsd:string .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://purl.org/linguistics/gold/Taxon
+
+gold:Taxon rdf:type owl:Class ;
+           
+           rdfs:subClassOf :TaxonPath .
+
+
+
+###  http://purl.org/spar/fabio/Metadata
+
+fabio:Metadata rdf:type owl:Class ;
+               
+               rdfs:subClassOf :LearningObject .
+
+
+
+###  http://purl.org/spar/fabio/Metadata/Lom
+
+<http://purl.org/spar/fabio/Metadata/Lom> rdf:type owl:Class ;
+                                          
+                                          rdfs:subClassOf fabio:Metadata .
+
+
+
+###  http://purl.org/vocab/lifecycle/schema#Lifecycle
+
+lcy:Lifecycle rdf:type owl:Class ;
+              
+              rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://securitytoolbox.appspot.com/stac#Requeriment
+
+stac:Requeriment rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :Technical .
+
+
+
+###  http://vocab.resc.info/communication#Classification
+
+com:Classification rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://vocab.resc.info/communication#Relation
+
+com:Relation rdf:type owl:Class ;
+             
+             rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Rights
+
+ebu:Rights rdf:type owl:Class ;
+           
+           rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Annotation
+
+:Annotation rdf:type owl:Class ;
+            
+            rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Composite
+
+:Composite rdf:type owl:Class ;
+           
+           rdfs:subClassOf stac:Requeriment .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#ContextualInformation
+
+:ContextualInformation rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :studentProfile .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Contribute
+
+:Contribute rdf:type owl:Class ;
+            
+            rdfs:subClassOf lcy:Lifecycle ,
+                            :Metametadata .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Educational
+
+:Educational rdf:type owl:Class ;
+             
+             rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#General
+
+:General rdf:type owl:Class ;
+         
+         rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#GeneralData
+
+:GeneralData rdf:type owl:Class ;
+             
+             rdfs:subClassOf :studentProfile .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LearningObject
+
+:LearningObject rdf:type owl:Class ;
+                
+                rdfs:subClassOf :educationalResource .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LearningStyle
+
+:LearningStyle rdf:type owl:Class ;
+               
+               rdfs:subClassOf :studentProfile .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Metametadata
+
+:Metametadata rdf:type owl:Class ;
+              
+              rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#MultipleIntelligences
+
+:MultipleIntelligences rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :studentProfile .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Resource
+
+:Resource rdf:type owl:Class ;
+          
+          rdfs:subClassOf com:Relation .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#SpatialContext
+
+:SpatialContext rdf:type owl:Class ;
+                
+                rdfs:subClassOf :ContextualInformation .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#TaxonPath
+
+:TaxonPath rdf:type owl:Class ;
+           
+           rdfs:subClassOf com:Classification .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#Technical
+
+:Technical rdf:type owl:Class ;
+           
+           rdfs:subClassOf <http://purl.org/spar/fabio/Metadata/Lom> .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#TechnologicalContext
+
+:TechnologicalContext rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf :ContextualInformation .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#TemporaryContext
+
+:TemporaryContext rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :ContextualInformation .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#educationalResource
+
+:educationalResource rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#studentProfile
+
+:studentProfile rdf:type owl:Class ;
+                
+                rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.w3.org/ns/adms#Identifier
+
+adms:Identifier rdf:type owl:Class ;
+                
+                rdfs:subClassOf :General ,
+                                :Metametadata ,
+                                :Resource .
+
+
+
+###  http://www.w3.org/ns/radion#Repository
+
+rad:Repository rdf:type owl:Class ;
+               
+               rdfs:subClassOf :educationalResource .
+
+
+
+###  http://xmlns.com/foaf/0.1/Person
+
+foaf:Person rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com
+
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com> rdf:type :LearningStyle ,
+                                                                                                     owl:NamedIndividual ;
+                                                                                            
+                                                                                            :aural "0" ;
+                                                                                            
+                                                                                            :readwrite "2" ;
+                                                                                            
+                                                                                            :kinesthetic "0" ;
+                                                                                            
+                                                                                            :visual "1" .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#alexrcc17@gmail.com
+
+<http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#alexrcc17@gmail.com> rdf:type :studentProfile ,
+                                                                                                  owl:NamedIndividual ;
+                                                                                         
+                                                                                         :consistOf <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#LE-alexrcc17@gmail.com> .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

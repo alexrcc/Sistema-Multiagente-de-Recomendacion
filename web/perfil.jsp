@@ -14,11 +14,14 @@
 <%  String user = (String)session.getAttribute("user");
     String name_user = (String)session.getAttribute("name");
     boolean band=false;
+    boolean bandim=false;
     if(user==null)
         response.sendRedirect("index.jsp");
     String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
     int estilos[] = new int[4]; //{v,a,r,k}
+    int inteligencias[] = new int[7]; //{v,a,r,k}
     int porcent[] = new int[4];
+    int porcentim [] = new int[7];
 %>
 
 <%
@@ -48,6 +51,32 @@
            estilos[3]=qs.getLiteral("kinesthetic").getInt();
            estilos[2]=qs.getLiteral("readwrite").getInt();
        }
+       stringQuery = 
+        "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "<"+smas+"MI-"+user+"> smas:verbal ?verbal."
+              + "<"+smas+"MI-"+user+"> smas:logicalmath ?logical."
+              + "<"+smas+"MI-"+user+"> smas:visual ?visual."
+              + "<"+smas+"MI-"+user+"> smas:kinesthetic ?kinesthetic."
+              + "<"+smas+"MI-"+user+"> smas:musical ?musical."
+              + "<"+smas+"MI-"+user+"> smas:intrapersonal ?intrapersonal."
+              + "<"+smas+"MI-"+user+"> smas:interpersonal ?interpersonal}";     
+        query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        qe = QueryExecutionFactory.create(query, model);
+        
+        results = qe.execSelect();
+       while(results.hasNext()){
+           bandim=true;
+           QuerySolution qs = results.next();
+           inteligencias[0]=qs.getLiteral("verbal").getInt();
+           inteligencias[1]=qs.getLiteral("logical").getInt();
+           inteligencias[2]=qs.getLiteral("visual").getInt();
+           inteligencias[3]=qs.getLiteral("kinesthetic").getInt();
+           inteligencias[4]=qs.getLiteral("musical").getInt();
+           inteligencias[5]=qs.getLiteral("intrapersonal").getInt();
+           inteligencias[6]=qs.getLiteral("interpersonal").getInt();
+       }
        int suma=0;
        for(int v:estilos){
            suma = suma+v;
@@ -56,6 +85,11 @@
        for(int i =0;i<estilos.length;i++){
            aux[i]=(double)(estilos[i]*100)/suma;
            porcent[i]=(int)(Math.round(aux[i]));
+       }
+       double auxim []= new double[7];
+       for(int i =0;i<inteligencias.length;i++){
+           auxim[i]=(double)(inteligencias[i]*100)/5;
+           porcentim[i]=(int)(Math.round(auxim[i]));
        }
        qe.close();
     }catch(Exception e){
@@ -127,13 +161,54 @@
                         </div>
                     </div>
                         
-                        <a class="btn" href="cuestionario.jsp" role="button"><%if(!band){out.print("Realizar Test");}else{out.print("Repetir Test");}%></a>
+                        <a class="btn btn-test" href="testea.jsp" role="button"><%if(!band){out.print("Realizar Test");}else{out.print("Repetir Test");}%></a>
                 </div>
                 <div class="if_inteligencias">
                     <span>Inteligencias múltiples</span><span class="help far fa-question-circle">
                         <div id="help_ea"><span class="triangle"></span><span class="texto">El teste de vark es un test que consiste en 4 habilidades
                         la habiliidad visula, auditiva, lectura escritua y movimiento."</span></div>
                     </span>
+                    <% if(!bandim)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
+                                + "cuestionario de Gardener para determinar sus inteligencias múltiples.</div>");
+                        %>
+                    <div class="inteligencia"><span class="v_etiqueta">Verbal: </span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-primary" style="width: <%out.print(porcentim[0]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[0]);%>%</div>
+                        </div>
+                    </div>
+                    <div class="inteligencia"><span class="v_etiqueta">Lógico-matemática: </span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-secondary" style="width: <%out.print(porcentim[1]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[1]);%>%</div>
+                        </div>
+                    </div>
+                    <div class="inteligencia"><span class="v_etiqueta">Visual-espacial: </span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-success" style="width: <%out.print(porcentim[2]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[2]);%>%</div>
+                        </div>
+                    </div>
+                    <div class="inteligencia"><span class="v_etiqueta">Kinestesica: </span>
+                         <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: <%out.print(porcentim[3]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[3]);%>%</div>
+                        </div>
+                    </div>
+                    <div class="inteligencia"><span class="v_etiqueta">Músical: </span>
+                         <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-warning" style="width: <%out.print(porcentim[4]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[4]);%>%</div>
+                        </div>
+                    </div>
+                    <div class="inteligencia"><span class="v_etiqueta">Intrapersonal: </span>
+                         <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-info" style="width: <%out.print(porcentim[5]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[5]);%>%</div>
+                        </div>
+                    </div>
+                    <div class="inteligencia"><span class="v_etiqueta">Interpersonal: </span>
+                         <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-dark" style="width: <%out.print(porcentim[6]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[6]);%>%</div>
+                        </div>
+                    </div>
+                        
+                        <a class="btn btn-test" href="testim.jsp" role="button"><%if(!bandim){out.print("Realizar Test");}else{out.print("Repetir Test");}%></a>
+                
                 </div>
             </div>
         </div>

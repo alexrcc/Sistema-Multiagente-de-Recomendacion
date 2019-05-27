@@ -26,26 +26,29 @@ header nav ul {
         margin-bottom: 0;
 }
  
-header nav ul li:not(.ingreso):not(.avatar) {
+header nav ul li:not(.ingreso):not(.avatar){
 	display:inline-block;
 	position: relative;
-        margin: 10px 5px;
+        margin: 0 5px 10px 5px;
+        padding-top: 8px;
+        border-top:solid 3px #011826;
 }
  
-header nav ul li:hover:not(.ingreso):not(.avatar) {
+header nav ul li:hover:not(.ingreso):not(.avatar){
 	background:#011826;
+        border-top:solid 3px #FBA707;
         
        
 }
  
 header nav ul li a {
-	color:hsla(0,0%,100%,.7);
+	color:#ffffff;
 	display:block;
 	text-decoration:none;
-	padding: 10px;
+	padding: 10px 10px;
         font-family: sans-serif;
         font-size: 0.9em;
-        font-weight: 600;
+        font-weight: 600; 
 }
 header nav ul li a:hover{
 	text-decoration:none;
@@ -66,8 +69,10 @@ header nav ul li .children {
 	display: none;
 	background:#011826;
 	position: absolute;
-	width: 120%;
+	width: 100%;
 	z-index:1000;
+        margin-top: 0;
+        border-top:solid 1px #999;
 }
  
 header nav ul li .children li {
@@ -75,10 +80,15 @@ header nav ul li .children li {
         overflow: hidden;
         width: 93%;
 	border-bottom: 1px solid rgba(255,255,255,.5);
+        border-top: none !important;
+        padding-top: 0 !important;
+        margin: 5px 5px !important;
 }
  
 header nav ul li .children li a {
 	display: block;
+        padding: 6px 10px !important;
+
 }
  
 header nav ul li .children li a span {
@@ -115,7 +125,7 @@ header nav ul li .caret {
 }
 .ingreso a:hover{
     background:#FBA707;
-    color: #333 !important;
+    color: #fff !important;
     
 }
 

@@ -1,14 +1,14 @@
-.modal-confirm {		
+.modal-error {		
         color: #434e65;
         width: 525px;
 }
-.modal-confirm .modal-content {
+.modal-error .modal-content {
         padding: 20px;
         font-size: 16px;
         border-radius: 5px;
         border: none;
 }
-.modal-confirm .modal-header {
+.modal-error .modal-header {
         background: #e85e6c;
         border-bottom: none;   
 position: relative;
@@ -17,16 +17,16 @@ position: relative;
         border-radius: 5px 5px 0 0;
         padding: 35px;
 }
-.modal-confirm h4 {
+.modal-error h4 {
         text-align: center;
         font-size: 36px;
         margin: 10px 0;
 }
-.modal-confirm .form-control, .modal-confirm .btn {
+.modal-error .form-control, .modal-error .btn {
         min-height: 40px;
         border-radius: 3px; 
 }
-.modal-confirm .close {
+.modal-error .close {
 position: absolute;
         top: 15px;
         right: 15px;
@@ -34,10 +34,10 @@ position: absolute;
         text-shadow: none;
         opacity: 0.5;
 }
-.modal-confirm .close:hover {
+.modal-error .close:hover {
         opacity: 0.8;
 }
-.modal-confirm .icon-box {
+.modal-error .icon-box {
         color: #fff;		
         width: 95px;
         height: 95px;
@@ -49,14 +49,14 @@ position: absolute;
         text-align: center;
         margin: auto;
 }
-.modal-confirm .icon-box i {
+.modal-error .icon-box i {
         font-size: 58px;
         margin: -2px 0 0 -2px;
 }
-.modal-confirm.modal-dialog {
+.modal-error.modal-dialog {
         margin-top: 80px;
 }
-.modal-confirm .btn {
+.modal-error .btn {
 color: #fff;
 border-radius: 4px;
         background: #FBA707;
@@ -69,7 +69,7 @@ line-height: normal;
         min-width: 150px;
 border: none;
 }
-.modal-confirm .btn:hover, .modal-confirm .btn:focus {
+.modal-error .btn:hover, .modal-confirm .btn:focus {
         background: #eda645;
         outline: none;
 }

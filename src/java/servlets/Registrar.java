@@ -75,7 +75,7 @@ public class Registrar extends HttpServlet {
             response.sendRedirect("index.jsp");
         else{
             respuesta.setAttribute("msg_registro","Se ha registrado Correctamente");
-            response.sendRedirect("cuestionario.jsp");
+            response.sendRedirect("testea.jsp");
         }
     }
 }

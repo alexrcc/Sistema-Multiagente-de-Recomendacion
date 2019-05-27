@@ -23,10 +23,10 @@ public class main extends Agent{
         Object argumentos[] = {"https://roa.cedia.edu.ec", "http://vishub.org"};
         agenteController = mainContainer.createNewAgent("AgenteEstudiante",AgentePerfilEstudiante.class.getName(),null);
         agenteController.start();
-        agenteController = mainContainer.createNewAgent("AgenteCoordinador",AgenteCoordinador.class.getName(),null);
+        agenteController = mainContainer.createNewAgent("AgenteRecomendador",AgenteRecomendador.class.getName(),null);
         agenteController.start();
-//agenteController = mainContainer.createNewAgent("AI",AgenteInterfaz.class.getName(),null);
-        
+//        agenteController = mainContainer.createNewAgent("AGR",AgenteGestorRepositorioVirtuoso.class.getName(),argumentos);
+//        agenteController.start();
     }
     
 }

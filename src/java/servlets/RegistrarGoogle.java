@@ -37,7 +37,7 @@ public class RegistrarGoogle extends HttpServlet {
                 
             if(!exist&&(d.getPefil(email)!=1)){
                 respuesta.setAttribute("msg_registro","Se ha registrado Correctamente");
-                response.sendRedirect("cuestionario.jsp");
+                response.sendRedirect("testea.jsp");
 
             }
             else{

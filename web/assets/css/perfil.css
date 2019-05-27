@@ -87,14 +87,14 @@
     font-family: "Montserrat";
 
 }
-.if_estilos a{
+.btn-test{
     font-weight: 600;
     float: right;
     margin-top: 1%;
     background-color: #434e65;
     color:#fff;
 }
-.if_estilos a:hover{
+.btn-test:hover{
     color:#fff;
     opacity: 0.8;
     font-weight: 600;
@@ -122,6 +122,24 @@
 }
 .estilo .progress{
     width: 85%;
+}
+.perfil .if_inteligencias {
+    margin-bottom: 3%;
+}
+.inteligencia{
+    width: 100%;
+    float: left;
+    margin-bottom: 1.2%;
+}
+.inteligencia .v_etiqueta{
+    float: left;
+    width: 30%;
+    text-align: left;
+    font-weight: 600;
+    
+}
+.inteligencia .progress{
+    width: 70%;
 }
 .alert{
     margin-top:2%;

@@ -25,7 +25,6 @@ public class AgenteInterfaz extends GatewayAgent{
     
     @Override
     protected void processCommand(java.lang.Object obj){
-       //AgentContainer c = getContainerController();
        if(obj instanceof Mensaje){
             mensaje = (Mensaje) obj;
             System.out.println("Hola soy "+getAID().getName()+" estoy listo");
@@ -38,8 +37,13 @@ public class AgenteInterfaz extends GatewayAgent{
                     addBehaviour(new ComportamientoBusqueda(mensaje));
                     addBehaviour(new RecibirMensaje());
                 break;
-                case "CP":
-                    System.out.println("--Entró a CP");
+                case "EA":
+                    System.out.println("--Entró a EA");
+                   addBehaviour(new ComportamientoPerfil(mensaje));
+                   addBehaviour(new RecibirMensaje());
+                break;
+                case "IM":
+                   System.out.println("--Entró a IM");
                    addBehaviour(new ComportamientoPerfil(mensaje));
                    addBehaviour(new RecibirMensaje());
                 break;
@@ -86,12 +90,12 @@ public class AgenteInterfaz extends GatewayAgent{
             try {
                 System.out.println("Comportamiento de Busqueda Simple");
                 ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
-                msg.addReceiver(new AID("AgenteCoordinador", AID.ISLOCALNAME));
+                msg.addReceiver(new AID("AgenteRecomendador", AID.ISLOCALNAME));
                 Mensaje mensaje = (Mensaje)args ;
                 msg.setContentObject(mensaje);
                 send(msg);
             } catch ( Exception ex) {
-                System.out.println("Error al enviar mensaje al AgenteCoordinador: "+ex);
+                System.out.println("Error al enviar mensaje al AgenteRecomendador: "+ex);
                 Logger.getLogger(AgenteInterfaz.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

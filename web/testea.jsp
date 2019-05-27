@@ -26,6 +26,7 @@
             out.print("<script>$(document).ready(function(){$(\"#mensaje_modal\").modal(\"show\");});</script>");%>
     <jsp:include page="vistas/nav.jsp"/>
     <body>
+        <div class='alert alert-warning' role='alert'>
         <div id="encabezado">
         <h1>Test de estilos de aprendizaje de VARK</h1>
         <span> Con este cuestionario se tiene el propósito de saber acerca de sus 
@@ -40,6 +41,7 @@
             <br>
         </span>
         </div>
+            </div>
         <div id="cuestionario">
             <form action="VarkTest" method="POST">
             <div class="seccion_preg">
@@ -552,7 +554,7 @@
     <jsp:include page="vistas/footer.jsp"/>
             <!-- Modal Error -->
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-confirm">
+    <div class="modal-dialog modal-error">
 	<div class="modal-content">
             <div class="modal-header">
                 <div class="icon-box">
@@ -561,8 +563,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body text-center">
-                    <h3>Ooops!</h3>	
-                    <h4>${errors}.<%if(errors!=null)request.getSession().removeAttribute("errors");%></h4>
+                    <h4>Ooops!</h4>	
+                    <p>${errors}.<%if(errors!=null)request.getSession().removeAttribute("errors");%></p>
                     <button class="btn btn-success" data-dismiss="modal">Volver a intentar</button>
                 </div>
 	</div>

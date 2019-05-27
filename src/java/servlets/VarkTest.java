@@ -2,23 +2,16 @@ package servlets;
 
 import controller.Mensaje;
 import jade.core.Profile;
-import jade.core.ProfileImpl;
 import jade.util.leap.Properties;
-import jade.wrapper.AgentContainer;
-import jade.wrapper.AgentController;
-import jade.wrapper.StaleProxyException;
 import jade.wrapper.gateway.JadeGateway;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sma.AgenteInterfaz1;
+
 
 /**
  *
@@ -58,7 +51,7 @@ public class VarkTest extends HttpServlet {
                     }
                 }
             }
-            mensaje.setMensaje("CP");
+            mensaje.setMensaje("EA");
             mensaje.setUsuario(user);
             mensaje.setArgumentos(resp_vark); 
             try{
@@ -68,10 +61,10 @@ public class VarkTest extends HttpServlet {
             }
             if(mensaje.getRespuesta().toString().compareToIgnoreCase("Perfil Guardado Correctamente")!=0){
                 session.setAttribute("errors",mensaje.getRespuesta());
-                response.sendRedirect("cuestionario.jsp");
+                response.sendRedirect("testea.jsp");
             }else{
                 session.setAttribute("msgAP",mensaje.getRespuesta());
-                response.sendRedirect("perfil.jsp");
+                response.sendRedirect("testim.jsp");
             }               
                 
             
