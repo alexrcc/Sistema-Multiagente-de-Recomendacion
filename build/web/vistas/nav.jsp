@@ -4,7 +4,6 @@
 <% String name_user = (String)session.getAttribute("name");%>
 <!DOCTYPE html>
     <head>
-        <title>NAV</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" href="assets/css/nav.css"/>
         <script src="assets/js/avatar.js"></script>

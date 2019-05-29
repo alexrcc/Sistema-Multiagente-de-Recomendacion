@@ -1,0 +1,17 @@
+.objeto {
+    width: 70%;
+    float: left;
+    margin-top: 1%;
+}
+.metadatos{
+    width: 30%;
+    margin-top: 1%;
+    float: left;
+}
+.m_contenedor{
+    width: 95%;
+    margin-right: 5%;
+    padding-left: 5px; 
+    border:solid 1px #d9d9d9;
+    float: left;
+}

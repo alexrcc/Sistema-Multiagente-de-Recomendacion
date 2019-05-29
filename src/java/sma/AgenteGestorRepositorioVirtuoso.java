@@ -30,9 +30,13 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.ObjectProperty;
 import org.apache.jena.ontology.OntClass;
+import org.json.JSONException;
 import static sma.AgentePerfilEstudiante.URL;
+import static sma.AgentePerfilEstudiante.smas;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtModel;
+import virtuoso.jena.driver.VirtuosoUpdateFactory;
+import virtuoso.jena.driver.VirtuosoUpdateRequest;
 
 
 public class AgenteGestorRepositorioVirtuoso extends Agent{
@@ -107,18 +111,25 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
                     for (int j = 0; j <results.length() ; j++) { //results.length()
                         JSONObject aux = results.getJSONObject(j);
                         System.out.println(aux.getString("id"));
+                        String avatar;
+                         try{
+                         avatar = aux.getString("avatar_url");
+                        }catch(JSONException e){
+                            avatar = "null";
+                        }
                         String type = aux.getString("type");
                         String id = aux.getString("id");
                         String dir = aux.getString("url");
                         String in ="";
+                        Actualizar(avatar, id);
                         if(type.compareTo("Excursion")==0){
                             String[] a = id.split(":");
                             int valor = Integer.parseInt(a[1].split("@")[0]);
-                           in = (GetMetadata(url_base+"/excursions/",valor,id));
+                           in = (GetMetadata(url_base+"/excursions/",valor,id,avatar));
                         }else{
                             int v_aux = GetCodeMetadata(dir);
                             System.out.println(v_aux);
-                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id);
+                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id,avatar);
                         }
                     }
                 }
@@ -184,11 +195,13 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
         con_aux.disconnect();
         return Integer.parseInt(valor);
     }
-    private static String GetMetadata(String url,int codigo, String id) throws Exception{
+    private void Actualizar(String url, String id){
+        OntClass cls1 = model.getOntClass(ns+"LearningObject");
+        Individual LO = model.createIndividual(ns+id,cls1);
+        
+    }
+    private static String GetMetadata(String url,int codigo, String id,String avatar) throws Exception{
 
-        
-        
-        
         String metadatos=null;
         String url_metadata = url+codigo+"/metadata.xml";
         URL Obj_metadata = new URL(url_metadata);
@@ -197,12 +210,12 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
         System.out.println("URL-META"+Obj_metadata);
         int rspmetadata = metadata.getResponseCode();
         if(rspmetadata!=404&&rspmetadata!=500){
-            System.out.println("LLEGAAAAAAAAAAA");
             InputStream in = new BufferedInputStream(metadata.getInputStream());
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = (Document) db.parse(in);
             OntClass cls1 = model.getOntClass(ns+"LearningObject");
             Individual LO = model.createIndividual(ns+id,cls1);
+            LO.addProperty(model.getDatatypeProperty(smas+"avatar"),avatar);
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             Node lom = doc.getDocumentElement();
             NodeList hijos = lom.getChildNodes();

@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgenteInterfaz.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgenteRecomendador.java</file>
-            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/AgentePerfilEstudiante.java</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/vistas/searchbar.jsp</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/resultados.jsp</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/assets/css/detalles.css</file>
             <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/sma/main.java</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/detalles.jsp</file>
             <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/perfil.jsp</file>
             <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/src/java/servlets/Servlet.java</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/assets/css/resultados.css</file>
+            <file>file:/C:/Users/alexr/Documents/NetBeansProjects/sma_web/web/assets/css/searchbar.css</file>
         </group>
     </open-files>
 </project-private>

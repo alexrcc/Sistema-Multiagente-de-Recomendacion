@@ -1,0 +1,33 @@
+#navsearch{
+    width: 100%;
+    background-color:#666; 
+    float: left;
+    text-align: center;
+}
+#navsearch .input_search{
+    width: 85%;
+    float: left;
+}
+#navsearch .input-group{
+    width: 70%;
+    margin:1% 15%;
+    float: left;
+   
+}
+#navsearch a{
+    color:#fff;
+    font-size: 12px;
+    float: left;
+     
+    }
+#navsearch .enlace{
+    width: 15%;
+    float: left;
+    margin-top:1.5%;
+}
+
+#navsearch textarea:focus, input:focus, input[type]:focus {
+    border-color: rgb(255, 144, 0);
+    box-shadow: 0 1px 1px rgba(251, 167, 7, 0.075)inset, 0 0 8px rgba(251, 167, 7,0.6);
+    outline: 0 none;
+}

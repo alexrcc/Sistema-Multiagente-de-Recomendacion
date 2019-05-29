@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import jade.core.Profile;
 import jade.util.leap.Properties;
 import jade.wrapper.gateway.JadeGateway;
+import java.util.ArrayList;
 
 
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
@@ -39,11 +40,12 @@ public class Servlet extends HttpServlet{
             }catch(Exception e){
                 e.printStackTrace();
             }
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.print("Contestación :" +mensaje.getRespuesta()+"<br>");
-            out.flush();
-            out.close();
+
+            ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
+            request.setAttribute("listado", al);
+            request.setAttribute("ky", keywords);
+            getServletContext().getRequestDispatcher("/resultados.jsp").forward(request, response);
+  
     }
     
     @Override

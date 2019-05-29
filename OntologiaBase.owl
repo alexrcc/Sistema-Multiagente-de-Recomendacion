@@ -303,6 +303,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#avatar -->
+
+    <owl:DatatypeProperty rdf:about="&smas;avatar">
+        <rdfs:domain rdf:resource="&smas;LearningObject"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#byhour -->
 
     <owl:DatatypeProperty rdf:about="&smas;byhour">
