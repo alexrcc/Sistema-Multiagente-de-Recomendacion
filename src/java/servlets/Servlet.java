@@ -31,7 +31,8 @@ public class Servlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String keywords = request.getParameter("keywords");
+            String keywords = new String(request.getParameter("keywords").getBytes("ISO-8859-1"),"UTF-8"); 
+            System.out.println(keywords);
             Mensaje mensaje = new Mensaje();
             mensaje.setMensaje("BS");
             mensaje.setArgumentos(keywords);

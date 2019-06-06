@@ -6,12 +6,14 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import virtuoso.jena.driver.*;
 
@@ -41,7 +43,9 @@ public class AgentePerfilEstudiante extends Agent{
                             EstiloAprendizaje();
                         else if(mensaje.getMensaje().equals("IM"))
                             InteligenciasMultiples();
-                        System.out.println("la respuesta que voy a devolver: "+mensaje.getRespuesta());
+                        else if(mensaje.getMensaje().equals("BA"))
+                            GetPerfil();
+                        System.out.println("la respuesta que voy a devolver a recomen: "+mensaje.getRespuesta());
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.PROPOSE);
                         reply.setContentObject(mensaje);
@@ -61,7 +65,63 @@ public class AgentePerfilEstudiante extends Agent{
             
        });   
     }
-    
+    private void GetPerfil(){
+        int [] estilos = new int[4];
+        int [] inteligencias = new int[8];
+        System.out.println("RecuperarPerfil");
+        String user=mensaje.getUsuario();
+        
+        VirtModel model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
+        String stringQuery = "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "<"+smas+"LE-"+user+"> smas:visual ?visual."
+              + "<"+smas+"LE-"+user+"> smas:aural ?aural."
+              + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
+              + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";     
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        
+        ResultSet results = qe.execSelect();
+       while(results.hasNext()){
+           QuerySolution qs = results.next();
+           estilos[0]=qs.getLiteral("visual").getInt();
+           estilos[1]=qs.getLiteral("aural").getInt();
+           estilos[3]=qs.getLiteral("kinesthetic").getInt();
+           estilos[2]=qs.getLiteral("readwrite").getInt();
+       }
+       
+        stringQuery = 
+        "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "<"+smas+"MI-"+user+"> smas:verbal ?verbal."
+              + "<"+smas+"MI-"+user+"> smas:logicalmath ?logical."
+              + "<"+smas+"MI-"+user+"> smas:visual ?visual."
+              + "<"+smas+"MI-"+user+"> smas:kinesthetic ?kinesthetic."
+              + "<"+smas+"MI-"+user+"> smas:musical ?musical."
+              + "<"+smas+"MI-"+user+"> smas:intrapersonal ?intrapersonal."
+              + "<"+smas+"MI-"+user+"> smas:interpersonal ?interpersonal}";     
+        query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        qe = QueryExecutionFactory.create(query, model);
+        
+        results = qe.execSelect();
+       while(results.hasNext()){
+           QuerySolution qs = results.next();
+           inteligencias[0]=qs.getLiteral("verbal").getInt();
+           inteligencias[1]=qs.getLiteral("logical").getInt();
+           inteligencias[2]=qs.getLiteral("visual").getInt();
+           inteligencias[3]=qs.getLiteral("kinesthetic").getInt();
+           inteligencias[4]=qs.getLiteral("musical").getInt();
+           inteligencias[5]=qs.getLiteral("intrapersonal").getInt();
+           inteligencias[6]=qs.getLiteral("interpersonal").getInt();
+       }
+       ArrayList<int[]> perfil = new ArrayList<>();
+       perfil.add(estilos);
+       perfil.add(inteligencias);
+      mensaje.setRespuesta(perfil);
+      mensaje.setMensaje("BA-R");
+    }
     private void EstiloAprendizaje(){
         int estilos [] = {0,0,0,0}; //estilos de aprendizaje[visual,auditivo,lectura/escritura,Quinestésico]
         String a [][] = (String [][])mensaje.getArgumentos();

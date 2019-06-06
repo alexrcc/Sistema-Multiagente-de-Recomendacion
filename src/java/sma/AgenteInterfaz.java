@@ -26,6 +26,7 @@ public class AgenteInterfaz extends GatewayAgent{
     @Override
     protected void processCommand(java.lang.Object obj){
        if(obj instanceof Mensaje){
+          
             mensaje = (Mensaje) obj;
             System.out.println("Hola soy "+getAID().getName()+" estoy listo");
             String operacion = mensaje.getMensaje();
@@ -45,6 +46,11 @@ public class AgenteInterfaz extends GatewayAgent{
                 case "IM":
                    System.out.println("--Entró a IM");
                    addBehaviour(new ComportamientoPerfil(mensaje));
+                   addBehaviour(new RecibirMensaje());
+                break;
+                case "BA":
+                   System.out.println("--Entró a BA");
+                   addBehaviour(new ComportamientoBusqueda(mensaje));
                    addBehaviour(new RecibirMensaje());
                 break;
                 default:System.out.println("Operación en interfaz incorrecta");         
@@ -92,6 +98,7 @@ public class AgenteInterfaz extends GatewayAgent{
                 ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
                 msg.addReceiver(new AID("AgenteRecomendador", AID.ISLOCALNAME));
                 Mensaje mensaje = (Mensaje)args ;
+                mensaje.setRemitente(myAgent.getAID());
                 msg.setContentObject(mensaje);
                 send(msg);
             } catch ( Exception ex) {

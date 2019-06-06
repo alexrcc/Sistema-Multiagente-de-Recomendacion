@@ -4,7 +4,54 @@
     Author     : alexr
 --%>
 
+<%@page import="org.apache.jena.query.QuerySolution"%>
+<%@page import="org.apache.jena.query.ResultSet"%>
+<%@page import="org.apache.jena.query.QueryExecutionFactory"%>
+<%@page import="org.apache.jena.query.QueryExecution"%>
+<%@page import="org.apache.jena.query.QueryFactory"%>
+<%@page import="org.apache.jena.query.Query"%>
+<%@page import="virtuoso.jena.driver.VirtModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%  String user = (String)session.getAttribute("user");
+    String name_user = (String)session.getAttribute("name");
+    int [] estilos = new int[4];
+    boolean band=false;
+    if(user==null)
+        response.sendRedirect("index.jsp");
+    String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+    String URL = "jdbc:virtuoso://localhost:1111";
+    String uid = "dba";
+    String pwd = "dba";
+    VirtModel model=null;
+    try{
+        model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
+        String stringQuery = 
+        "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "<"+smas+"LE-"+user+"> smas:visual ?visual."
+              + "<"+smas+"LE-"+user+"> smas:aural ?aural."
+              + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
+              + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";     
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        
+        ResultSet results = qe.execSelect();
+       while(results.hasNext()){
+           band=true;
+           QuerySolution qs = results.next();
+           estilos[0]=qs.getLiteral("visual").getInt();
+           estilos[1]=qs.getLiteral("aural").getInt();
+           estilos[3]=qs.getLiteral("kinesthetic").getInt();
+           estilos[2]=qs.getLiteral("readwrite").getInt();
+       }
+       if(band==false)
+           response.sendRedirect("testea.jsp");
+    }catch(Exception e){
+        out.print("<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
+                + "No se puede conectar con VIRTUSO OPENLIK!</center></div>");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,35 +77,100 @@
                 </div>
                 <div class="grupo">
                 <label for="keyword">Disciplina</label>
-                <select class="input" id="disciplina" name="disciplina">
-                    <option value="0">Selecciona una disciplina...</option>
-                    <option value="1">Arte</option>
-                    <option value="2">Biología</option>
-                    <option value="3">Química</option>
-                    <option value="4">Educación para la Ciudadanía</option>
-                    <option value="5">Informática</option>
-                    <option value="6">Economía</option>
-                    <option value="7">Educación</option>
-                    <option value="8">Ingeniería</option>
-                    <option value="9">Idiomas</option>
-                    <option value="10">Cultura General</option>
-                    <option value="11">Geografía</option>
-                    <option value="12">Geología</option>
-                    <option value="13">Literatura</option>
-                    <option value="14">Matemáticas</option>
-                    <option value="15">Música</option>
-                    <option value="16">Ciencias Naturales</option>
-                    <option value="17">Física</option>
-                    <option value="18">Tecnología</option>
-                </select>
+               
+                <div id="disciplina" class='input'>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Art" name="disciplina">
+                        <label class="form-check-label">Arte</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Biologi" name="disciplina">
+                        <label class="form-check-label">Biología</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Chemistry" name="disciplina">
+                        <label class="form-check-label">Química</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Citizenship" name="disciplina">
+                        <label class="form-check-label">Ciudadanía</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Computerscience" name="disciplina">
+                        <label class="form-check-label">Informática</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Economics" name="disciplina">
+                        <label class="form-check-label">Economía</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Education" name="disciplina">
+                        <label class="form-check-label">Educación</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Engineering" name="disciplina">
+                        <label class="form-check-label">Ingeniería</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Foreignlanguages" name="disciplina">
+                        <label class="form-check-label">Idiomas</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Generalculture" name="disciplina">
+                        <label class="form-check-label">Cultura General</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Geography" name="disciplina">
+                        <label class="form-check-label">Geografía</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Geography" name="disciplina">
+                        <label class="form-check-label">Geografía</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Geology" name="disciplina">
+                        <label class="form-check-label">Geología</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="History" name="disciplina">
+                        <label class="form-check-label">Historia</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Humanities" name="disciplina">
+                        <label class="form-check-label">Humanidades</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Literature" name="disciplina">
+                        <label class="form-check-label">Literatura</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Maths" name="disciplina">
+                        <label class="form-check-label">Matemáticas</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Music" name="disciplina">
+                        <label class="form-check-label">Música</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Naturalscience" name="disciplina">
+                        <label class="form-check-label">Ciencias Naturales</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Physics" name="disciplina">
+                        <label class="form-check-label">Física</label>
+                    </div>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="Technology" name="disciplina">
+                        <label class="form-check-label">Tecnología</label>
+                    </div>
+                </div>
                 </div>
                 <div class="grupo">
                 <label for="idioma">Idioma</label>
-                <select class="input" id="disciplina" name="idioma">
-                    <option value="0">Selecciona un idioma...</option>
+                <select class="input" name="idioma">
+                    <option value="0">Todos...</option>
                     <option value="1">Español</option>
                     <option value="2">Inglés</option>
-                    <option value="3">Otros</option>
                 </select>
                 </div>
                     <div class="grupo">
@@ -70,11 +182,11 @@
                     <div class="grupo">
                     <label class="oculto">Estilo de aprendizaje:</label>
                     <select class="input" id="estilo" name="estilo" disabled="true">
-                        <option value="0">Seleccione el estilo</option>
-                        <option value="1">Estilo1</option>
-                        <option value="2">Estilo2</option>
-                        <option value="3">Estilo3</option>
-                        <option value="3">Estilo4</option>
+                        <option value="-1">Seleccione el estilo</option>
+                        <option value="0">Visual</option>
+                        <option value="1">Auditivo</option>
+                        <option value="2">Lectura-Escritura</option>
+                        <option value="3">Kinestésico</option>
                     </select>
                     </div>
                     <div class="grupo">

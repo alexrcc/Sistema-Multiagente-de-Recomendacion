@@ -1,17 +1,67 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+body h3{
+    font-family: "Montserrat";
+    margin:1% 5%;
+    float: left;
+    width: 90%;
+    border-bottom: solid 1px #999;
+}
 .objeto {
-    width: 70%;
+  
+    width: 66%;
+    margin-left: 3%;
     float: left;
     margin-top: 1%;
+    overflow: auto;
+    margin-bottom: 2%;
+    
 }
 .metadatos{
-    width: 30%;
-    margin-top: 1%;
+    width: 26%;
+    margin:1% 3% 1% 2%;
     float: left;
+}
+.m_title{
+    border: solid 1px #d9d9d9;
+    padding: 10px;
+    margin-right: 5%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0;
+}
+.valor{
+    //margin-top: 5px;
+    font-size: 0.9rem;
 }
 .m_contenedor{
     width: 95%;
     margin-right: 5%;
     padding-left: 5px; 
-    border:solid 1px #d9d9d9;
+    border-bottom: solid 1px #d9d9d9;
+    border-right: solid 1px #d9d9d9;
+    border-left: solid 1px #d9d9d9;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    float: left;
+    text-align:left;
+    padding: 15px;
+}
+.m_contenedor span:not(.keys){
+    width: 100%;
     float: left;
 }
+.m_contenedor .etiqueta{
+    margin-top: 5px;
+    color: #FBA707;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.keys{
+    border-radius: 5px;
+    text-align: center;
+    padding: 0 5px;
+    float: left;
+    margin: 3px;
+}
+

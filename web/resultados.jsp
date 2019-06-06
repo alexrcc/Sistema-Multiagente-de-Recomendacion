@@ -43,10 +43,40 @@
         <div class="resultado">
             
             <%if(aux[3].equals("null")){%>
-                <div class="img_avatar" style ="opacity: 0.6;background-image:url('assets/img/img_null.png');">
+                <div class="img_avatar" style ="opacity: 0.8;background-image:url('assets/img/img_null.png');">
             <%}else{%>
                 <div class="img_avatar" style ="background-image:url(<%out.print(aux[3]);%>);">
-            <%}%>    
+            <%}%> 
+            <div class="loavatar"><i
+            <%String loavatar = aux[0].split("#")[1].split(":")[0];
+                if(loavatar.equals("Officedoc"))
+                    out.print("class='fas fa-file-al'");
+                else if(loavatar.equals("Excursion"))
+                    out.print("class='fas fa-puzzle-piece'");
+                else if(loavatar.equals("Audio"))
+                    out.print("class='fas fa-headphones'");
+                else if(loavatar.equals("Embed"))
+                    out.print("class='fas fa-code'");
+                else if(loavatar.equals("Swf"))
+                    out.print("class='fas fa-puzzle-piece'");
+                else if(loavatar.equals("Link"))
+                    out.print("class='fas fa-link'");
+                else if(loavatar.equals("Picture"))
+                    out.print("class='fas fa-image'");
+                else if(loavatar.equals("Scormfile"))
+                    out.print("class='fas fa-puzzle-piece'");
+                else if(loavatar.equals("Video"))
+                    out.print("class='fas fa-file-video'");
+                else if(loavatar.equals("Webapp"))
+                    out.print("class='fas fa-puzzle-piece'");
+                else if(loavatar.equals("Workshop"))
+                    out.print("class='fas fa-file-archive'");
+                else
+                    out.print("class='fas fa-puzzle-piece'");
+         
+            %>
+            ></i>
+            </div>
             </div>
            
             <div class="data">
@@ -54,7 +84,7 @@
                 <h6 ><%out.print(aux[1]);%></h6>
                 </div>
                 <div class="boton">
-                <a href="detalles.jsp?dir=<%out.print(aux[2]);%>" class="btn btn-success">Ver</a>
+                    <a href="detalles.jsp?dir=<%out.print(aux[4]);%>&lo=<%out.print(aux[0].split("#")[1]);%>&url=<%out.print(aux[2]);%>" class="btn btn-success">Ver</a>
                 </div>
             </div>
             

@@ -699,6 +699,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#url_full -->
+
+    <owl:DatatypeProperty rdf:about="&smas;url_full">
+        <rdfs:domain rdf:resource="&smas;LearningObject"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#visual -->
 
     <owl:DatatypeProperty rdf:about="&smas;visual">

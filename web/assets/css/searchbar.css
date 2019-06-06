@@ -5,7 +5,7 @@
     text-align: center;
 }
 #navsearch .input_search{
-    width: 85%;
+    width: 80%;
     float: left;
 }
 #navsearch .input-group{
@@ -30,4 +30,29 @@
     border-color: rgb(255, 144, 0);
     box-shadow: 0 1px 1px rgba(251, 167, 7, 0.075)inset, 0 0 8px rgba(251, 167, 7,0.6);
     outline: 0 none;
+}
+.btn-circle.btn-xl {
+    width: 80px;
+    height: 80px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    float: right;
+    width: 40px;
+    height: 40px;
+    padding: 6px 0px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+    
+}
+.volver{
+    width: 5%;   
+    margin-top: 0.5%;
+    float: left;
 }

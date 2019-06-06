@@ -1,10 +1,13 @@
 package controller;
 
+import jade.core.AID;
+
 public class Mensaje implements java.io.Serializable{
     private String mensaje = new String("");
     private Object obj;
     private Object respuesta;
     private String user;
+    private AID remitente;
     public void setMensaje (String mensaje){
         this.mensaje = mensaje;
     }
@@ -28,6 +31,12 @@ public class Mensaje implements java.io.Serializable{
     }
     public String getUsuario(){
         return user;
+    }
+    public void setRemitente(AID r){
+        this.remitente=r;
+    }
+    public AID getRemitente(){
+        return remitente;
     }
     
 }

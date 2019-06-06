@@ -1,9 +1,39 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
+<%@page import="org.apache.jena.query.QuerySolution"%>
+<%@page import="org.apache.jena.query.ResultSet"%>
+<%@page import="org.apache.jena.query.QueryExecutionFactory"%>
+<%@page import="org.apache.jena.query.QueryExecution"%>
+<%@page import="org.apache.jena.query.QueryFactory"%>
+<%@page import="org.apache.jena.query.Query"%>
+<%@page import="virtuoso.jena.driver.VirtModel"%>
+<%@page import="java.util.ArrayList"%>
+
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
     String url = request.getParameter("dir");
+    String rep_url = request.getParameter("url");
+    String learningObject  = request.getParameter("lo");
+    String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+    String vcard= "http://www.w3.org/2006/vcard/ns#";
+    String ns = "http://www.w3.org/ns/radion#";
+    boolean band = true;
+    VirtModel model=null;
+    
+    if(learningObject!=null){
+        String URL = "jdbc:virtuoso://localhost:1111";
+        String uid = "dba";
+        String pwd = "dba";
+        try{
+            model = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
+        }catch(Exception e){
+            band=false;
+            out.print("<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
+                + "No se puede conectar con VIRTUSO OPENLIK!</center></div>");
+    }
+    }
 %>
+
  <html lang="es">
         <head>
             <title>SMA-OA UNL</title>
@@ -27,12 +57,145 @@
         <jsp:include page="vistas/searchbar.jsp"/>
        
     <body>
+        
+        <h3>  <%
+                    String stringQuery = "PREFIX vcard:<"+vcard+"> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?title  WHERE {?General vcard:title ?title. "
+                    + "FILTER(regex(?General,'"+smas+"Gen_"+learningObject+"')).}"; 
+                    Query query = QueryFactory.create(stringQuery);
+                    QueryExecution qe = QueryExecutionFactory.create(query, model);
+                    ResultSet results = qe.execSelect();
+                    while(results.hasNext()){
+                        QuerySolution qs = results.next();
+                        out.print(qs.get("title"));
+                    }
+                    %></h3>
         <div class="objeto">
-            <iframe src="<%out.print(url);%>.full" width="80%" height="600" style="margin: 1% 10%;" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+            <%if(learningObject.split(":")[0].equals("Zipfile")||learningObject.split(":")[0].equals("Workshop")){%>
+            
+            <a class="btn btn-primary" href="<%
+                String dir = url.replace(".zip","");
+                out.print(dir);
+            %>">Ir a recurso</a>
+            <%}else if(learningObject.split(":")[0].equals("Officedoc")){%>
+            <iframe src="https://docs.google.com/viewer?url=https:<%out.print(url.split(":")[1]);%>&embedded=true" width="800" height="600" style="border: none;" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+            <%}else{%>
+            <iframe src="<%out.print(url);%>" width="800" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+            <%}%>
         </div>
         <div class="metadatos">
+            <h5 class="m_title">Información</h5>
             <div class="m_contenedor">
-                <h3></h3>
+                <div><%
+                    stringQuery = "PREFIX vcard:<"+vcard+"> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?title  WHERE {?General vcard:title ?title. "
+                    + "FILTER(regex(?General,'"+smas+"Gen_"+learningObject+"')).}"; 
+                     query = QueryFactory.create(stringQuery);
+                     qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                    while(results.hasNext()){
+                        QuerySolution qs = results.next();
+                        out.print("<span class='etiqueta'>Titulo: </span><span class='valor'>"+qs.get("title")+"</span>");
+                    }
+                    //Descripción
+                     stringQuery = "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?desc WHERE {"
+                    +"?General smas:description ?desc. "
+                    + "FILTER(regex(?General,'"+smas+"Gen_"+learningObject+"')).}"; 
+                    query = QueryFactory.create(stringQuery);
+                    qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                   while(results.hasNext()){
+                       QuerySolution qs = results.next();
+                       out.print("<span class='etiqueta'>Descripción: </span><span class='valor'>"+qs.get("desc")+"</span>");
+                   }
+                   //Idioma
+                    stringQuery = "PREFIX vcard:<"+vcard+"> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?language WHERE {"
+                    +"?General vcard:language ?language. "
+                    + "FILTER(regex(?General,'"+smas+"Gen_"+learningObject+"')).}"; 
+                    query = QueryFactory.create(stringQuery);
+                    qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                   while(results.hasNext()){
+                       QuerySolution qs = results.next();
+                       out.print("<span class='etiqueta'>Idioma: </span><span class='valor'>"+qs.get("language")+"</span>");
+                   }
+                   //Keywords
+                   stringQuery = "PREFIX ns:<http://www.w3.org/ns/radion#> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?ky WHERE {"
+                    +"?General ns:keyword ?ky. "
+                    + "FILTER(regex(?General,'"+smas+"Gen_"+learningObject+"')).}"; 
+                    query = QueryFactory.create(stringQuery);
+                    qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                    out.print("<span class='etiqueta'>Keywords: </span>");
+                   while(results.hasNext()){
+                       QuerySolution qs = results.next();
+                       if(qs.contains("ky"))
+                            out.print("<span class='keys bg-info'>"+qs.get("ky")+"</span>");
+
+                   }
+                   //Autor
+                   stringQuery = 
+                    "PREFIX ns:<http://www.w3.org/ns/radion#> "+
+                    "PREFIX vcard:<http://www.w3.org/2006/vcard/ns#> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?entity ?role WHERE {"
+                    +"?Metametadata smas:hasContribute  ?Contribute. "
+                    +"?Contribute smas:entity  ?entity. "
+                    +"?Contribute vcard:role  ?role. "
+                    + "FILTER(regex(?Metametadata,'"+smas+"M_"+learningObject+"')).}"; 
+                    query = QueryFactory.create(stringQuery);
+                    qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                    while(results.hasNext()){
+                       QuerySolution qs = results.next();
+                        if(qs.contains("role")&&((qs.get("role").toString()).equals("creator"))){
+                            String aux =qs.getLiteral("entity").getValue().toString();
+                            aux=aux.split(":")[3];
+                            aux=aux.replaceAll("FN","");
+                            out.print("<span class='etiqueta' >Autor: </span><span class='valor'>"+aux+"</span>");}
+                   }
+                   
+                   //Autor
+                   stringQuery = 
+                    "PREFIX ns:<http://www.w3.org/ns/radion#> "+
+                    "PREFIX vcard:<http://www.w3.org/2006/vcard/ns#> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?entry WHERE {"
+                    +"?Metametadata smas:hasIdentifier  ?Identifier. "
+                    +"?Identifier smas:entry  ?entry. "
+                    + "FILTER(regex(?Metametadata,'"+smas+"M_"+learningObject+"')).}"; 
+                    query = QueryFactory.create(stringQuery);
+                    qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                    while(results.hasNext()){
+                        QuerySolution qs = results.next();
+                        out.print("<span class='etiqueta'>Metadata: </span><span class='valor'><a href='"+qs.get("entry")+"'>"+qs.get("entry")+"</a></span>");
+                   }
+                    //Rights
+                   stringQuery = 
+                    "PREFIX ns:<http://www.w3.org/ns/radion#> "+
+                    "PREFIX vcard:<http://www.w3.org/2006/vcard/ns#> "+
+                    "PREFIX smas: <"+smas+"> "
+                    + "SELECT ?desc WHERE {"
+                    +"?Rights smas:description  ?desc. "
+                    + "FILTER(regex(?Rights,'"+smas+"R_"+learningObject+"')).}"; 
+                    query = QueryFactory.create(stringQuery);
+                    qe = QueryExecutionFactory.create(query, model);
+                    results = qe.execSelect();
+                    while(results.hasNext()){
+                        QuerySolution qs = results.next();
+                        out.print("<span class='etiqueta'>Derechos de Autor: </span><span class='valor'>"+qs.get("desc")+"</span>");
+                   }
+                %>
+                <span class='etiqueta'>URL Repositorio: </span><span class='valor'><a href="<%out.print(rep_url);%>"><%out.print(rep_url);%></a></span>
+                </div>
             </div>
         </div>
     </body>

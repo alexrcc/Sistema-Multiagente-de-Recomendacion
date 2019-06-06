@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import controller.Mensaje;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,10 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import jade.util.leap.Properties;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
+import jade.wrapper.gateway.JadeGateway;
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import sma.AgenteGestorRepositorio;
 import sma.*;
 
@@ -28,89 +33,67 @@ import sma.*;
  */
 @WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
 public class Servlet2 extends HttpServlet{  
-   AgentController agenteController;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, StaleProxyException, ControllerException {
-        response.setContentType("text/html;charset=UTF-8");
-        Object args [] = {request.getParameter("nombre2").toString()};
-        //Agente que gestiona el SMA
-    AgentController agenteController;
+    private JadeGateway gateway = null;
+    Properties pp = new Properties();
     
-    //Entorno de ejecución, crea una instancia de ejecución
-    jade.core.Runtime runtime = jade.core.Runtime.instance();
-    //CreateMainContainer necesita un Profile que guarda las configuraciones necesarias para iniciar JADE
-    Profile profile = new ProfileImpl(null, 1099, null);
-    AgentContainer mainContainer = runtime.createMainContainer(profile);
-    Object argumentos[] = {"https://roa.cedia.edu.ec", "http://vishub.org"};
-    agenteController = mainContainer.createNewAgent("AgenteGR",AgenteGestorRepositorio.class.getName(),argumentos);
-    agenteController.start();
-    
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("Hola <strong>" + request.getParameter("nombre").toString() + "<strong>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try{
-        processRequest(request, response);
+        doPost(request, response);
         }catch(Exception e){
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        String user = (String)session.getAttribute("user");
          try{
-        processRequest(request, response);
+            String keyword = new String(request.getParameter("keyword").getBytes("ISO-8859-1"),"UTF-8"); 
+            String checkboxValues  []= request.getParameterValues("disciplina");
+            String idioma = request.getParameter("idioma");
+            String check = request.getParameter("checkbox");
+            ArrayList<String []> parametros = new ArrayList<>();
+            String [] ba;
+            if(check!=null){
+                ba= new String [2];}
+            else{
+                String estilo = request.getParameter("estilo");
+                String inteligencia = request.getParameter("inteligencia");
+                ba= new String [4];
+                ba[2]=estilo;
+                ba[3]=inteligencia;
+            }
+            ba[0]=keyword;
+            ba[1]=idioma;
+            parametros.add(ba);
+            parametros.add(checkboxValues);
+            Mensaje mensaje = new Mensaje();
+            mensaje.setUsuario(user);
+            mensaje.setMensaje("BA");
+            mensaje.setArgumentos(parametros);
+            try{
+                JadeGateway.execute(mensaje); 
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
+            ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
+            request.setAttribute("listado", al);
+            request.setAttribute("ky", keyword);
+            getServletContext().getRequestDispatcher("/resultados.jsp").forward(request, response);
         }catch(Exception e){
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    public void init()throws ServletException{
+        pp.setProperty(Profile.MAIN_HOST, "localhost");
+        pp.setProperty(Profile.MAIN_PORT, "1099");
+       //pp.setProperty(Profile.MAIN,"main");
+        JadeGateway.init("sma.AgenteInterfaz",pp);
+    }
 
 }

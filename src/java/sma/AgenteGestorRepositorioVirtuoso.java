@@ -112,25 +112,34 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
                         JSONObject aux = results.getJSONObject(j);
                         System.out.println(aux.getString("id"));
                         String avatar;
-                         try{
-                         avatar = aux.getString("avatar_url");
-                        }catch(JSONException e){
+                        String url_full;
+                        if(aux.has("avatar_url"))
+                            avatar = aux.getString("avatar_url");
+                        else
                             avatar = "null";
-                        }
+                        if(aux.has("url_full"))
+                            url_full = aux.getString("url_full");
+                        else if(aux.has("file_url"))
+                            url_full = aux.getString("file_url");
+                        else if(aux.has("url"))
+                            url_full=aux.getString("url");
+                        else
+                            url_full="null";
+                        
                         String type = aux.getString("type");
                         String id = aux.getString("id");
                         String dir = aux.getString("url");
                         String in ="";
-                        Actualizar(avatar, id);
-                        if(type.compareTo("Excursion")==0){
-                            String[] a = id.split(":");
-                            int valor = Integer.parseInt(a[1].split("@")[0]);
-                           in = (GetMetadata(url_base+"/excursions/",valor,id,avatar));
-                        }else{
-                            int v_aux = GetCodeMetadata(dir);
-                            System.out.println(v_aux);
-                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id,avatar);
-                        }
+                        Actualizar(avatar, id,url_full);
+//                        if(type.compareTo("Excursion")==0){
+//                            String[] a = id.split(":");
+//                            int valor = Integer.parseInt(a[1].split("@")[0]);
+//                           in = (GetMetadata(url_base+"/excursions/",valor,id,avatar,url_full));
+//                        }else{
+//                            int v_aux = GetCodeMetadata(dir);
+//                            System.out.println(v_aux);
+//                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id,avatar,url_full);
+//                        }
                     }
                 }
                 
@@ -139,17 +148,17 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
                 }
             
             }
-            try{
-            File file = new File("Individuos.owl");
-           
-                if (!file.exists()){
-                     file.createNewFile();
-                }
-                model.write(new PrintWriter(file));
-                set.add(model);
-            }catch(Exception e){
-                System.out.println("Error al guardar el modelo: "+e);
-            }
+//            try{
+//            File file = new File("Individuos.owl");
+//           
+//                if (!file.exists()){
+//                     file.createNewFile();
+//                }
+//                model.write(new PrintWriter(file));
+//                set.add(model);
+//            }catch(Exception e){
+//                System.out.println("Error al guardar el modelo: "+e);
+//            }
         }
 
         @Override
@@ -195,12 +204,22 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
         con_aux.disconnect();
         return Integer.parseInt(valor);
     }
-    private void Actualizar(String url, String id){
-        OntClass cls1 = model.getOntClass(ns+"LearningObject");
-        Individual LO = model.createIndividual(ns+id,cls1);
-        
+    private void Actualizar(String url, String id,String url_full){
+
+        String str ="PREFIX smas: <"+smas+">"+
+                " INSERT INTO GRAPH <http://LearningObjects> {<"
+                        +smas+id+"> smas:avatar '"+url+"'.}";
+        System.out.println(str);
+            VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(str, set);
+            vur.exec();
+        str ="PREFIX smas: <"+smas+">"+
+                " INSERT INTO GRAPH <http://LearningObjects> {<"
+                        +smas+id+"> smas:url_full '"+url_full+"'.}";
+        System.out.println(str);
+            vur = VirtuosoUpdateFactory.create(str, set);
+            vur.exec();
     }
-    private static String GetMetadata(String url,int codigo, String id,String avatar) throws Exception{
+    private static String GetMetadata(String url,int codigo, String id,String avatar,String url_full) throws Exception{
 
         String metadatos=null;
         String url_metadata = url+codigo+"/metadata.xml";
@@ -216,6 +235,7 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
             OntClass cls1 = model.getOntClass(ns+"LearningObject");
             Individual LO = model.createIndividual(ns+id,cls1);
             LO.addProperty(model.getDatatypeProperty(smas+"avatar"),avatar);
+            LO.addProperty(model.getDatatypeProperty(smas+"url_full"),url_full);
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             Node lom = doc.getDocumentElement();
             NodeList hijos = lom.getChildNodes();
