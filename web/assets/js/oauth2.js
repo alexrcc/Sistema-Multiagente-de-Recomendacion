@@ -1,5 +1,6 @@
  //google callback. This function will redirect to our login servlet
-      function onSignIn(googleUser) {
+ 
+ function onSignIn(googleUser) {
          var profile = googleUser.getBasicProfile();
          console.log('ID: ' + profile.getId());
          console.log('Name: ' + profile.getName());

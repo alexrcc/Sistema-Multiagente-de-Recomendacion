@@ -20,7 +20,7 @@ public class RegistrarGoogle extends HttpServlet {
         response.setContentType("text/html");
         Dao d = new Dao();
         boolean exist = true; 
-
+        System.out.println("llega");
         try {
             String idToken = request.getParameter("id_token");
             GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);

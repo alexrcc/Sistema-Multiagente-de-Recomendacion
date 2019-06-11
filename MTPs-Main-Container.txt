@@ -1,1 +1,1 @@
-http://DESKTOP-D552CPD:7778/acc
+http://10.20.54.150:7778/acc

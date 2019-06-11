@@ -10,9 +10,6 @@ import jade.wrapper.AgentContainer;
 import jade.wrapper.gateway.GatewayAgent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jade.wrapper.AgentController;
-import jade.wrapper.StaleProxyException;
-import java.io.IOException;
 
 public class AgenteInterfaz extends GatewayAgent{
     Mensaje mensaje=null;
@@ -30,8 +27,9 @@ public class AgenteInterfaz extends GatewayAgent{
             mensaje = (Mensaje) obj;
             System.out.println("Hola soy "+getAID().getName()+" estoy listo");
             String operacion = mensaje.getMensaje();
+            System.out.println(operacion);
             Object args = mensaje.getArgumentos();
-            if(args!=null){
+            if(args!=null||operacion.equals("BI")){
                 switch(operacion){
                 case "BS": 
                     System.out.println("--Entró a BS");
@@ -50,6 +48,11 @@ public class AgenteInterfaz extends GatewayAgent{
                 break;
                 case "BA":
                    System.out.println("--Entró a BA");
+                   addBehaviour(new ComportamientoBusqueda(mensaje));
+                   addBehaviour(new RecibirMensaje());
+                break;
+                case "BI":
+                   System.out.println("--Entró a BI");
                    addBehaviour(new ComportamientoBusqueda(mensaje));
                    addBehaviour(new RecibirMensaje());
                 break;

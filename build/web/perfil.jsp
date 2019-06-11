@@ -1,3 +1,4 @@
+<%@page import="model.Virtuoso"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
 <%@page import="virtuoso.jena.driver.VirtModel"%>
 <%@page import="org.apache.jena.rdf.model.Resource"%>
@@ -17,7 +18,7 @@
     boolean bandim=false;
     if(user==null)
         response.sendRedirect("index.jsp");
-    String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
+   
     int estilos[] = new int[4]; //{v,a,r,k}
     int inteligencias[] = new int[7]; //{v,a,r,k}
     int porcent[] = new int[4];
@@ -25,24 +26,11 @@
 %>
 
 <%
-    String URL = "jdbc:virtuoso://localhost:1111";
-    String uid = "dba";
-    String pwd = "dba";
-    VirtModel model=null;
+    
     try{
-        model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
-        String stringQuery = 
-        "PREFIX smas: <"+smas+">"
-              + "SELECT * WHERE {"
-              + "<"+smas+"LE-"+user+"> smas:visual ?visual."
-              + "<"+smas+"LE-"+user+"> smas:aural ?aural."
-              + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
-              + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";     
-        Query query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        
-        ResultSet results = qe.execSelect();
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("Perfiles");
+        ResultSet results=bdv.GetEstilos(user);
        while(results.hasNext()){
            band=true;
            QuerySolution qs = results.next();
@@ -51,21 +39,7 @@
            estilos[3]=qs.getLiteral("kinesthetic").getInt();
            estilos[2]=qs.getLiteral("readwrite").getInt();
        }
-       stringQuery = 
-        "PREFIX smas: <"+smas+">"
-              + "SELECT * WHERE {"
-              + "<"+smas+"MI-"+user+"> smas:verbal ?verbal."
-              + "<"+smas+"MI-"+user+"> smas:logicalmath ?logical."
-              + "<"+smas+"MI-"+user+"> smas:visual ?visual."
-              + "<"+smas+"MI-"+user+"> smas:kinesthetic ?kinesthetic."
-              + "<"+smas+"MI-"+user+"> smas:musical ?musical."
-              + "<"+smas+"MI-"+user+"> smas:intrapersonal ?intrapersonal."
-              + "<"+smas+"MI-"+user+"> smas:interpersonal ?interpersonal}";     
-        query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        qe = QueryExecutionFactory.create(query, model);
-        
-        results = qe.execSelect();
+       results=bdv.GetInteligencias(user);
        while(results.hasNext()){
            bandim=true;
            QuerySolution qs = results.next();
@@ -91,9 +65,9 @@
            auxim[i]=(double)(inteligencias[i]*100)/5;
            porcentim[i]=(int)(Math.round(auxim[i]));
        }
-       qe.close();
+       
     }catch(Exception e){
-        out.print("<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
+        out.print(e+"<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
                 + "No se puede conectar con VIRTUSO OPENLIK!</center></div>");
     }
 %>
@@ -165,8 +139,8 @@
                 </div>
                 <div class="if_inteligencias">
                     <span>Inteligencias múltiples</span><span class="help far fa-question-circle">
-                        <div id="help_ea"><span class="triangle"></span><span class="texto">El teste de vark es un test que consiste en 4 habilidades
-                        la habiliidad visula, auditiva, lectura escritua y movimiento."</span></div>
+                        <div id="help_ea"><span class="triangle"></span><span class="texto">Garder propuso la Teoria de las Inteligencias Múltiples,
+                            las mismas que se muestran en la presente sección.</span></div>
                     </span>
                     <% if(!bandim)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
                                 + "cuestionario de Gardener para determinar sus inteligencias múltiples.</div>");

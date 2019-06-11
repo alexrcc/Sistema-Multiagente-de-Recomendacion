@@ -345,6 +345,7 @@
 				<h4>Excelente!</h4>	
 				<p>Su estilo de aprendizaje se guardó correctamente.</p><%if(msg!=null)request.getSession().removeAttribute("msgAP");%>
 				<button class="btn btn-success" data-dismiss="modal"><span>Continuar test de Gardner </span> </button>
+                                <a  class="btn btn-warning" href="perfil.jsp">Cancelar</a>
                                 
 			</div>
 		</div>

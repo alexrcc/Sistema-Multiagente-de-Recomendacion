@@ -1,7 +1,6 @@
 package sma;
 import controller.Mensaje;
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
@@ -9,13 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
+import model.Virtuoso;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
-import virtuoso.jena.driver.*;
+
 
 public class AgentePerfilEstudiante extends Agent{
     public static Mensaje mensaje;
@@ -44,7 +40,9 @@ public class AgentePerfilEstudiante extends Agent{
                         else if(mensaje.getMensaje().equals("IM"))
                             InteligenciasMultiples();
                         else if(mensaje.getMensaje().equals("BA"))
-                            GetPerfil();
+                            GetEstilos();
+                        else if(mensaje.getMensaje().equals("BI"))
+                            GetInteligencias();
                         System.out.println("la respuesta que voy a devolver a recomen: "+mensaje.getRespuesta());
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.PROPOSE);
@@ -65,48 +63,15 @@ public class AgentePerfilEstudiante extends Agent{
             
        });   
     }
-    private void GetPerfil(){
-        int [] estilos = new int[4];
+    private void GetInteligencias(){
         int [] inteligencias = new int[8];
-        System.out.println("RecuperarPerfil");
+        System.out.println("RecuperarInteligencias");
         String user=mensaje.getUsuario();
         
-        VirtModel model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
-        String stringQuery = "PREFIX smas: <"+smas+">"
-              + "SELECT * WHERE {"
-              + "<"+smas+"LE-"+user+"> smas:visual ?visual."
-              + "<"+smas+"LE-"+user+"> smas:aural ?aural."
-              + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
-              + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";     
-        Query query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        
-        ResultSet results = qe.execSelect();
-       while(results.hasNext()){
-           QuerySolution qs = results.next();
-           estilos[0]=qs.getLiteral("visual").getInt();
-           estilos[1]=qs.getLiteral("aural").getInt();
-           estilos[3]=qs.getLiteral("kinesthetic").getInt();
-           estilos[2]=qs.getLiteral("readwrite").getInt();
-       }
-       
-        stringQuery = 
-        "PREFIX smas: <"+smas+">"
-              + "SELECT * WHERE {"
-              + "<"+smas+"MI-"+user+"> smas:verbal ?verbal."
-              + "<"+smas+"MI-"+user+"> smas:logicalmath ?logical."
-              + "<"+smas+"MI-"+user+"> smas:visual ?visual."
-              + "<"+smas+"MI-"+user+"> smas:kinesthetic ?kinesthetic."
-              + "<"+smas+"MI-"+user+"> smas:musical ?musical."
-              + "<"+smas+"MI-"+user+"> smas:intrapersonal ?intrapersonal."
-              + "<"+smas+"MI-"+user+"> smas:interpersonal ?interpersonal}";     
-        query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        qe = QueryExecutionFactory.create(query, model);
-        
-        results = qe.execSelect();
-       while(results.hasNext()){
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("Perfiles");
+        ResultSet results=bdv.GetInteligencias(user);
+        while(results.hasNext()){
            QuerySolution qs = results.next();
            inteligencias[0]=qs.getLiteral("verbal").getInt();
            inteligencias[1]=qs.getLiteral("logical").getInt();
@@ -115,12 +80,34 @@ public class AgentePerfilEstudiante extends Agent{
            inteligencias[4]=qs.getLiteral("musical").getInt();
            inteligencias[5]=qs.getLiteral("intrapersonal").getInt();
            inteligencias[6]=qs.getLiteral("interpersonal").getInt();
+        }
+        ArrayList<int[]> perfil = new ArrayList<>();
+        perfil.add(inteligencias);
+        mensaje.setRespuesta(perfil);
+        mensaje.setMensaje("BI-R");
+        bdv.desconectar();
+    }
+    private void GetEstilos(){
+        int [] estilos = new int[4];
+        System.out.println("RecuperarPerfil");
+        String user=mensaje.getUsuario();
+        
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("Perfiles");
+        ResultSet results=bdv.GetEstilos(user);
+       while(results.hasNext()){
+           QuerySolution qs = results.next();
+           estilos[0]=qs.getLiteral("visual").getInt();
+           estilos[1]=qs.getLiteral("aural").getInt();
+           estilos[3]=qs.getLiteral("kinesthetic").getInt();
+           estilos[2]=qs.getLiteral("readwrite").getInt();
        }
-       ArrayList<int[]> perfil = new ArrayList<>();
-       perfil.add(estilos);
-       perfil.add(inteligencias);
-      mensaje.setRespuesta(perfil);
-      mensaje.setMensaje("BA-R");
+       
+        ArrayList<int[]> perfil = new ArrayList<>();
+        perfil.add(estilos);
+        mensaje.setRespuesta(perfil);
+        mensaje.setMensaje("BA-R");
+        bdv.desconectar();
     }
     private void EstiloAprendizaje(){
         int estilos [] = {0,0,0,0}; //estilos de aprendizaje[visual,auditivo,lectura/escritura,Quinestésico]
@@ -137,10 +124,13 @@ public class AgentePerfilEstudiante extends Agent{
                     estilos[3]++;
             }  
         }
-        if(GuardarPerfil(estilos,mensaje.getUsuario()))
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("Perfiles");
+        if(bdv.SetEstilos(estilos,mensaje.getUsuario()))
             mensaje.setRespuesta("Perfil Guardado Correctamente");
         else
             mensaje.setRespuesta("Ha ocurrido un error!");
+        bdv.desconectar();
     }
     private void InteligenciasMultiples(){
         //inteligencias mutiples[verbal,lógico/matemática,visual/espacial,kinestesica/corporal,musical/rítmica,intrapersonal,interpersonal]
@@ -162,100 +152,13 @@ public class AgentePerfilEstudiante extends Agent{
                 else if((i==11||i==17||i==31||i==33||i==34)&&a[i].equalsIgnoreCase("V"))
                     inteligencias[6]++;
         }
-        if(GuardarInteligencias(inteligencias,mensaje.getUsuario()))
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("Perfiles");
+        if(bdv.SetInteligencias(inteligencias,mensaje.getUsuario()))
             mensaje.setRespuesta("Perfil Guardado Correctamente");
         else
             mensaje.setRespuesta("Ha ocurrido un error!");
-    }   
-    private boolean GuardarPerfil(int array [], String user){
-        try{
-            VirtModel model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
-            VirtGraph set = new VirtGraph (URL, uid, pwd);
-            String stringQuery = "PREFIX smas: <"+smas+">"+ "SELECT * WHERE {"
-                                + "<"+smas+user+"> smas:consistOf ?LearningStyle.}";
-            Query query = QueryFactory.create(stringQuery);
-
-            // Ejecutar la consulta y obtener los resultados
-            QueryExecution qe = QueryExecutionFactory.create(query, model);
-            ResultSet results = qe.execSelect();
-            //Si esque ya hay datos, se  borran para reemplazarlos
-            if(results.hasNext()){ 
-                stringQuery ="PREFIX smas: <"+smas+">" +
-                "PREFIX rdf: <"+rdf+">" +
-                "DELETE FROM GRAPH <Perfiles> " +
-                " { ?individual ?p ?v }" +
-                "WHERE" +
-                " { ?individual ?p ?v ." +
-                "    ?p rdf:domain smas:LearningStyle." +
-                "   FILTER regex( ?individual,'LE-"+user+"')" +
-                "   ?individual ?p ?v" +
-                " }";
-                VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(stringQuery, set);
-                vur.exec();
-            }
-            //Se ingresa las nueva información de Estilos de Aprendizaje
-             String str = "INSERT INTO GRAPH <Perfiles> { <"
-                        +smas+user+"> <"+ns+"type> <"+smas+"studentProfile>."
-                        +"<"+smas+"LE-"+user+"> <"+ns+"type> <"+smas+"LearningStyle>."
-                        + "<"+smas+user+"> <"+smas+"consistOf> <"+smas+"LE-"+user+">."
-                        + "<"+smas+"LE-"+user+"> <"+smas+"visual> '"+array[0]+"'."
-                        + "<"+smas+"LE-"+user+"> <"+smas+"aural> '"+array[1]+"'."
-                        + "<"+smas+"LE-"+user+"> <"+smas+"readwrite> '"+array[2]+"'."
-                        + "<"+smas+"LE-"+user+"> <"+smas+"kinesthetic> '"+array[3]+"'.}";
-            VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(str, set);
-            vur.exec();
-        }catch(Exception e){
-            System.out.println("Error:"+e);
-            return false;
-        } 
-        return true;
-    }
-    private boolean GuardarInteligencias(int array [], String user){
-        try{
-            VirtModel model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
-            VirtGraph set = new VirtGraph (URL, uid, pwd);
-            String stringQuery = "PREFIX smas: <"+smas+">"+ "SELECT * WHERE {"
-                                + "<"+smas+user+"> smas:consistOf ?multipleIntelligences.}";
-            Query query = QueryFactory.create(stringQuery);
-
-            // Ejecutar la consulta y obtener los resultados
-            QueryExecution qe = QueryExecutionFactory.create(query, model);
-            ResultSet results = qe.execSelect();
-            //Si esque ya hay datos, se  borran para reemplazarlos
-            if(results.hasNext()){ 
-                stringQuery ="PREFIX smas: <"+smas+">" +
-                "PREFIX rdf: <"+rdf+">" +
-                "DELETE FROM GRAPH <Perfiles> " +
-                " { ?individual ?p ?v }" +
-                "WHERE" +
-                " { ?individual ?p ?v ." +
-                "    ?p rdf:domain smas:MultipleIntelligences." +
-                "   FILTER regex( ?individual,'MI-"+user+"')" +
-                "   ?individual ?p ?v" +
-                " }";
-                VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(stringQuery, set);
-                vur.exec();
-            }
-            //Se ingresa las nueva información de Estilos de Aprendizaje
-            //verbal,lógico/matemática,visual/espacial,kinestesica/corporal,musical/rítmica,intrapersonal,interpersonal
-             String str = "INSERT INTO GRAPH <Perfiles> { <"
-                        +smas+user+"> <"+ns+"type> <"+smas+"studentProfile>."
-                        +"<"+smas+"MI-"+user+"> <"+ns+"type> <"+smas+"multipleIntelligences>."
-                        + "<"+smas+user+"> <"+smas+"consistOf> <"+smas+"MI-"+user+">."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"verbal> '"+array[0]+"'."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"logicalmath> '"+array[1]+"'."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"visual> '"+array[2]+"'."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"kinesthetic> '"+array[3]+"'."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"musical> '"+array[4]+"'."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"intrapersonal> '"+array[5]+"'."
-                        + "<"+smas+"MI-"+user+"> <"+smas+"interpersonal> '"+array[6]+"'.}";
-            VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(str, set);
-            vur.exec();
-        }catch(Exception e){
-            System.out.println("Error:"+e);
-            return false;
-        } 
-        return true;
+        bdv.desconectar();
     }
     @Override
     protected void takeDown() {

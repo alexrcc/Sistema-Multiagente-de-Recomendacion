@@ -11,14 +11,15 @@
 
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
+    String user = (String)session.getAttribute("user");
     String url = request.getParameter("dir");
     String rep_url = request.getParameter("url");
     String learningObject  = request.getParameter("lo");
     String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
     String vcard= "http://www.w3.org/2006/vcard/ns#";
     String ns = "http://www.w3.org/ns/radion#";
-    boolean band = true;
     VirtModel model=null;
+    boolean band = true;
     
     if(learningObject!=null){
         String URL = "jdbc:virtuoso://localhost:1111";
@@ -51,6 +52,18 @@
               if(e_sesion!=null)
                     out.print("<script>$(document).ready(function(){$(\"#iniciarSesion\").modal(\"show\");});</script>");
             %>
+            <script>
+                $(document).ready(function() {
+                                // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                                $.post('BusquedaInteligencias', {
+                                        user :'<%out.print(user);%>'
+                                }, function(responseText) {
+                                    
+                                        $('#tabla').html(responseText);
+                                });
+                       
+                });
+        </script>
         </head>
    
         <jsp:include page="vistas/nav.jsp"/>
@@ -176,7 +189,7 @@
                     results = qe.execSelect();
                     while(results.hasNext()){
                         QuerySolution qs = results.next();
-                        out.print("<span class='etiqueta'>Metadata: </span><span class='valor'><a href='"+qs.get("entry")+"'>"+qs.get("entry")+"</a></span>");
+                        out.print("<span class='etiqueta'>Metadata: </span><span class='valor'><a href='"+qs.get("entry")+"' target='_blank'>"+qs.get("entry")+"</a></span>");
                    }
                     //Rights
                    stringQuery = 
@@ -194,10 +207,11 @@
                         out.print("<span class='etiqueta'>Derechos de Autor: </span><span class='valor'>"+qs.get("desc")+"</span>");
                    }
                 %>
-                <span class='etiqueta'>URL Repositorio: </span><span class='valor'><a href="<%out.print(rep_url);%>"><%out.print(rep_url);%></a></span>
+                <span class='etiqueta'>URL Repositorio: </span><span class='valor'><a href="<%out.print(rep_url);%>" target="_blank"><%out.print(rep_url);%></a></span>
                 </div>
             </div>
         </div>
+        <div id="tabla"></div>
     </body>
     <jsp:include page="vistas/footer.jsp"/>
 </html>

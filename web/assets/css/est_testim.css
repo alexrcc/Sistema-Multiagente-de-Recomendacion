@@ -106,7 +106,6 @@
     color: #fff;
     font-size: 1.3em;
     border-radius: 30px;
-        background: #434e65;
         text-decoration: none;
         transition: all 0.4s;
     line-height: normal;    
@@ -116,6 +115,12 @@
 border: none;
 margin-bottom: 5%;
 
+}
+#mensaje_modal .modal-body .btn-success{
+    background: #434e65;
+}
+#mensaje_modal .modal-body .btn-warning{
+    background: #dc3545;
 }
  #mensaje_modal .modal-body .btn:hover, .modal-body .btn:focus {
         background: #4C687D;

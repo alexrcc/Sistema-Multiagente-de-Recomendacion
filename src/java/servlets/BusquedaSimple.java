@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
-public class Servlet extends HttpServlet{  
+public class BusquedaSimple extends HttpServlet{  
     private JadeGateway gateway = null;
     Properties pp = new Properties();
 

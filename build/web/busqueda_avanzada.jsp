@@ -1,9 +1,4 @@
-<%-- 
-    Document   : busqueda_avanzada
-    Created on : 21/02/2019, 08:05:58 AM
-    Author     : alexr
---%>
-
+<%@page import="model.Virtuoso"%>
 <%@page import="org.apache.jena.query.QuerySolution"%>
 <%@page import="org.apache.jena.query.ResultSet"%>
 <%@page import="org.apache.jena.query.QueryExecutionFactory"%>
@@ -18,26 +13,11 @@
     boolean band=false;
     if(user==null)
         response.sendRedirect("index.jsp");
-    String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
-    String URL = "jdbc:virtuoso://localhost:1111";
-    String uid = "dba";
-    String pwd = "dba";
-    VirtModel model=null;
     try{
-        model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
-        String stringQuery = 
-        "PREFIX smas: <"+smas+">"
-              + "SELECT * WHERE {"
-              + "<"+smas+"LE-"+user+"> smas:visual ?visual."
-              + "<"+smas+"LE-"+user+"> smas:aural ?aural."
-              + "<"+smas+"LE-"+user+"> smas:kinesthetic ?kinesthetic."
-              + "<"+smas+"LE-"+user+"> smas:readwrite ?readwrite}";     
-        Query query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        
-        ResultSet results = qe.execSelect();
-       while(results.hasNext()){
+    Virtuoso bdv = new Virtuoso();
+    bdv.conectar("Perfiles");
+    ResultSet results=bdv.GetEstilos(user);
+    while(results.hasNext()){
            band=true;
            QuerySolution qs = results.next();
            estilos[0]=qs.getLiteral("visual").getInt();

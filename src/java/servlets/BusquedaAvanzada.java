@@ -32,7 +32,7 @@ import sma.*;
  * @author alexr
  */
 @WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
-public class Servlet2 extends HttpServlet{  
+public class BusquedaAvanzada extends HttpServlet{  
     private JadeGateway gateway = null;
     Properties pp = new Properties();
     

@@ -86,3 +86,37 @@
     padding: 3px;
     
 }
+#tabla{
+    width: 94%;
+    margin-left: 3%;
+}
+#tabla .cont_im{
+    width: 31%;
+    margin: 1% 1%;
+    display: block;
+    float: left;
+    border: solid 1px #999;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px #666;
+}
+.cont_avatar{
+
+}
+.cont_info{
+    width: 60%;
+    float: left;
+}
+.cont_im .img_avatar{
+   
+    width: 40%;
+    float:left;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size:cover;
+    border-right: solid 1px #999;
+  
+}
