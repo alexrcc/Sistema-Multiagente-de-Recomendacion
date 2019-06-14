@@ -64,7 +64,7 @@ public class AgentePerfilEstudiante extends Agent{
        });   
     }
     private void GetInteligencias(){
-        int [] inteligencias = new int[8];
+        int [] inteligencias = new int[7];
         System.out.println("RecuperarInteligencias");
         String user=mensaje.getUsuario();
         

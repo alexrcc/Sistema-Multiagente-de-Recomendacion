@@ -2,8 +2,26 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
-    ArrayList<String []> resultados = (ArrayList<String []>)request.getAttribute("listado");
-    String keywords = (String)request.getAttribute("ky");
+    ArrayList<String []> resultados = (ArrayList<String []>)session.getAttribute("listado");
+    String keywords = (String)session.getAttribute("ky");
+    String pagina_string =(String)request.getParameter("page");
+    //Sección para controlar la paginación
+    int pagina;
+    try{
+        pagina = Integer.parseInt(pagina_string);
+        if(pagina<=0)
+            pagina=1;
+        }catch(NumberFormatException e){
+            pagina=1;
+    }
+    int limit = pagina *25;
+    int base = limit-25;
+    int paginacion = resultados.size()/25;
+    int res =  resultados.size()%25;
+    if(res>0)
+        paginacion+=1;
+    // FIN-Sección para controlar la paginación
+    
     
 %>
  <html lang="es">
@@ -23,7 +41,7 @@
               if(e_sesion!=null)
                     out.print("<script>$(document).ready(function(){$(\"#iniciarSesion\").modal(\"show\");});</script>");
             %>
-        </head>
+                   </head>
    
         <jsp:include page="vistas/nav.jsp"/>
         <jsp:include page="vistas/searchbar.jsp"/>
@@ -37,7 +55,7 @@
             <%}%>
         </div>
         <div id="contenedor">
-        <% for (int i = 0; i < resultados.size(); i++) {
+        <%  for (int i = base; i < resultados.size()&&i<limit ; i++) {
             String [] aux = resultados.get(i);
         %>
         <div class="resultado">
@@ -50,7 +68,7 @@
             <div class="loavatar"><i
             <%String loavatar = aux[0].split("#")[1].split(":")[0];
                 if(loavatar.equals("Officedoc"))
-                    out.print("class='fas fa-file-al'");
+                    out.print("class='fas fa-file-alt'");
                 else if(loavatar.equals("Excursion"))
                     out.print("class='fas fa-puzzle-piece'");
                 else if(loavatar.equals("Audio"))
@@ -92,6 +110,38 @@
         
         
         <%}%>
+         <div id="paginacion">
+        <nav aria-label="Page navigation example" class="paginacion">
+           <%int cont = pagina;%>
+            <ul class="pagination">
+              <li class="page-item">
+                  <a class="page-link" href="resultados.jsp?page=<%if(cont!=1) out.print(cont-1); else out.print(1);%>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <%if(cont>3&&paginacion>10)
+                    cont=cont-3;
+                else
+                    cont=1;
+                if((pagina-10)>0) 
+                    out.print("<li class='page-item mostrar'><a class='page-link' href='resultados.jsp?page="+(pagina-10)+"'>...</a></li>");
+                for(int i=0;i<10&&cont<=paginacion;i++){
+                    out.print("<li class='page-item mostrar'><a class='page-link' href='resultados.jsp?page="+cont+"'>"+cont+"</a></li>");
+                    cont++;
+                }
+                if(paginacion>cont) 
+                    out.print("<li class='page-item mostrar'><a class='page-link' href='resultados.jsp?page="+(cont++)+"'>...</a></li>");
+              %>
+              <li class="page-item">
+                <a class="page-link" href="resultados.jsp?page=<%if(pagina==paginacion) out.print(pagina); else out.print(pagina+1);%>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+        </nav>
+         </div>
         </div>
        
     </body>

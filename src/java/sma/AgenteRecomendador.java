@@ -287,7 +287,10 @@ public class AgenteRecomendador extends Agent{
             inteligencias=(int[])perfil.get(0);
             if(inteligencias!=null){
                 inteligencia_dominante=Dominante(inteligencias);
+                System.out.println("ID"+inteligencia_dominante);
+                
                 inteligencia_faltante=Faltante(inteligencias);
+                System.out.println("IF"+inteligencia_faltante);
                 VirtModel model = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
                 String stringQuery = "PREFIX smas: <"+smas+">"+
                     "PREFIX rn: <"+rn+">"+
@@ -314,10 +317,10 @@ public class AgenteRecomendador extends Agent{
                     else if(inteligencia_dominante==4||inteligencia_faltante==4)
                         stringQuery = stringQuery +"filter(regex(?LearningObject,'Audio','i')||regex(?ky,'music','i')||regex(?ky,'Audio','i')||regex(?ky,'podcast','i')).";
                     else if(inteligencia_dominante==5||inteligencia_faltante==5)
-                        stringQuery = stringQuery +"filter(regex(?ky,'intrapersonal','i')||regex(?ky,'intrapersonal','i')regex(?desc,'intrapersonal','i')regex(?title,'intrapersonal','i')).";
+                        stringQuery = stringQuery +"filter(regex(?ky,'intrapersonal','i')||regex(?ky,'intrapersonal','i')||regex(?desc,'intrapersonal','i')||regex(?title,'intrapersonal','i')).";
                     else if(inteligencia_dominante==6||inteligencia_faltante==6)
-                        stringQuery = stringQuery +"filter(regex(?ky,'interpersonal','i')||regex(?ky,'interpersonal','i')regex(?desc,'interpersonal','i')regex(?title,'interpersonal','i')).";
-                    stringQuery = stringQuery +"}ORDER BY RAND() LIMIT 6";
+                        stringQuery = stringQuery +"filter(regex(?ky,'interpersonal','i')||regex(?ky,'interpersonal','i||regex(?desc,'interpersonal','i')||regex(?title,'interpersonal','i')).";
+                    stringQuery = stringQuery +"}ORDER BY RAND() LIMIT 9";
                  
                     Query query = QueryFactory.create(stringQuery);
                     QueryExecution qe = QueryExecutionFactory.create(query, model);
@@ -328,8 +331,7 @@ public class AgenteRecomendador extends Agent{
                        String [] res = new String[5];
                        QuerySolution qs = results.next();
                        res[0]=qs.getResource("LearningObject").toString();
-                       if(qs.contains("title")){
-                       res[1]=qs.get("title").toString();}
+                       res[1]=qs.get("title").toString();
                        res[2]=qs.get("entry").toString();
                        res[3]=qs.get("avatar").toString();
                        res[4]=qs.get("url_full").toString();
@@ -341,45 +343,63 @@ public class AgenteRecomendador extends Agent{
     }
     private int Dominante(int [] perfil){
         int mayor=-1;
+        int indice=0;
         boolean band = false;
         int cont =0;
         int aux [] = new int[perfil.length]; 
+        
             for (int i = 0; i < perfil.length; i++) {
-                if(perfil[i]>mayor)
-                    mayor=i;
-                else if(perfil[i]==mayor){
+                if(perfil[i]>=mayor){
+                    mayor=perfil[i];
+                    indice = i; 
+                }
+                aux[i]=-1;
+            }
+            aux[0]=indice;
+            cont++;
+            for (int i = 0; i < perfil.length&&i!=-1; i++) {
+                if(perfil[i]==mayor&&i!=indice){
                     aux[cont]=i;
                     cont++;
-                    band = true;
+                    band=true;
                 }
             }
-           aux[cont]=mayor;
+           
            if(band==true){
             Random rnd = new Random();
-            mayor = aux[rnd.nextInt(aux.length) ];
+            indice = aux[rnd.nextInt(cont) ];
            }
-           return mayor;
+           return indice;
     }
     private int Faltante(int [] perfil){
         int menor=100;
+        int indice=0;
         boolean band = false;
         int cont =0;
         int aux [] = new int[perfil.length]; 
+        
             for (int i = 0; i < perfil.length; i++) {
-                if(perfil[i]<menor)
-                    menor=i;
-                else if(perfil[i]==menor){
+                if(perfil[i]<=menor){
+                    menor=perfil[i];
+                    indice = i; 
+                }
+                aux[i]=-1;
+            }
+            aux[0]=indice;
+            cont++;
+            for (int i = 0; i < perfil.length&&i!=-1; i++) {
+                if(perfil[i]==menor&&i!=indice){
                     aux[cont]=i;
                     cont++;
-                    band = true;
+                    band=true;
                 }
             }
-           aux[cont]=menor;
+           
            if(band==true){
             Random rnd = new Random();
-            menor = aux[rnd.nextInt(aux.length) ];
+            indice = aux[rnd.nextInt(cont) ];
            }
-           return menor;
+           return indice;
     }
     @Override
     protected void takeDown() {

@@ -42,11 +42,16 @@ private JadeGateway gateway = null;
         ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
         out.print("<link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.7.2/css/all.css\" integrity=\"sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr\" crossorigin=\"anonymous\">");
         out.print("<link rel='stylesheet' type='text/css' href='assets/css/resultados.css'/>");
-        for (int i = 0; i < al.size()&&i<6; i++) {
-            String [] aux = al.get(i);
+        
             
+        for(int i = 0; i < al.size(); i++) {
+            String [] aux = al.get(i);
+            if(i==0){
+                out.print("<div class='title_im'>");
+                out.print("<span>Objetos recomendados para potenciar tus inteligencias múltiples</span>");
+                out.print("</div>");
+            }
             out.print("<div class='cont_im'>");
-           
             if(aux[3].equals("null")){
                 out.print("<div class='img_avatar' style ='opacity: 0.8;background-image:url(assets/img/img_null.png);'>");
             }else{

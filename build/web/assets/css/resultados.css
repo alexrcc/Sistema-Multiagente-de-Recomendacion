@@ -89,6 +89,10 @@
 #tabla{
     width: 94%;
     margin-left: 3%;
+    border: solid 1px #d9d9d9;
+    border-radius: 5px;
+    margin-bottom: 3%;
+    float: left;
 }
 #tabla .cont_im{
     width: 31%;
@@ -118,5 +122,46 @@
     background-attachment: scroll;
     background-size:cover;
     border-right: solid 1px #999;
-  
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.cont_info h6{
+    float: left;
+    font-size: 15px;
+    word-wrap: break-word;
+    margin: 0;
+    height: 37px;
+    line-height: 18px;
+    text-decoration: none;
+    width: 100%;
+    overflow: hidden;
+}
+#tabla .title_im{
+    width: 100%;
+    text-align: left;
+    float: left;
+    margin: 1% auto;
+}
+#tabla .title_im span{
+    width: 100%;
+    text-align: right;
+    margin-left: 2%;
+    font-family: "Montserrat";
+    font-size: 1.2em;
+}
+#paginacion{
+    margin-top: 2%;
+    margin-bottom: 3%;
+    display: inline;
+    text-align: center;
+    width: 100%;
+    float:left;
+}
+#paginacion nav ul{
+    justify-content: center;
+}
+.page-link{
+    color:#FBA707;
+    font-size: 1.1rem;
+    font-weight: 600;
 }

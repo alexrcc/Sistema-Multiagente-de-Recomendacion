@@ -2,6 +2,7 @@ package servlets;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,6 +46,7 @@ public class RegistrarGoogle extends HttpServlet {
             }
         d.desconectar();
         } catch (Exception e) { 
+            PrintWriter out = response.getWriter();
             System.out.println("Ocurrio la sig exception: " +e);
             respuesta.setAttribute("error","Ha ocurrido un error durante el Registro.");
             response.sendRedirect("index.jsp");

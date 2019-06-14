@@ -12,6 +12,7 @@ import jade.core.Profile;
 import jade.util.leap.Properties;
 import jade.wrapper.gateway.JadeGateway;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
@@ -31,6 +32,9 @@ public class BusquedaSimple extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession respuesta = request.getSession(true);
+            request.getSession().removeAttribute("listado");
+            request.getSession().removeAttribute("ky");
             String keywords = new String(request.getParameter("keywords").getBytes("ISO-8859-1"),"UTF-8"); 
             System.out.println(keywords);
             Mensaje mensaje = new Mensaje();
@@ -43,9 +47,9 @@ public class BusquedaSimple extends HttpServlet{
             }
 
             ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
-            request.setAttribute("listado", al);
-            request.setAttribute("ky", keywords);
-            getServletContext().getRequestDispatcher("/resultados.jsp").forward(request, response);
+            respuesta.setAttribute("listado", al);
+            respuesta.setAttribute("ky", keywords);
+            response.sendRedirect("resultados.jsp?page=1");
   
     }
     

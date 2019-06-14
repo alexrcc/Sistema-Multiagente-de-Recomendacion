@@ -49,6 +49,8 @@ public class BusquedaAvanzada extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
+        request.getSession().removeAttribute("listado");
+        request.getSession().removeAttribute("ky");
         String user = (String)session.getAttribute("user");
          try{
             String keyword = new String(request.getParameter("keyword").getBytes("ISO-8859-1"),"UTF-8"); 
@@ -81,9 +83,9 @@ public class BusquedaAvanzada extends HttpServlet{
             }
             
             ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
-            request.setAttribute("listado", al);
-            request.setAttribute("ky", keyword);
-            getServletContext().getRequestDispatcher("/resultados.jsp").forward(request, response);
+           session.setAttribute("listado", al);
+           session.setAttribute("ky", keyword);
+            response.sendRedirect("resultados.jsp?page=1");
         }catch(Exception e){
         }
     }

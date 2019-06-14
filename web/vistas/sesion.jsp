@@ -3,6 +3,7 @@
 %>
 <!DOCTYPE html>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="stylesheet" type="text/css" href="assets/css/search.css"/>
  <!-- VENTANA MODAL -->  
     <div class="modal fade" id="iniciarSesion" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="_divRegistroModal">      

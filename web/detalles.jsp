@@ -211,6 +211,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="tabla"></div>
     </body>
     <jsp:include page="vistas/footer.jsp"/>
