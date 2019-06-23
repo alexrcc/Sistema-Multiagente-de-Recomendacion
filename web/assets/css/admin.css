@@ -1,0 +1,75 @@
+.centrado-porcentual {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    border: solid 1px #47c9a2;
+    padding: 2%;
+    border-radius: 5px;
+
+}
+.centrado-porcentual h1{
+    width: 100%;
+    text-align: center;
+}
+.cont_resp{
+    text-align: center;
+    margin-top: 1%;
+    width: 100%;
+    height: 200px;
+    border: dashed 1px tomato;
+}
+#respuestas{
+    border-top: dashed 1px tomato;
+}
+.btn{
+    font-weight: 600;
+}
+.jade{
+    display: inline-block;
+    text-align: center;
+    border: solid 1px #adb5bd;
+    width: 100%;
+    padding: 10px;
+    background: lightyellow;
+}
+.jade span{
+    width: 100%;
+    float: left;
+}
+#repositorios{
+    display: inline-block;
+    text-align: center;
+    border: solid 1px #adb5bd;
+    width: 100%;
+    padding: 10px;
+    margin-top: 1%;
+    background: lightblue;
+}
+#repositorios .input{
+    width: 60%;
+}
+.sesion{
+    margin-top:.5%;
+    width: 100%;
+    text-align: center;
+}
+.listado{
+    background: #fff;
+    margin-top: 1%;
+    width: 100%;
+    float: left;
+    padding: 1%;
+    border:solid 1px #adb5bd;
+    border-radius: 5px;
+}
+.listado span{
+    width: 100%;
+    float: left;
+    text-align: left;
+}
+.t_roa{
+    text-align: center;
+    border-bottom: solid 1px #adb5bd;
+}

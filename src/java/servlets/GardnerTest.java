@@ -63,7 +63,7 @@ public class GardnerTest extends HttpServlet {
     public void init()throws ServletException{
         pp.setProperty(Profile.MAIN_HOST, "localhost");
         pp.setProperty(Profile.MAIN_PORT, "1099");
-       //pp.setProperty(Profile.MAIN,"main");
+        pp.setProperty(Profile.CONTAINER_NAME,"main");
         JadeGateway.init("sma.AgenteInterfaz",pp);
     }
 }

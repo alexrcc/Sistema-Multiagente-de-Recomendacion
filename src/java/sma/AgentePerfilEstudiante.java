@@ -15,15 +15,11 @@ import org.apache.jena.query.ResultSet;
 
 public class AgentePerfilEstudiante extends Agent{
     public static Mensaje mensaje;
-    static final String URL = "jdbc:virtuoso://localhost:1111";
-    static final String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
-    static final String rdf = "http://www.w3.org/2000/01/rdf-schema#";
-    static final String ns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-    static final String uid = "dba";
-    static final String pwd = "dba";
+
+    
     @Override
     protected void setup(){
-        System.out.println("Hola"+getAID().getName()+" soy Agente Estudiante");
+        System.out.println("Hola soy "+getAID().getName()+" y estoy listo");
          addBehaviour( new CyclicBehaviour() {
               @Override
             public void action() {
@@ -31,10 +27,7 @@ public class AgentePerfilEstudiante extends Agent{
                 if(msg != null){
                     try {
                         mensaje = (Mensaje)msg.getContentObject();
-                        System.out.println("Mensaje de:  " +
-                                myAgent.getAID().getLocalName() +
-                                " Argumentos = " + mensaje.getMensaje()
-                        );
+                        
                         if(mensaje.getMensaje().equals("EA"))
                             EstiloAprendizaje();
                         else if(mensaje.getMensaje().equals("IM"))
@@ -43,7 +36,6 @@ public class AgentePerfilEstudiante extends Agent{
                             GetEstilos();
                         else if(mensaje.getMensaje().equals("BI"))
                             GetInteligencias();
-                        System.out.println("la respuesta que voy a devolver a recomen: "+mensaje.getRespuesta());
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.PROPOSE);
                         reply.setContentObject(mensaje);
@@ -65,7 +57,6 @@ public class AgentePerfilEstudiante extends Agent{
     }
     private void GetInteligencias(){
         int [] inteligencias = new int[7];
-        System.out.println("RecuperarInteligencias");
         String user=mensaje.getUsuario();
         
         Virtuoso bdv = new Virtuoso();

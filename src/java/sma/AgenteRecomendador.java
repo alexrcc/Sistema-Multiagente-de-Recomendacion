@@ -11,14 +11,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
+import model.Virtuoso;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
-import virtuoso.jena.driver.VirtModel;
-
 
 
 public class AgenteRecomendador extends Agent{
@@ -35,7 +30,7 @@ public class AgenteRecomendador extends Agent{
     
     @Override
     protected void setup(){
-         System.out.println("Agente: "+getAID().getName()+"inicializado");
+         System.out.println("Agente: "+getAID().getName()+" inicializado");
          addBehaviour( new CyclicBehaviour() {
               @Override
             public void action() {
@@ -102,61 +97,28 @@ public class AgenteRecomendador extends Agent{
             
        });
     }
-    private boolean esConector(String Cadena){
-        String conectores [] ={"ante","bajo","cabe","con","de","desde","en",
-            "entre","hacia","hasta","para","por","segun","según","sin","so","sobre",
-            "tras","el","la","los","las","lo","al","del","un","uno","una","unos"};
-        for(String c:conectores){
-            if(c.equalsIgnoreCase(Cadena))
-                return true;
-        }
-        return false;
-    }
+
     private void BusquedaSimple() throws IOException{
         String keyaux = (String)mensaje.getArgumentos();
         String [] keywords = keyaux.split(" ");
-        VirtModel model = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
-        String stringQuery = "PREFIX smas: <"+smas+">"+
-                "PREFIX rn: <"+rn+">"+
-                "PREFIX adms: <"+adms+">"+
-                "PREFIX vcard: <"+vcard+">"+
-                
-                "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
-                "?LearningObject smas:isComprisedOf ?General."+
-                "?LearningObject smas:avatar ?avatar."+
-                "?General smas:hasIdentifier ?Identifier."+
-                 "?LearningObject smas:url_full ?url_full."+
-                "?Identifier smas:entry ?entry."+
-                "?General vcard:title ?title."+
-                "OPTIONAL{?General rn:keyword ?ky}."+
-                "OPTIONAL{?General smas:description ?desc}."+
-                "FILTER(regex(?title,'"+keyaux+"','i')||regex(?desc,'"+keyaux+"','i')";
-        for(String a:keywords)
-            if(!esConector(a)){
-                stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
-                stringQuery=stringQuery + "||regex(?ky,'"+a+"','i')";
-            }
-        stringQuery = stringQuery +").}";
-        System.out.println(stringQuery);
-        Query query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        
-        ResultSet results = qe.execSelect();
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("http://LearningObjects");
+        ResultSet results=bdv.BusquedaSimple(keyaux,keywords);
         ArrayList<String[]> al = new ArrayList<String[]>();
        while(results.hasNext()){
-           String [] res = new String[5];
+           String [] res = new String[4];
            QuerySolution qs = results.next();
            res[0]=qs.getResource("LearningObject").toString();
            res[1]=qs.get("title").toString();
            res[2]=qs.get("entry").toString();
            res[3]=qs.get("avatar").toString();
-           res[4]=qs.get("url_full").toString();
            al.add(res);
        }
      mensaje.setRespuesta(al);
+     bdv.desconectar();
 
     }
+    
     private void BusquedaAvanzada(int band) throws IOException{
         ArrayList<String []> aux =(ArrayList<String[]>) mensaje.getArgumentos();
         String [] keyaux = aux.get(0);
@@ -168,107 +130,36 @@ public class AgenteRecomendador extends Agent{
         }else{
             String [] keywords = keyaux[0].split(" ");
             String [] materias = aux.get(1);
+            for (String materia : materias) {
+                System.out.println(materia);
+            }
             int idioma = Integer.parseInt(keyaux[1]);
-            
             int estilo_dominante;
             if(keyaux.length>2){
                 estilo_dominante = Integer.parseInt(keyaux[2]);
                 mensaje.setMensaje("BA-R");
             }else{
                 int [] estilos ;
-                int [] inteligencias;
                 ArrayList<int[]> perfil;
                 perfil=(ArrayList<int[]>)mensaje.getRespuesta();
                 estilos=(int[])perfil.get(0);
                 estilo_dominante=Dominante(estilos);
             }          
-            VirtModel model = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
-            String stringQuery = "PREFIX smas: <"+smas+">"+
-                "PREFIX rn: <"+rn+">"+
-                "PREFIX adms: <"+adms+">"+
-                "PREFIX vcard: <"+vcard+">"+
-                
-                "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
-                "?LearningObject smas:isComprisedOf ?General."+
-                "?LearningObject smas:avatar ?avatar."+
-                "?LearningObject smas:url_full ?url_full."+
-                "?General smas:hasIdentifier ?Identifier."+
-                "?Identifier smas:entry ?entry.";
-                if(idioma!=0)
-                stringQuery=stringQuery + "OPTIONAL{?General vcard:language ?language}.";
-                else
-                stringQuery=stringQuery + "?General vcard:title ?title."+
-                "OPTIONAL{?General smas:description ?desc}."+
-                "OPTIONAL{?General rn:keyword ?ky}.";
-                    if(!keyaux[0].equals("")&&!keyaux[0].equals(" "))
-                        stringQuery=stringQuery + "FILTER((regex(?title,'"+keyaux[0]+"','i')||regex(?desc,'"+keyaux[0]+"','i')";
-                    else
-                        stringQuery=stringQuery + "FILTER((regex(?LearningObject,'LO')";
-        for(String a:keywords)
-            if(!esConector(a)){
-                stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
-                stringQuery=stringQuery + "||regex(?ky,'"+a+"','i')";
-            }
-         
-        if(estilo_dominante!=-1){
-            if(estilo_dominante==0){
-                stringQuery = stringQuery + ")&&(regex(?LearningObject,'Picture','i')"
-                        + "||regex(?LearningObject,'Video','i')"
-                        + "||regex(?LearningObject,'Swf','i')"
-                        + "||regex(?LearningObject,'Link','i')"
-                        + "||regex(?LearningObject,'Excursion','i')"
-                        + "||regex(?LearningObject,'Scormfile','i'))";
-            }
-            if(estilo_dominante==1)    
-                stringQuery =stringQuery + ")&&(regex(?LearningObject,'Audio','i')"
-                        + "||regex(?LearningObject,'Excursion','i')"
-                        + "||regex(?LearningObject,'Scormfile','i'))";
-            if(estilo_dominante==2)
-                stringQuery = stringQuery +")&&(regex(?LearningObject,'Officedoc','i')"
-                        + "||regex(?LearningObject,'Excursion','i')"
-                        + "||regex(?LearningObject,'Workshop','i')"
-                        + "||regex(?LearningObject,'EdiphyDocument','i'))";
-            if(estilo_dominante==3)
-                stringQuery = stringQuery +")&&(regex(?LearningObject,'Excursion','i')"
-                        + "||regex(?LearningObject,'Swf','i')"
-                        + "||regex(?LearningObject,'Link','i')"
-                        + "||regex(?LearningObject,'Webapp','i')"
-                        + "||regex(?LearningObject,'Zipfile','i'))";
-        }else{
-            stringQuery = stringQuery + ")";
-        }
-            if(idioma!=0){
-                if(idioma==1)
-                    stringQuery = stringQuery +"&&regex(?language,'es','i')";
-                else if(idioma==2)
-                    stringQuery = stringQuery +"&&regex(?language,'en','i')";
-            }
-            if(materias!=null){
-                stringQuery=stringQuery + "&&(regex(?ky,'"+materias[0]+"','i')";
-                for (int i = 1; i < materias.length; i++) {
-                    stringQuery=stringQuery + "||regex(?ky,'"+materias[1]+"','i')";
-                }
-                stringQuery=stringQuery + ")";
-            }
-        stringQuery = stringQuery +").}";
-        System.out.println(stringQuery);
-        Query query = QueryFactory.create(stringQuery);
-        // Ejecutar la consulta y obtener los resultados
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        
-        ResultSet results = qe.execSelect();
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("http://LearningObjects");
+        ResultSet results=bdv.BusquedaAvanzada(idioma,keyaux,keywords,materias,estilo_dominante);
         ArrayList<String[]> al = new ArrayList<String[]>();
        while(results.hasNext()){
-           String [] res = new String[5];
+           String [] res = new String[4];
            QuerySolution qs = results.next();
            res[0]=qs.getResource("LearningObject").toString();
            res[1]=qs.get("title").toString();
            res[2]=qs.get("entry").toString();
            res[3]=qs.get("avatar").toString();
-           res[4]=qs.get("url_full").toString();
            al.add(res);
        }
      mensaje.setRespuesta(al);
+     bdv.desconectar();
         
         }
     }
@@ -287,57 +178,23 @@ public class AgenteRecomendador extends Agent{
             inteligencias=(int[])perfil.get(0);
             if(inteligencias!=null){
                 inteligencia_dominante=Dominante(inteligencias);
-                System.out.println("ID"+inteligencia_dominante);
-                
                 inteligencia_faltante=Faltante(inteligencias);
-                System.out.println("IF"+inteligencia_faltante);
-                VirtModel model = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
-                String stringQuery = "PREFIX smas: <"+smas+">"+
-                    "PREFIX rn: <"+rn+">"+
-                    "PREFIX adms: <"+adms+">"+
-                    "PREFIX vcard: <"+vcard+">"+
-                    "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
-                    "?LearningObject smas:isComprisedOf ?General."+
-                    "?LearningObject smas:avatar ?avatar."+
-                    "?LearningObject smas:url_full ?url_full."+
-                    "?General smas:hasIdentifier ?Identifier."+
-                    "?General vcard:title ?title."+
-                    "?Identifier smas:entry ?entry."+
-                    "OPTIONAL{?General smas:description ?desc}."+
-                    "OPTIONAL{?General rn:keyword ?ky}.";
-//                verbal,lógico/matemática,visual/espacial,kinestesica/corporal,musical/rítmica,intrapersonal,interpersonal]
-                    if(inteligencia_dominante==0||inteligencia_faltante==0)
-                        stringQuery = stringQuery +"filter(regex(?LearningObject,'Officedoc','i')).";
-                    else if(inteligencia_dominante==1||inteligencia_faltante==1)
-                        stringQuery = stringQuery +"filter(regex(?ky,'maths','i')||regex(?ky,'matemáticas','i')||regex(?ky,'logical','i')).";
-                    else if(inteligencia_dominante==2||inteligencia_faltante==2)
-                        stringQuery = stringQuery +"filter(regex(?ky,'map','i')||regex(?ky,'mapa','i')||contains(?title,'mapa conceptual')||contains(?title,'conceptual map')).";
-                    else if(inteligencia_dominante==3||inteligencia_faltante==3)
-                        stringQuery = stringQuery +"filter(regex(?ky,'Game','i')||regex(?LearningObject,'Swf','i')).";
-                    else if(inteligencia_dominante==4||inteligencia_faltante==4)
-                        stringQuery = stringQuery +"filter(regex(?LearningObject,'Audio','i')||regex(?ky,'music','i')||regex(?ky,'Audio','i')||regex(?ky,'podcast','i')).";
-                    else if(inteligencia_dominante==5||inteligencia_faltante==5)
-                        stringQuery = stringQuery +"filter(regex(?ky,'intrapersonal','i')||regex(?ky,'intrapersonal','i')||regex(?desc,'intrapersonal','i')||regex(?title,'intrapersonal','i')).";
-                    else if(inteligencia_dominante==6||inteligencia_faltante==6)
-                        stringQuery = stringQuery +"filter(regex(?ky,'interpersonal','i')||regex(?ky,'interpersonal','i||regex(?desc,'interpersonal','i')||regex(?title,'interpersonal','i')).";
-                    stringQuery = stringQuery +"}ORDER BY RAND() LIMIT 9";
-                 
-                    Query query = QueryFactory.create(stringQuery);
-                    QueryExecution qe = QueryExecutionFactory.create(query, model);
-
-                    ResultSet results = qe.execSelect();
-                    ArrayList<String[]> al = new ArrayList<>();
-                   while(results.hasNext()){
-                       String [] res = new String[5];
-                       QuerySolution qs = results.next();
-                       res[0]=qs.getResource("LearningObject").toString();
-                       res[1]=qs.get("title").toString();
-                       res[2]=qs.get("entry").toString();
-                       res[3]=qs.get("avatar").toString();
-                       res[4]=qs.get("url_full").toString();
-                       al.add(res);
-                   }
-                 mensaje.setRespuesta(al);
+                Virtuoso bdv = new Virtuoso();
+                bdv.conectar("http://LearningObjects");
+                ResultSet results=bdv.BusquedaInteligencias(inteligencia_dominante,inteligencia_faltante);
+                ArrayList<String[]> al = new ArrayList<>();
+                while(results.hasNext()){
+                   String [] res = new String[5];
+                   QuerySolution qs = results.next();
+                   res[0]=qs.getResource("LearningObject").toString();
+                   res[1]=qs.get("title").toString();
+                   res[2]=qs.get("entry").toString();
+                   res[3]=qs.get("avatar").toString();
+                   res[4]=qs.get("url_full").toString();
+                   al.add(res);
+               }
+             mensaje.setRespuesta(al);
+             bdv.desconectar();
             }
         }
     }

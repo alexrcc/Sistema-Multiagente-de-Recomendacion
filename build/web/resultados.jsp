@@ -102,7 +102,7 @@
                 <h6 ><%out.print(aux[1]);%></h6>
                 </div>
                 <div class="boton">
-                    <a href="detalles.jsp?dir=<%out.print(aux[4]);%>&lo=<%out.print(aux[0].split("#")[1]);%>&url=<%out.print(aux[2]);%>" class="btn btn-success">Ver</a>
+                    <a href="detalles.jsp?lo=<%out.print(aux[0].split("#")[1]);%>&url=<%out.print(aux[2]);%>" class="btn btn-success">Ver</a>
                 </div>
             </div>
             

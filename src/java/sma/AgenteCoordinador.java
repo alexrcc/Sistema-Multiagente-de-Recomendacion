@@ -2,69 +2,45 @@ package sma;
 
 
 
-import controller.Mensaje;
-import jade.core.AID;
+
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
+
 import jade.core.behaviours.OneShotBehaviour;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.UnreadableException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import jade.wrapper.AgentContainer;
+import jade.wrapper.AgentController;
+
 
 public class AgenteCoordinador extends Agent {
     @Override
     protected void setup(){
          System.out.println("Hola"+getAID().getName()+"soy coordinador");
-         
-         addBehaviour( new CyclicBehaviour() {
-              @Override
-            public void action() {
-                ACLMessage msg = receive();
-                if(msg != null)
-                {
-                    try {
-                        Mensaje mensaje= (Mensaje)msg.getContentObject();
-                        System.out.println("Agent " +
-                                myAgent.getAID().getLocalName() +
-                                " Argumentos = " + mensaje.getArgumentos()
-                        );
-                        mensaje.setRespuesta("La respuesta del agente Coordinador");
-                        //ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
-                        ACLMessage reply = msg.createReply();
-                        reply.setPerformative(ACLMessage.PROPOSE);
-                        reply.setContentObject(mensaje);
-                        //msg.addReceiver(new AID("AgenteInterfaz", AID.ISLOCALNAME));
-                        //msg.setContentObject(mensaje);
-                        //msg.addReceiver(new AID("Agenteinterfaz", AID.ISLOCALNAME));
-                        //msg.setLanguage("English");
-                        //msg.setOntology("busqueda");
-                        //Mensaje mensaje = (Mensaje)args ;
-                        //msg.setContentObject(mensaje);
-                        send(reply);
-                       
-                      
-                    } catch (IOException ex) {
-                        System.out.println("error");
-                        Logger.getLogger(AgenteCoordinador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (UnreadableException ex) {
-                        System.out.println("error");
-                        Logger.getLogger(AgenteCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+          Object [] args = getArguments();
+
+        if(args != null && args.length==1){
+            addBehaviour( new OneShotBehaviour() {
+                @Override
+                public void action() {
+                    if(args[0].equals("IA")){
+                        try{
+                             AgentContainer c = getContainerController();
+                                AgentController controlador;
+                                controlador = c.createNewAgent("AgenteEstudiante",AgentePerfilEstudiante.class.getName(),null);
+                                controlador.start();
+                                controlador=c.createNewAgent("AgenteRecomendador",AgenteRecomendador.class.getName(),null);
+                                controlador.start();
+
+                                controlador=c.createNewAgent("AGR",AgenteGestorRepositorioVirtuoso.class.getName(),null);
+                                controlador.start();
+                                
+                        }catch(Exception e){
+                            System.out.println("No se pudo");
+                        }
                     }
-            
-            }
-                 else{
-                    block();
                 }
-         
-         }
-         
-       });
-       
+            });
         
         
-        
+        }  
     }
     
     @Override
@@ -72,6 +48,6 @@ public class AgenteCoordinador extends Agent {
         System.out.println("Finaliza el "
                 + this.getLocalName());
         System.out.println("---------");
-       // this.doDelete();
+        this.doDelete();
     }
 }

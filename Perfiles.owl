@@ -1152,6 +1152,24 @@ foaf:Person rdf:type owl:Class .
 
 
 
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#R-roa
+
+:R-roa rdf:type owl:NamedIndividual ,
+                rad:Repository ;
+       
+       :uri "https://roa.cedia.edu.ec" .
+
+
+
+###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#R-vish
+
+:R-vish rdf:type owl:NamedIndividual ,
+                 rad:Repository ;
+        
+        :uri "https://roa.cedia.edu.ec" .
+
+
+
 ###  http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#alexrcc17@gmail.com
 
 <http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#alexrcc17@gmail.com> rdf:type :studentProfile ,

@@ -483,6 +483,24 @@
     
 
 
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#interpersonal -->
+
+    <owl:DatatypeProperty rdf:about="&smas;interpersonal">
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#intrapersonal -->
+
+    <owl:DatatypeProperty rdf:about="&smas;intrapersonal">
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#kind -->
 
     <owl:DatatypeProperty rdf:about="&smas;kind">
@@ -496,6 +514,7 @@
 
     <owl:DatatypeProperty rdf:about="&smas;kinesthetic">
         <rdfs:domain rdf:resource="&smas;LearningStyle"/>
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
@@ -524,6 +543,15 @@
     <owl:DatatypeProperty rdf:about="&smas;location">
         <rdfs:domain rdf:resource="&smas;Technical"/>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#logicalmath -->
+
+    <owl:DatatypeProperty rdf:about="&smas;logicalmath">
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
@@ -560,6 +588,15 @@
     <owl:DatatypeProperty rdf:about="&smas;multipleIntelligences">
         <rdfs:domain rdf:resource="&smas;studentProfile"/>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#musical -->
+
+    <owl:DatatypeProperty rdf:about="&smas;musical">
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
@@ -707,10 +744,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#verbal -->
+
+    <owl:DatatypeProperty rdf:about="&smas;verbal">
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#visual -->
 
     <owl:DatatypeProperty rdf:about="&smas;visual">
         <rdfs:domain rdf:resource="&smas;LearningStyle"/>
+        <rdfs:domain rdf:resource="&smas;MultipleIntelligences"/>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
@@ -952,6 +999,14 @@
 
     <owl:Class rdf:about="&smas;Metametadata">
         <rdfs:subClassOf rdf:resource="&fabio;Metadata/Lom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#MultipleIntelligences -->
+
+    <owl:Class rdf:about="&smas;MultipleIntelligences">
+        <rdfs:subClassOf rdf:resource="&smas;studentProfile"/>
     </owl:Class>
     
 

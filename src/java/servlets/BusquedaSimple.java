@@ -35,7 +35,8 @@ public class BusquedaSimple extends HttpServlet{
             HttpSession respuesta = request.getSession(true);
             request.getSession().removeAttribute("listado");
             request.getSession().removeAttribute("ky");
-            String keywords = new String(request.getParameter("keywords").getBytes("ISO-8859-1"),"UTF-8"); 
+            String keywords = new String(request.getParameter("keywords")
+                    .getBytes("ISO-8859-1"),"UTF-8"); 
             System.out.println(keywords);
             Mensaje mensaje = new Mensaje();
             mensaje.setMensaje("BS");
@@ -57,7 +58,7 @@ public class BusquedaSimple extends HttpServlet{
     public void init()throws ServletException{
         pp.setProperty(Profile.MAIN_HOST, "localhost");
         pp.setProperty(Profile.MAIN_PORT, "1099");
-       //pp.setProperty(Profile.MAIN,"main");
+        pp.setProperty(Profile.CONTAINER_NAME,"main");
         JadeGateway.init("sma.AgenteInterfaz",pp);
     }
 

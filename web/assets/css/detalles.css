@@ -62,4 +62,13 @@ body h3{
     float: left;
     margin: 3px;
 }
+.enlace_oa{
+    width:800px;
+    padding: 15px 0;
+    background: #d9d9d9;
+    text-align: center;
+}
+.enlace a_oa{
+    color: #999;
+}
 

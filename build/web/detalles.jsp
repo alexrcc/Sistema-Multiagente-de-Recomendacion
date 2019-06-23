@@ -12,7 +12,7 @@
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
     String user = (String)session.getAttribute("user");
-    String url = request.getParameter("dir");
+    String url = null;
     String rep_url = request.getParameter("url");
     String learningObject  = request.getParameter("lo");
     String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
@@ -74,14 +74,17 @@
         <h3>  <%
                     String stringQuery = "PREFIX vcard:<"+vcard+"> "+
                     "PREFIX smas: <"+smas+"> "
-                    + "SELECT ?title  WHERE {?General vcard:title ?title. "
-                    + "FILTER(regex(?General,'"+smas+"Gen_"+learningObject+"')).}"; 
+                    + "SELECT ?title ?url_full  WHERE {?LearningObject smas:url_full ?url_full. "
+                            +"?LearningObject smas:isComprisedOf ?General."
+                            +"?General vcard:title ?title."
+                    + "FILTER(regex(?LearningObject,'"+smas+learningObject+"')).}"; 
                     Query query = QueryFactory.create(stringQuery);
                     QueryExecution qe = QueryExecutionFactory.create(query, model);
                     ResultSet results = qe.execSelect();
                     while(results.hasNext()){
                         QuerySolution qs = results.next();
                         out.print(qs.get("title"));
+                        url=qs.get("url_full").toString();
                     }
                     %></h3>
         <div class="objeto">
@@ -93,6 +96,9 @@
             %>">Ir a recurso</a>
             <%}else if(learningObject.split(":")[0].equals("Officedoc")){%>
             <iframe src="https://docs.google.com/viewer?url=https:<%out.print(url.split(":")[1]);%>&embedded=true" width="800" height="600" style="border: none;" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+            <%}else if(learningObject.split(":")[0].equals("Link")){%>
+                <iframe src="<%out.print(url);%>" width="800" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+                <div class="enlace_oa"><span><a href="<%out.print(url);%>" target="_blank"><%out.print(url);%></a></span></div>
             <%}else{%>
             <iframe src="<%out.print(url);%>" width="800" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
             <%}%>

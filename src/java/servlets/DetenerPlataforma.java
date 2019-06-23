@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlets;
 
 import controller.Mensaje;
+import jade.content.lang.Codec;
+import jade.content.lang.sl.SLCodec;
+import jade.content.onto.Ontology;
 import jade.core.Profile;
-import jade.core.ProfileImpl;
+import jade.domain.JADEAgentManagement.JADEManagementOntology;
+import jade.lang.acl.ACLMessage;
 import jade.util.leap.Properties;
-import jade.wrapper.AgentContainer;
-import jade.wrapper.AgentController;
 import jade.wrapper.gateway.JadeGateway;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,12 +18,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet(name = "IniciarAgentes", urlPatterns = {"/IniciarAgentes"})
-public class IniciarAgentes extends HttpServlet {
+/**
+ *
+ * @author alexr
+ */
+@WebServlet(name = "DetenerPlataforma", urlPatterns = {"/DetenerPlataforma"})
+public class DetenerPlataforma extends HttpServlet {
     private JadeGateway gateway = null;
     Properties pp = new Properties();
     
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,31 +35,31 @@ public class IniciarAgentes extends HttpServlet {
         doPost(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Agente que gestiona el SMA
-        AgentController agenteController;
-        //Entorno de ejecución, crea una instancia de ejecución
-        jade.core.Runtime runtime = jade.core.Runtime.instance();
-        //CreateMainContainer necesita un Profile que guarda las configuraciones necesarias para iniciar JADE
-         Profile profile = new ProfileImpl("localhost", 1099, null);
-         AgentContainer mainContainer = runtime.createMainContainer(profile);
-         
+         response.setContentType( "text/html; charset=iso-8859-1" );
         PrintWriter out = response.getWriter();
         Mensaje mensaje = new Mensaje();
-        mensaje.setMensaje("IA");
-        try{
-            JadeGateway.execute(mensaje); 
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        out.print(mensaje.getRespuesta());
+        mensaje.setMensaje("DP");
+            try{
+                JadeGateway.execute(mensaje); 
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            out.print(mensaje.getRespuesta());
     }
 
-    @Override
-     public void init()throws ServletException{
-
+     @Override
+    public void init()throws ServletException{
         pp.setProperty(Profile.MAIN_HOST, "localhost");
         pp.setProperty(Profile.MAIN_PORT, "1099");
         pp.setProperty(Profile.CONTAINER_NAME,"main");

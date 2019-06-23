@@ -14,12 +14,18 @@ public class Virtuoso {
     private static final String smas ="http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
     private static final String rdf = "http://www.w3.org/2000/01/rdf-schema#";
     private static final String ns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+    private static final String rn = "http://www.w3.org/ns/radion#";
+    private static final String adms = "http://www.w3.org/ns/adms#";
+    private static final String vcard = "http://www.w3.org/2006/vcard/ns#";
+    
     private static final String URL = "jdbc:virtuoso://localhost:1111";
     private static final String uid = "dba";
     private static final String pwd = "dba";
     VirtModel model=null;
+    String bd ;
     public void conectar(String bd){
-         model = VirtModel.openDatabaseModel("Perfiles", URL, uid, pwd);
+         model = VirtModel.openDatabaseModel(bd, URL, uid, pwd);
+         this.bd=bd;
     }
     public boolean SetEstilos(int [] array,String user){
         try{
@@ -136,7 +142,189 @@ public class Virtuoso {
         ResultSet results = qe.execSelect();
         return results;
     }
+    
+    public ResultSet BusquedaAvanzada(int idioma,  String [] keyaux,String [] keywords,
+            String [] materias,int estilo_dominante){
+            String stringQuery = "PREFIX smas: <"+smas+">"+
+                "PREFIX rn: <"+rn+">"+
+                "PREFIX adms: <"+adms+">"+
+                "PREFIX vcard: <"+vcard+">"+
+                
+                "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
+                "?LearningObject smas:isComprisedOf ?General."+
+                "?LearningObject smas:avatar ?avatar."+
+                "?LearningObject smas:url_full ?url_full."+
+                "?General smas:hasIdentifier ?Identifier."+
+                "?Identifier smas:entry ?entry.";
+                if(idioma!=0)
+                stringQuery=stringQuery + "OPTIONAL{?General vcard:language ?language}.";
+                else
+                stringQuery=stringQuery + "?General vcard:title ?title."+
+                "OPTIONAL{?General smas:description ?desc}."+
+                "OPTIONAL{?General rn:keyword ?ky}.";
+                    if(!keyaux[0].equals("")&&!keyaux[0].equals(" "))
+                        stringQuery=stringQuery + "FILTER((regex(?title,'"+keyaux[0]+"','i')||regex(?desc,'"+keyaux[0]+"','i')";
+                    else
+                        stringQuery=stringQuery + "FILTER((regex(?LearningObject,'LO')";
+        for(String a:keywords)
+            if(!esConector(a)){
+                stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
+                stringQuery=stringQuery + "||regex(?ky,'"+a+"','i')";
+            }
+         
+        if(estilo_dominante!=-1){
+            if(estilo_dominante==0){
+                stringQuery = stringQuery + ")&&(regex(?LearningObject,'Picture','i')"
+                        + "||regex(?LearningObject,'Video','i')"
+                        + "||regex(?LearningObject,'Swf','i')"
+                        + "||regex(?LearningObject,'Link','i')"
+                        + "||regex(?LearningObject,'Excursion','i')"
+                        + "||regex(?LearningObject,'Embed','i')"
+                        + "||regex(?LearningObject,'Scormfile','i'))";
+            }
+            if(estilo_dominante==1)    
+                stringQuery =stringQuery + ")&&(regex(?LearningObject,'Audio','i')"
+                        + "||regex(?LearningObject,'Embed','i')"
+                        + "||regex(?LearningObject,'Scormfile','i'))";
+            if(estilo_dominante==2)
+                stringQuery = stringQuery +")&&(regex(?LearningObject,'Officedoc','i')"
+                        + "||regex(?LearningObject,'Excursion','i')"
+                        + "||regex(?LearningObject,'Workshop','i')"
+                        + "||regex(?LearningObject,'EdiphyDocument','i'))";
+            if(estilo_dominante==3)
+                stringQuery = stringQuery +")&&(regex(?LearningObject,'Excursion','i')"
+                        + "||regex(?LearningObject,'Swf','i')"
+                        + "||regex(?LearningObject,'Link','i')"
+                        + "||regex(?LearningObject,'Webapp','i')"
+                        + "||regex(?LearningObject,'Embed','i')"
+                        + "||regex(?LearningObject,'Zipfile','i'))";
+        }else{
+            stringQuery = stringQuery + ")";
+        }
+            if(idioma!=0){
+                if(idioma==1)
+                    stringQuery = stringQuery +"&&regex(?language,'es','i')";
+                else if(idioma==2)
+                    stringQuery = stringQuery +"&&regex(?language,'en','i')";
+            }
+            if(materias!=null){
+                stringQuery=stringQuery + "&&(regex(?ky,'"+materias[0]+"','i')";
+                for (int i = 1; i < materias.length; i++) {
+                    stringQuery=stringQuery + "||regex(?ky,'"+materias[i]+"','i')";
+                }
+                stringQuery=stringQuery + ")";
+            }
+        stringQuery = stringQuery +").}";
+        System.out.println(stringQuery);
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+        return results;
+    }
+    public ResultSet BusquedaInteligencias(int inteligencia_dominante, int inteligencia_faltante){
+        String stringQuery = "PREFIX smas: <"+smas+">"+
+            "PREFIX rn: <"+rn+">"+
+            "PREFIX adms: <"+adms+">"+
+            "PREFIX vcard: <"+vcard+">"+
+            "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
+            "?LearningObject smas:isComprisedOf ?General."+
+            "?LearningObject smas:avatar ?avatar."+
+            "?LearningObject smas:url_full ?url_full."+
+            "?General smas:hasIdentifier ?Identifier."+
+            "?General vcard:title ?title."+
+            "?Identifier smas:entry ?entry."+
+            "OPTIONAL{?General smas:description ?desc}."+
+            "OPTIONAL{?General rn:keyword ?ky}.";
+//                verbal,lógico/matemática,visual/espacial,kinestesica/corporal,musical/rítmica,intrapersonal,interpersonal]
+            if(inteligencia_dominante==0||inteligencia_faltante==0)
+                stringQuery = stringQuery +"filter(regex(?LearningObject,'Officedoc','i')||regex(?ky,'verbal','i')).";
+            else if(inteligencia_dominante==1||inteligencia_faltante==1)
+                stringQuery = stringQuery +"filter(regex(?ky,'maths','i')||regex(?ky,'matemáticas','i')||regex(?title,'maths','i')||regex(?title,'matemáticas','i')||regex(?ky,'logical','i')||regex(?ky,'lógico','i')).";
+            else if(inteligencia_dominante==2||inteligencia_faltante==2)
+                stringQuery = stringQuery +"filter(regex(?LearningObject,'Picture','i')||regex(?LearningObject,'Video','i')||regex(?LearningObject,'Swf','i')||regex(?ky,'map','i')||regex(?ky,'mapa','i')||contains(?title,'mapa conceptual')||contains(?title,'conceptual map')).";
+            else if(inteligencia_dominante==3||inteligencia_faltante==3)
+                stringQuery = stringQuery +"filter(regex(?ky,'Game','i')||regex(?LearningObject,'Swf','i')||regex(?LearningObject,'Webapp','i')||regex(?ky,'juego','i')||regex(?ky,'experimento','i')||regex(?ky,'experiment','i')).";
+            else if(inteligencia_dominante==4||inteligencia_faltante==4)
+                stringQuery = stringQuery +"filter(regex(?LearningObject,'Audio','i')||regex(?ky,'music','i')||regex(?ky,'Audio','i')||regex(?ky,'podcast','i')||regex(?title,'audio','i')||regex(?title,'music','i')).";
+            else if(inteligencia_dominante==5||inteligencia_faltante==5)
+                stringQuery = stringQuery +"filter(regex(?ky,'intrapersonal','i')||regex(?desc,'intrapersonal','i')||regex(?title,'intrapersonal','i')||regex(?ky,'reflesive','i')).";
+            else if(inteligencia_dominante==6||inteligencia_faltante==6)
+                stringQuery = stringQuery +"filter(regex(?ky,'interpersonal','i')||regex(?desc,'interpersonal','i')||regex(?title,'interpersonal','i')).";
+            stringQuery = stringQuery +"}ORDER BY RAND() LIMIT 9";
+
+            Query query = QueryFactory.create(stringQuery);
+            QueryExecution qe = QueryExecutionFactory.create(query, model);
+
+            ResultSet results = qe.execSelect();
+            return results;
+    }
     public void desconectar(){
          model.close();
+    }
+    public ResultSet BusquedaSimple(String keyaux,String [] keywords){
+        String stringQuery = "PREFIX smas: <"+smas+">"+
+                "PREFIX rn: <"+rn+">"+
+                "PREFIX adms: <"+adms+">"+
+                "PREFIX vcard: <"+vcard+">"+
+                
+                "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
+                "?LearningObject smas:isComprisedOf ?General."+
+                "?LearningObject smas:avatar ?avatar."+
+                "?General smas:hasIdentifier ?Identifier."+
+                 "?LearningObject smas:url_full ?url_full."+
+                "?Identifier smas:entry ?entry."+
+                "?General vcard:title ?title."+
+                "OPTIONAL{?General rn:keyword ?ky}."+
+                "OPTIONAL{?General smas:description ?desc}."+
+                "FILTER(regex(?title,'"+keyaux+"','i')||regex(?desc,'"+keyaux+"','i')";
+        for(String a:keywords)
+            if(!esConector(a)){
+                stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
+                stringQuery=stringQuery + "||regex(?ky,'"+a+"','i')";
+           }
+        
+        stringQuery = stringQuery +").}";
+        System.out.println(stringQuery);
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        
+        ResultSet results = qe.execSelect();
+        return results;
+    }
+    public ResultSet GetRepositorio(){
+        String stringQuery = "PREFIX smas: <"+smas+">"+ "SELECT ?url WHERE {"
+                                + "?Repositorio smas:uri ?url.}";
+            Query query = QueryFactory.create(stringQuery);
+            QueryExecution qe = QueryExecutionFactory.create(query, model);
+            ResultSet results = qe.execSelect();
+            return results;
+    }
+    public boolean SetRepositorio(String url){
+         try{
+            VirtGraph set = new VirtGraph (URL, uid, pwd);
+          
+            String str = "INSERT INTO GRAPH <"+bd+"> { <"+smas+"REP-"+url+"> <"+ns+"type> <"+smas+"Repository>."
+                        + "<"+smas+"REP-"+url+"> <"+smas+"uri> '"+url+"'.}";
+            VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(str, set);
+            vur.exec();
+            
+             
+        }catch(Exception e){
+             return false;   
+        }
+            return true;
+    }
+
+    private boolean esConector(String Cadena){
+        String conectores [] ={"ante","bajo","cabe","con","de","desde","en",
+            "entre","hacia","hasta","para","por","segun","según","sin","so","sobre",
+            "tras","el","la","los","las","lo","al","del","un","uno","una","unos"};
+        for(String c:conectores){
+            if(c.equalsIgnoreCase(Cadena))
+                return true;
+        }
+        return false;
     }
 }

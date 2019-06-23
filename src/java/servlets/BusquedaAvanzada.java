@@ -55,6 +55,9 @@ public class BusquedaAvanzada extends HttpServlet{
          try{
             String keyword = new String(request.getParameter("keyword").getBytes("ISO-8859-1"),"UTF-8"); 
             String checkboxValues  []= request.getParameterValues("disciplina");
+             for (String checkboxValue : checkboxValues) {
+                 System.out.println(checkboxValue);
+             }
             String idioma = request.getParameter("idioma");
             String check = request.getParameter("checkbox");
             ArrayList<String []> parametros = new ArrayList<>();
@@ -94,7 +97,7 @@ public class BusquedaAvanzada extends HttpServlet{
     public void init()throws ServletException{
         pp.setProperty(Profile.MAIN_HOST, "localhost");
         pp.setProperty(Profile.MAIN_PORT, "1099");
-       //pp.setProperty(Profile.MAIN,"main");
+        pp.setProperty(Profile.CONTAINER_NAME,"main");
         JadeGateway.init("sma.AgenteInterfaz",pp);
     }
 

@@ -1,21 +1,29 @@
 package sma;
 
 //Agentes
+import controller.Mensaje;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
+import jade.core.behaviours.CyclicBehaviour;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.UnreadableException;
 import jade.wrapper.AgentContainer;
 import java.io.BufferedInputStream;
 
 //Externos
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import model.Virtuoso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -31,8 +39,6 @@ import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.ObjectProperty;
 import org.apache.jena.ontology.OntClass;
 import org.json.JSONException;
-import static sma.AgentePerfilEstudiante.URL;
-import static sma.AgentePerfilEstudiante.smas;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtModel;
 import virtuoso.jena.driver.VirtuosoUpdateFactory;
@@ -67,48 +73,87 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
     private static final String ebu = "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#" ;
     private static final String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
     private static String url_base;
+    private Mensaje mensaje;
     
     
     @Override
     protected void setup(){
-        System.out.println("Agente: "+getAID().getName()+"inicializado");
-        Object [] args = getArguments();
-
-        if(args != null && args.length>0){
+        System.out.println("Agente: "+getAID().getName()+" inicializado");
+         addBehaviour( new CyclicBehaviour() {
+              @Override
+            public void action() {
+                ACLMessage msg = receive();
+                if(msg != null){
+                    try {
+                        mensaje = (Mensaje)msg.getContentObject();
+                        System.out.println("Mensaje de:  " +
+                                myAgent.getAID().getLocalName() +
+                                " Argumentos = " + mensaje.getMensaje()
+                        );
+                        String opc = mensaje.getMensaje();
+                        if(opc.equals("AG")&&mensaje.getArgumentos()!=null){
+                            System.out.println (new File (".").getAbsolutePath ());
+                            
+                            set  = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
+                            addBehaviour(new ComportamientoAGR(mensaje.getArgumentos()));
+                        }
+                        
+                        
+                        ACLMessage reply = msg.createReply();
+                        reply.setPerformative(ACLMessage.PROPOSE);
+                        reply.setContentObject(mensaje);
+                        send(reply);
+                        
+                        
+                        
+                    } catch (UnreadableException ex) {
+                        System.out.println("Error agente Recomendador: "+ ex);
+                        Logger.getLogger(AgenteCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(AgenteRecomendador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }else{
+                block();
+                }
+        } 
             
-            System.out.println (new File (".").getAbsolutePath ());
-            System.out.println("Argumentos: "+args[0]+args[1]);
-            model.read("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//OntologiaBase.owl","RDF/XML");
-
-            set  = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
-            addBehaviour(new ComportamientoAGR(args));
-        }else{
-            System.out.println("No se enviaron argumentos");
-            doDelete();
-        }
+       });
+        
+           
+            
+        
     }
 
 
     private class ComportamientoAGR extends Behaviour{
-        private final Object [] args;
-        public ComportamientoAGR( Object argumentos[]){
+        private final Object  args;
+        public ComportamientoAGR( Object argumentos){
             args = argumentos; 
         }
         @Override
         public void action() {
-            for(int z=0;z<args.length;z++){
-                try{
-                String url_base=args[z].toString();
+            
+                
+                String url_base=args.toString();
                 String url = url_base+"/apis/search?type=Resource&page=";
-                total_pages = GetPages(url+"1");
+                try{
+                    total_pages = GetPages(url+"1");
+                }catch(Exception e){
+                    System.out.println("Ha ocurrido una excepción al conectarse"+ e);
+                    total_pages=0;
+                }
                 //System.out.println(total_pages);
                 for (int i = 1; total_pages !=0 && i <= total_pages; i++) {
+                    
+                    model.read("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//OntologiaBase.owl","RDF/XML");
                     System.out.println("-----------------------PÁGINA ACTUAL "+i+"--------------------------");
+                    try{
                     JSONObject learning_objects = GetLernaingObject(url+i);
                     JSONArray results = learning_objects.getJSONArray("results");
                     //System.out.println(results.length());
 
                     for (int j = 0; j <results.length() ; j++) { //results.length()
+                        try{
                         JSONObject aux = results.getJSONObject(j);
                         System.out.println(aux.getString("id"));
                         String avatar;
@@ -130,35 +175,42 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
                         String id = aux.getString("id");
                         String dir = aux.getString("url");
                         String in ="";
-                        Actualizar(avatar, id,url_full);
-//                        if(type.compareTo("Excursion")==0){
-//                            String[] a = id.split(":");
-//                            int valor = Integer.parseInt(a[1].split("@")[0]);
-//                           in = (GetMetadata(url_base+"/excursions/",valor,id,avatar,url_full));
-//                        }else{
-//                            int v_aux = GetCodeMetadata(dir);
-//                            System.out.println(v_aux);
-//                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id,avatar,url_full);
-//                        }
+                       // Actualizar(avatar, id,url_full);
+                        if(type.compareTo("Excursion")==0){
+                            String[] a = id.split(":");
+                            int valor = Integer.parseInt(a[1].split("@")[0]);
+                           in = (GetMetadata(url_base+"/excursions/",valor,id,avatar,url_full));
+                        }else{
+                            int v_aux = GetCodeMetadata(dir);
+                            System.out.println(v_aux);
+                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id,avatar,url_full);
+                        }
+                        }catch(Exception e){
+                            System.out.println("Ocurrio una excepción en la pagina: "+ i+"Objeto: "+j+"\n Excep: "+e);
+                        }
+                    }
+                    set.add(model);
+                    }catch(Exception e){
+                        System.out.println("Ocurrio una excepción en la página: "+ i);
                     }
                 }
+                Virtuoso bdv = new Virtuoso();
+                bdv.conectar("http://LearningObjects");
+                bdv.SetRepositorio(mensaje.getArgumentos().toString());
                 
-                }catch(Exception e){
-                       System.out.println(e);
-                }
             
+            
+            try{
+            File file = new File("Individuos.owl");
+           
+                if (!file.exists()){
+                     file.createNewFile();
+                }
+                model.write(new PrintWriter(file));
+                
+            }catch(Exception e){
+                System.out.println("Error al guardar el modelo: "+e);
             }
-//            try{
-//            File file = new File("Individuos.owl");
-//           
-//                if (!file.exists()){
-//                     file.createNewFile();
-//                }
-//                model.write(new PrintWriter(file));
-//                set.add(model);
-//            }catch(Exception e){
-//                System.out.println("Error al guardar el modelo: "+e);
-//            }
         }
 
         @Override
@@ -166,7 +218,7 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
 
             System.out.println("Finaliza el " + this.getBehaviourName());
             System.out.println("--------------------------------------------------");
-            doDelete();
+            //doDelete();
 
             return true;
         }
