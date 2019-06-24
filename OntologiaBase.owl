@@ -377,6 +377,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#dateupdated -->
+
+    <owl:DatatypeProperty rdf:about="&smas;dateupdated">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain rdf:resource="&rad;Repository"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#description -->
 
     <owl:DatatypeProperty rdf:about="&smas;description">

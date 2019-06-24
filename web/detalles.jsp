@@ -52,6 +52,7 @@
               if(e_sesion!=null)
                     out.print("<script>$(document).ready(function(){$(\"#iniciarSesion\").modal(\"show\");});</script>");
             %>
+            <%if(user!=null){%>
             <script>
                 $(document).ready(function() {
                                 // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -63,7 +64,8 @@
                                 });
                        
                 });
-        </script>
+            </script>
+        <%}%>
         </head>
    
         <jsp:include page="vistas/nav.jsp"/>

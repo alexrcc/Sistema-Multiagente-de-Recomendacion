@@ -10,7 +10,7 @@
       <div class="modal-content">      
         <form action="Sesion" method="POST" class="needs-validation" novalidate="">
           <div class="modal-header">
-            <h5 class="modal-title" id="_registroModalLongTitle">Inicias Sesión</h5>
+            <h5 class="modal-title" id="_registroModalLongTitle">Iniciar Sesión</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="_btnCerrarModal">
               <span aria-hidden="true">&times;</span>
             </button>

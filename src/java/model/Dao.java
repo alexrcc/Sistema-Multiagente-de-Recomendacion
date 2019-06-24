@@ -83,4 +83,11 @@ public class Dao {
         }
         return false;
     }
+     
+    public boolean isAdminExists(String user, String password) throws SQLException{
+        String sql = "SELECT * FROM admin WHERE user='"+user+"' AND password='"+password+"'";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+    }
 }

@@ -3,9 +3,15 @@
 <%@page import="org.apache.jena.query.ResultSet"%>
 <%@page import="model.Virtuoso"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-  <%Virtuoso bdv = new Virtuoso();
+  <%  String vadmin = (String)session.getAttribute("admuser");
+      if(vadmin==null){
+        response.sendRedirect("vistas/sesionadmin.jsp");
+      }
+        Virtuoso bdv = new Virtuoso();
         bdv.conectar("http://LearningObjects");
-      ResultSet results=bdv.GetRepositorio();%>
+        ResultSet results=bdv.GetRepositorio();
+      
+  %>
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +37,7 @@
                     //Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
                      $.post('DetenerPlataforma', {
                      }, function(responseText) {
-                            $('#inicializar').html(responseText);
+                            $('#respuestas').html(responseText);
                      }); 
                 }
         </script>
@@ -62,7 +68,7 @@
         </div>
             
             <div class="cont_resp"><span>Respuestas</span><div id ="respuestas"></div></div>
-            <div class="sesion"><a href="">Cerrar Sesión</a></div>
+            <div class="sesion"><a href="SalirAdm">Cerrar Sesión</a></div>
 
         </div>
     </body>

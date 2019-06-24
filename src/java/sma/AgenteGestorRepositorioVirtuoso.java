@@ -5,6 +5,7 @@ import controller.Mensaje;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import jade.wrapper.AgentContainer;
@@ -38,6 +39,8 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.ObjectProperty;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
 import org.json.JSONException;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtModel;
@@ -79,6 +82,86 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
     @Override
     protected void setup(){
         System.out.println("Agente: "+getAID().getName()+" inicializado");
+         addBehaviour(new TickerBehaviour(this,604800000){
+
+            @Override
+            protected void onTick() {
+                System.out.println("INICIAR EL TICK-----------");
+                set  = VirtModel.openDatabaseModel("http://LearningObjects", URL, uid, pwd);
+                Virtuoso bdv = new Virtuoso();
+                bdv.conectar("http://LearningObjects");
+                ResultSet resultsrp=bdv.GetRepositorio();
+                while(resultsrp.hasNext()){
+          
+                QuerySolution qs = resultsrp.next();
+                String url_base=qs.getLiteral("url").getString();
+                String date = qs.getLiteral("dateupdated").getString();
+                String fecha = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0];
+                String url = url_base+"/apis/search?type=Resource&startDate="+fecha+"&page=";
+                try{
+                    total_pages = GetPages(url+"1");
+                }catch(Exception e){
+                    System.out.println("Ha ocurrido una excepción al conectarse"+ e);
+                    total_pages=0;
+                }
+                System.out.println("TOTAL P:"+total_pages);
+                for (int i = total_pages; total_pages !=0 && i <= total_pages; i++) {
+                    
+                    model.read("C:\\Users\\alexr\\Documents\\NetBeansProjects\\sma_web//OntologiaBase.owl","RDF/XML");
+                    System.out.println("-----------------------PÁGINA ACTUAL "+i+"--------------------------");
+                    try{
+                    JSONObject learning_objects = GetLernaingObject(url+i);
+                    JSONArray results = learning_objects.getJSONArray("results");
+                    //System.out.println(results.length());
+
+                    for (int j = 0; j <results.length() ; j++) { //results.length()
+                        try{
+                        JSONObject aux = results.getJSONObject(j);
+                        System.out.println(aux.getString("id"));
+                        String avatar;
+                        String url_full;
+                        if(aux.has("avatar_url"))
+                            avatar = aux.getString("avatar_url");
+                        else
+                            avatar = "null";
+                        if(aux.has("url_full"))
+                            url_full = aux.getString("url_full");
+                        else if(aux.has("file_url"))
+                            url_full = aux.getString("file_url");
+                        else if(aux.has("url"))
+                            url_full=aux.getString("url");
+                        else
+                            url_full="null";
+                        
+                        String type = aux.getString("type");
+                        String id = aux.getString("id");
+                        String dir = aux.getString("url");
+                        String in ="";
+                       // Actualizar(avatar, id,url_full);
+                        if(type.compareTo("Excursion")==0){
+                            String[] a = id.split(":");
+                            int valor = Integer.parseInt(a[1].split("@")[0]);
+                           in = (GetMetadata(url_base+"/excursions/",valor,id,avatar,url_full));
+                        }else{
+                            int v_aux = GetCodeMetadata(dir);
+                            System.out.println(v_aux);
+                            in = GetMetadata(url_base+"/activity_objects/",v_aux,id,avatar,url_full);
+                        }
+                        }catch(Exception e){
+                            System.out.println("Ocurrio una excepción en la pagina: "+ i+"Objeto: "+j+"\n Excep: "+e);
+                        }
+                    }
+                    set.add(model);
+                    }catch(Exception e){
+                        System.out.println("Ocurrio una excepción en la página: "+ i);
+                    }
+                }
+        bdv.UpdateDate(url_base);
+       }
+             
+            }
+             
+         });
          addBehaviour( new CyclicBehaviour() {
               @Override
             public void action() {
@@ -123,7 +206,7 @@ public class AgenteGestorRepositorioVirtuoso extends Agent{
             
         
     }
-
+   
 
     private class ComportamientoAGR extends Behaviour{
         private final Object  args;

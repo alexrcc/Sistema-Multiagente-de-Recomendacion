@@ -1,4 +1,7 @@
 package model;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -17,6 +20,8 @@ public class Virtuoso {
     private static final String rn = "http://www.w3.org/ns/radion#";
     private static final String adms = "http://www.w3.org/ns/adms#";
     private static final String vcard = "http://www.w3.org/2006/vcard/ns#";
+    private static final String rdfns = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>";
+    private static final String owl = "http://www.w3.org/2002/07/owl#";
     
     private static final String URL = "jdbc:virtuoso://localhost:1111";
     private static final String uid = "dba";
@@ -294,8 +299,9 @@ public class Virtuoso {
         return results;
     }
     public ResultSet GetRepositorio(){
-        String stringQuery = "PREFIX smas: <"+smas+">"+ "SELECT ?url WHERE {"
-                                + "?Repositorio smas:uri ?url.}";
+        String stringQuery = "PREFIX smas: <"+smas+">"+ "SELECT ?url ?dateupdated WHERE {"
+                                + "?Repositorio smas:uri ?url."
+                                + "?Repositorio smas:dateupdated ?dateupdated}";
             Query query = QueryFactory.create(stringQuery);
             QueryExecution qe = QueryExecutionFactory.create(query, model);
             ResultSet results = qe.execSelect();
@@ -303,15 +309,51 @@ public class Virtuoso {
     }
     public boolean SetRepositorio(String url){
          try{
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            System.out.println("Fecha: "+dateFormat.format(date));
             VirtGraph set = new VirtGraph (URL, uid, pwd);
           
             String str = "INSERT INTO GRAPH <"+bd+"> { <"+smas+"REP-"+url+"> <"+ns+"type> <"+smas+"Repository>."
-                        + "<"+smas+"REP-"+url+"> <"+smas+"uri> '"+url+"'.}";
+                            + "<"+smas+"REP-"+url+"> <"+smas+"uri> '"+url+"'."   
+                            + "<"+smas+"REP-"+url+"> <"+smas+"dateupdated> '"+dateFormat.format(date)+"'.}";
             VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(str, set);
             vur.exec();
             
              
         }catch(Exception e){
+             System.out.println("Excepción: "+e);
+             return false;   
+        }
+            return true;
+    }
+    
+     public boolean UpdateDate(String url){
+         try{
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            
+            VirtGraph set = new VirtGraph (URL, uid, pwd);
+            
+            String stringQuery ="PREFIX smas: <"+smas+">" +
+                "DELETE FROM GRAPH <"+bd+"> " +
+                " { ?individual ?p ?v }" +
+                "WHERE" +
+                " { ?individual ?p ?v." +
+                "    ?individual smas:dateupdated ?v." +
+                "   FILTER regex( ?individual,'REP-"+url+"')" +
+                "   ?individual ?p ?v" +
+                " }";
+                VirtuosoUpdateRequest vur = VirtuosoUpdateFactory.create(stringQuery, set);
+                vur.exec();
+                
+                String str = "INSERT INTO GRAPH <"+bd+"> { "+"<"+smas+"REP-"+url+"> <"+smas+"dateupdated> '"+(dateFormat.format(date))+"'.}";
+                vur = VirtuosoUpdateFactory.create(str, set);
+                vur.exec();
+            
+             
+        }catch(Exception e){
+             System.out.println("Excepción: "+e);
              return false;   
         }
             return true;
