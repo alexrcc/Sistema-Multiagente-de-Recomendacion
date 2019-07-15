@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.IdTokenVerifierAndParser;
 import model.Dao;
+import model.Virtuoso;
+import org.apache.jena.query.ResultSet;
 
 @WebServlet(name = "RegistrarGoogle", urlPatterns = {"/RegistrarGoogle"})
 public class RegistrarGoogle extends HttpServlet {

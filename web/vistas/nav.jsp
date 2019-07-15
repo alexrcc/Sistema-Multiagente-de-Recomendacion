@@ -21,16 +21,18 @@
  	<nav>
             <ul>
 		<li><a href="/sma_web">Inicio</a></li>
-		<li><a href="#">Ayuda</a></li>
+		
 		<li class="submenu">
                     <a href="#">Repositorios<span class="fas fa-sort-down" style="float:inline-end; margin-left: 5px; font-size: 1rem;"></span></a>
 			<ul class="children">
-                        	<li><a href="#">ROA Cedia</a></li>
-				<li><a href="#">ViSH</a></li>
+                            <li><a href="https://roa.cedia.edu.ec/" target="_blank">ROA Cedia</a></li>
+				<li><a href="http://vishub.org/" target="_blank">ViSH</a></li>
+                                <li><a href="http://vishub.org/" target="_blank">EducaInternet</a></li>
 			</ul>
 		</li>
+                <li><a href="busqueda_avanzada.jsp">Búsqueda avanzada</a></li>  
 		<li><a href="#">Acerca de</a></li>  
-                <li><a href="#">Administrador</a></li>
+                <li><a href="#">Ayuda</a></li>
                 <% if(user==null){
                     out.print("<li class=\"ingreso\"><a href=\"#\" id=\"sesion\" data-toggle=\"modal\" data-target=\"#iniciarSesion\" >Iniciar sesi&oacute;n</a></li>");
                     out.print("<li class=\"ingreso\"><a href=\"#\" id=\"registro\" data-toggle=\"modal\" data-target=\"#registroModal\">Regístrate</a></li>");

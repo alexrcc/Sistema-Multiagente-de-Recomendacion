@@ -22,7 +22,8 @@
     boolean band = true;
     
     if(learningObject!=null){
-        String URL = "jdbc:virtuoso://localhost:1111";
+        //String URL = "jdbc:virtuoso://localhost:1111";
+        String URL = "jdbc:virtuoso://104.210.144.119:1111";
         String uid = "dba";
         String pwd = "dba";
         try{
@@ -97,12 +98,14 @@
                 out.print(dir);
             %>">Ir a recurso</a>
             <%}else if(learningObject.split(":")[0].equals("Officedoc")){%>
-            <iframe src="https://docs.google.com/viewer?url=https:<%out.print(url.split(":")[1]);%>&embedded=true" width="800" height="600" style="border: none;" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+            <iframe src="https://docs.google.com/viewer?url=https:<%out.print(url.split(":")[1]);%>&embedded=true" width="100%" height="600" style="border: none;" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
             <%}else if(learningObject.split(":")[0].equals("Link")){%>
-                <iframe src="<%out.print(url);%>" width="800" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+                <iframe src="<%out.print(url);%>" width="100%" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
                 <div class="enlace_oa"><span><a href="<%out.print(url);%>" target="_blank"><%out.print(url);%></a></span></div>
+            <%}else if(learningObject.split(":")[0].equals("Video")){%>
+                <iframe src="<%String dir = url.replace(".mov",".mp4");out.print(dir);%>" width="100%" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
             <%}else{%>
-            <iframe src="<%out.print(url);%>" width="800" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
+            <iframe src="<%out.print(url);%>" width="100%" height="600" style="" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
             <%}%>
         </div>
         <div class="metadatos">

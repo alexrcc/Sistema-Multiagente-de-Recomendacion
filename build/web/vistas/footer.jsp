@@ -32,12 +32,14 @@
         <h6 class="text-uppercase font-weight-bold">Repositorios</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#fba707;">
         <p>
-          <a style="color:#fba707;" href="#!">ROA Cedia</a>
+          <a style="color:#fba707;" href="https://roa.cedia.edu.ec" target="_blank">ROA Cedia</a>
         </p>
         <p>
-          <a style="color:#fba707;" href="#!">Vish</a>
+          <a style="color:#fba707;" href="http://vishub.org" target="_blank">Vish</a>
         </p>
-       
+        <p>
+          <a style="color:#fba707;" href="http://educainternet.es" target="_blank">EducaInternet</a>
+        </p>
 
       </div>
       <!-- Grid column -->
@@ -49,7 +51,7 @@
         <h6 class="text-uppercase font-weight-bold">Navegar</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#fba707;">
         <p>
-          <a style="color:#fba707;" href="#!">Inicio</a>
+          <a style="color:#fba707;" href="/">Inicio</a>
         </p>
         <p>
           <a style="color:#fba707;" href="#!">Ayuda</a>
@@ -58,7 +60,7 @@
           <a style="color:#fba707;" href="#!">Acerca de</a>
         </p>
         <p>
-          <a style="color:#fba707;" href="#!">Búsqueda</a>
+          <a style="color:#fba707;" href="busqueda_avanzada.jsp">Búsqueda</a>
         </p>
 
       </div>
@@ -74,8 +76,6 @@
           <i class="fas fa-home mr-3"></i>Loja - Ecuador</p>
         <p>
           <i class="fas fa-envelope mr-3"></i>arcondoyc@unl.edu.ec</p>
-        <p>
-          <i class="fas fa-phone mr-3"></i> +72103343</p>
             
 
       </div>
@@ -89,7 +89,7 @@
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3" style="background-color:rgba(0,0,0,.2);">© 2019 Copyright:
-    <a href="index.jsp" style="color:grey;"> SMAWeb.com</a>
+    <a href="index.jsp" style="color:grey;"> smaweb.azurewebsites.net</a>
   </div>
   <!-- Copyright -->
 

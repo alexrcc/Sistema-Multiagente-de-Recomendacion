@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Virtuoso;
+import org.apache.jena.query.ResultSet;
 
 
 /**
@@ -61,6 +63,8 @@ public class VarkTest extends HttpServlet {
             }
             if(mensaje.getRespuesta().toString().compareToIgnoreCase("Perfil Guardado Correctamente")!=0){
                 session.setAttribute("errors",mensaje.getRespuesta());
+                session.setAttribute("intelligentProfile",true);
+                                    
                 response.sendRedirect("testea.jsp");
             }else{
                 session.setAttribute("msgAP",mensaje.getRespuesta());

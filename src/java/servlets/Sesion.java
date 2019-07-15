@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Dao;
+import model.Virtuoso;
+import org.apache.jena.query.ResultSet;
 
 @WebServlet(name = "Sesion", urlPatterns = {"/Sesion"})
 public class Sesion extends HttpServlet {
@@ -49,7 +51,9 @@ public class Sesion extends HttpServlet {
                                         respuesta.setAttribute("serror", "Para esta dirección debe ingresar con Google");
                                     else{   
                                     respuesta.setAttribute("user",emailUsuario);
-                                    respuesta.setAttribute("name",d.getNombre(emailUsuario));}
+                                    respuesta.setAttribute("name",d.getNombre(emailUsuario));
+                                 
+                                    }
                                 }
                                 else{
                                     respuesta.setAttribute("serror", "La contraseña es incorrecta");

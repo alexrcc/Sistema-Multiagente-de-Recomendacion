@@ -41,12 +41,19 @@ public class AgentePerfilEstudiante extends Agent{
                         reply.setContentObject(mensaje);
                         send(reply);
                         
-                    } catch (UnreadableException ex) {
+                    } catch (Exception ex) {
                         System.out.println("Error agente Estudiante: "+ ex);
                         Logger.getLogger(AgenteCoordinador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        System.out.println("Error agente Estudiante: "+ ex);
-                        Logger.getLogger(AgentePerfilEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                        ACLMessage reply = msg.createReply();
+                        reply.setPerformative(ACLMessage.PROPOSE);
+                        mensaje.setMensaje("Error");
+                        mensaje.setRespuesta("Error del Agente Estudiante: "+ ex);
+                        try {
+                            reply.setContentObject(mensaje);
+                        } catch (IOException ex1) {
+                            Logger.getLogger(AgentePerfilEstudiante.class.getName()).log(Level.SEVERE, null, ex1);
+                        }
+                        send(reply);
                     }
             }else{
                 block();

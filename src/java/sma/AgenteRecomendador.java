@@ -14,11 +14,11 @@ import java.util.logging.Logger;
 import model.Virtuoso;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import static sma.AgentePerfilEstudiante.mensaje;
 
 
 public class AgenteRecomendador extends Agent{
     Mensaje mensaje;
-    static final String URL = "jdbc:virtuoso://localhost:1111";
     static final String smas = "http://www.semanticweb.org/alexr/ontologies/2018/10/OntologiaTesis#";
     static final String rdf = "http://www.w3.org/2000/01/rdf-schema#";
     static final String ns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -77,18 +77,30 @@ public class AgenteRecomendador extends Agent{
                             System.out.println("Entra a Resp BA-R");
                             ACLMessage reply = new ACLMessage(ACLMessage.REQUEST);
                             reply.setPerformative(ACLMessage.PROPOSE);
-                            System.out.println(mensaje.getRemitente().getName());
                             reply.addReceiver((mensaje.getRemitente()));
                             reply.setContentObject(mensaje);
                             send(reply);
-                            System.out.println("envia-msg");
+                        }else if(mensaje.getMensaje().equals("Error")){
+                            System.out.println("Entra a Error de Agente Estudiante");
+                            ACLMessage reply = new ACLMessage(ACLMessage.REQUEST);
+                            reply.setPerformative(ACLMessage.PROPOSE);
+                            reply.addReceiver((mensaje.getRemitente()));
+                            reply.setContentObject(mensaje);
+                            send(reply);
                         }
                         
-                    } catch (UnreadableException ex) {
+                    } catch (Exception ex) {
                         System.out.println("Error agente Recomendador: "+ ex);
-                        Logger.getLogger(AgenteCoordinador.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(AgenteRecomendador.class.getName()).log(Level.SEVERE, null, ex);
+                        ACLMessage reply = msg.createReply();
+                        reply.setPerformative(ACLMessage.PROPOSE);
+                        mensaje.setMensaje("Error");
+                        mensaje.setRespuesta("Error del Agente Recomendador: "+ ex);
+                        try {
+                            reply.setContentObject(mensaje);
+                        } catch (IOException ex1) {
+                            System.out.println("Error a enexar el mensaje de respuesta ACL en AR");
+                        }
+                        send(reply);
                     }
             }else{
                 block();
@@ -130,6 +142,7 @@ public class AgenteRecomendador extends Agent{
         }else{
             String [] keywords = keyaux[0].split(" ");
             String [] materias = aux.get(1);
+            if (materias!=null)
             for (String materia : materias) {
                 System.out.println(materia);
             }

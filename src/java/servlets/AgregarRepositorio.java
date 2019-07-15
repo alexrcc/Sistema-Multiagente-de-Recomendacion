@@ -29,14 +29,17 @@ public class AgregarRepositorio extends HttpServlet {
             throws ServletException, IOException {
         String url = new String(request.getParameter("url")
                     .getBytes("ISO-8859-1"),"UTF-8"); 
+        response.setContentType( "text/html; charset=iso-8859-1" );
+        PrintWriter out = response.getWriter();
         Mensaje mensaje = new Mensaje();
         mensaje.setMensaje("AG");
         mensaje.setArgumentos(url);
             try{
                 JadeGateway.execute(mensaje); 
             }catch(Exception e){
-                e.printStackTrace();
+                mensaje.setRespuesta("Ocurrió un error al ejecutar los agentes");
             }
+        out.print(mensaje.getRespuesta());
     }
 
       @Override

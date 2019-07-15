@@ -22,8 +22,8 @@ public class Virtuoso {
     private static final String vcard = "http://www.w3.org/2006/vcard/ns#";
     private static final String rdfns = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>";
     private static final String owl = "http://www.w3.org/2002/07/owl#";
-    
-    private static final String URL = "jdbc:virtuoso://localhost:1111";
+    //private static final String URL = "jdbc:virtuoso://localhost:1111";
+    private static final String URL = "jdbc:virtuoso://104.210.144.119:1111";
     private static final String uid = "dba";
     private static final String pwd = "dba";
     VirtModel model=null;
@@ -267,7 +267,30 @@ public class Virtuoso {
     public void desconectar(){
          model.close();
     }
-    public ResultSet BusquedaSimple(String keyaux,String [] keywords){
+    public ResultSet BusquedaInicio(){
+        String stringQuery = "PREFIX smas: <"+smas+">"+
+                "PREFIX rn: <"+rn+">"+
+                "PREFIX adms: <"+adms+">"+
+                "PREFIX vcard: <"+vcard+">"+
+                
+                "SELECT DISTINCT ?LearningObject ?title ?entry ?avatar ?url_full WHERE {"+
+                "?LearningObject smas:isComprisedOf ?General."+
+                "?LearningObject smas:avatar ?avatar."+
+                "?General smas:hasIdentifier ?Identifier."+
+                 "?LearningObject smas:url_full ?url_full."+
+                "?Identifier smas:entry ?entry."+
+                "?General vcard:title ?title."+
+                "OPTIONAL{?General rn:keyword ?ky}."+
+                "OPTIONAL{?General smas:description ?desc}.";
+        stringQuery = stringQuery +"}ORDER BY RAND() LIMIT 5";
+        System.out.println(stringQuery);
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+        return results;
+    }
+public ResultSet BusquedaSimple(String keyaux,String [] keywords){
         String stringQuery = "PREFIX smas: <"+smas+">"+
                 "PREFIX rn: <"+rn+">"+
                 "PREFIX adms: <"+adms+">"+

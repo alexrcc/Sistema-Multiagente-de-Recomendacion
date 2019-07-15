@@ -3,7 +3,7 @@
 #encabezado{
     
     margin: 2% 5% 2% 5%;
-    width: 90%;  
+    width: 90% !important;  
 }
 #encabezado h1{
   font-family: "Montserrat";
@@ -139,3 +139,7 @@ position: absolute;
         opacity: 0.8;
 }
 
+.alert {
+    width: 100%;
+    float: left;
+}

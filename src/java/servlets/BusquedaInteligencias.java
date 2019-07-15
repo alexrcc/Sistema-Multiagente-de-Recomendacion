@@ -32,6 +32,7 @@ private JadeGateway gateway = null;
         Mensaje mensaje = new Mensaje();
         mensaje.setMensaje("BI");
         mensaje.setUsuario(user);
+        System.out.println("USER: "+user);
         try{
             JadeGateway.execute(mensaje); 
         }catch(Exception e){
@@ -59,7 +60,7 @@ private JadeGateway gateway = null;
             out.print("<div class='loavatar'><i");
             String loavatar = aux[0].split("#")[1].split(":")[0];
                 if(loavatar.equals("Officedoc"))
-                    out.print(" class='fas fa-file-al'");
+                    out.print(" class='fas fa-file-alt'");
                 else if(loavatar.equals("Excursion"))
                     out.print(" class='fas fa-puzzle-piece'");
                 else if(loavatar.equals("Audio"))

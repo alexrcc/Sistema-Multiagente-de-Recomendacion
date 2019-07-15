@@ -15,7 +15,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="assets/js/busqueda.js"></script>
-        <link rel="stylesheet" type="text/css" href="assets/css/search.css"/>
         <link rel="stylesheet" href="assets/css/est_cuestionario.css"/>
         <link rel="stylesheet" type="text/css" href="assets/css/error_modal.css"/>
         <title>SMA-WEB</title>
@@ -29,7 +28,7 @@
         <div class='alert alert-warning' role='alert'>
         <div id="encabezado">
         <h1>Test de estilos de aprendizaje de VARK</h1>
-        <span> Con este cuestionario se tiene el propósito de saber acerca de sus 
+        <span > Con este cuestionario se tiene el propósito de saber acerca de sus 
             preferencias para trabajar con información.
             Seguramente tiene un estilo de aprendizaje preferido
             y una parte de ese Estilo de Aprendizaje es su preferencia para capturar, 

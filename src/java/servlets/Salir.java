@@ -37,6 +37,7 @@ public class Salir extends HttpServlet {
         request.getSession().removeAttribute("error");
         request.getSession().removeAttribute("user");
         request.getSession().removeAttribute("user_name");
+        request.getSession().removeAttribute("intelligentProfile");
         request.getSession().invalidate();
         response.sendRedirect("index.jsp");
     }

@@ -1,31 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import controller.Mensaje;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import jade.core.Profile;
-import jade.core.ProfileImpl;
 import jade.util.leap.Properties;
-import jade.wrapper.AgentContainer;
-import jade.wrapper.AgentController;
-import jade.wrapper.ControllerException;
-import jade.wrapper.StaleProxyException;
 import jade.wrapper.gateway.JadeGateway;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
-import sma.AgenteGestorRepositorio;
-import sma.*;
+
 
 /**
  *
@@ -54,12 +41,15 @@ public class BusquedaAvanzada extends HttpServlet{
         String user = (String)session.getAttribute("user");
          try{
             String keyword = new String(request.getParameter("keyword").getBytes("ISO-8859-1"),"UTF-8"); 
-            String checkboxValues  []= request.getParameterValues("disciplina");
-             for (String checkboxValue : checkboxValues) {
-                 System.out.println(checkboxValue);
-             }
+            String checkboxValues []=null;
+            if(request.getHeader("disciplina")!=null)
+              checkboxValues = request.getParameterValues("disciplina");
+            
+           
+            
+          
             String idioma = request.getParameter("idioma");
-            String check = request.getParameter("checkbox");
+            String check = request.getParameter("fancy-checkbox-warning");
             ArrayList<String []> parametros = new ArrayList<>();
             String [] ba;
             if(check!=null){
@@ -84,12 +74,21 @@ public class BusquedaAvanzada extends HttpServlet{
             }catch(Exception e){
                 e.printStackTrace();
             }
-            
-            ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
-           session.setAttribute("listado", al);
-           session.setAttribute("ky", keyword);
+            ArrayList<String[]> al = new ArrayList<String[]>();
+            if(mensaje.getRespuesta() instanceof ArrayList){
+                al =(ArrayList<String[]>) mensaje.getRespuesta();
+                session.setAttribute("listado", al);
+                session.setAttribute("ky", keyword);
+            }
+            else{
+                session.setAttribute("listado", al);
+                session.setAttribute("ky",keyword);
+                session.setAttribute("errorv",true);
+            }
             response.sendRedirect("resultados.jsp?page=1");
         }catch(Exception e){
+            System.out.println("Exception"+e);
+          
         }
     }
 

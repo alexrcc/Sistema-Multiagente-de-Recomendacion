@@ -21,7 +21,7 @@ function MostrarOcultar(capa)
 function checkFunct(){
     
   //  alert("hola");
-    if($('#checkbox').is(':checked')){
+    if($('#fancy-checkbox-warning').is(':checked')){
         document.getElementById("estilo").disabled = true;
         $('.mostrar').addClass('oculto');
         $('.oculto').removeClass('mostrar');

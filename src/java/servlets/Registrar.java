@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Dao;
+import model.Virtuoso;
+import org.apache.jena.query.ResultSet;
 
 
 @WebServlet(name = "Registrar", urlPatterns = {"/Registrar"})
@@ -57,6 +59,8 @@ public class Registrar extends HttpServlet {
                                     d.registerUser(emailUsuario, password, nombreUsuario,0,0);
                                     respuesta.setAttribute("user",emailUsuario);
                                     respuesta.setAttribute("name",nombreUsuario);
+                                    
+                                    
                                 }
                             d.desconectar();
                              

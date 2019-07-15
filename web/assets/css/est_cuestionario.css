@@ -7,7 +7,7 @@
 }
 #encabezado{
     margin: 2% 5% 2% 5%;
-    width: 90%;  
+    width: 90% !important;  
 }
 #encabezado h1{
   font-family: "Montserrat";  

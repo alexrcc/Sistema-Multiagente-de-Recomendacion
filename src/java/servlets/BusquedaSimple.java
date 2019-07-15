@@ -37,19 +37,39 @@ public class BusquedaSimple extends HttpServlet{
             request.getSession().removeAttribute("ky");
             String keywords = new String(request.getParameter("keywords")
                     .getBytes("ISO-8859-1"),"UTF-8"); 
-            System.out.println(keywords);
+            String check = request.getParameter("fancy-checkbox-warning");
             Mensaje mensaje = new Mensaje();
-            mensaje.setMensaje("BS");
-            mensaje.setArgumentos(keywords);
+            ArrayList<String []> parametros = new ArrayList<>();
+            
+            if(check!=null){
+                String [] ba= new String [2];
+                ba[0]=keywords;
+                ba[1]="0";
+                parametros.add(ba);
+                parametros.add(null);
+                mensaje.setMensaje("BA");
+                mensaje.setArgumentos(parametros);
+            }else{
+                mensaje.setMensaje("BS");
+                mensaje.setArgumentos(keywords);
+            }
             try{
                 JadeGateway.execute(mensaje); 
             }catch(Exception e){
                 e.printStackTrace();
             }
 
-            ArrayList<String[]> al =(ArrayList<String[]>) mensaje.getRespuesta();
-            respuesta.setAttribute("listado", al);
-            respuesta.setAttribute("ky", keywords);
+           ArrayList<String[]> al = new ArrayList<String[]>();
+            if(mensaje.getRespuesta() instanceof ArrayList){
+                al =(ArrayList<String[]>) mensaje.getRespuesta();
+                respuesta.setAttribute("listado", al);
+                respuesta.setAttribute("ky", keywords);
+            }
+            else{
+                respuesta.setAttribute("listado", al);
+                respuesta.setAttribute("ky",keywords);
+                respuesta.setAttribute("errorv",true);
+            }
             response.sendRedirect("resultados.jsp?page=1");
   
     }

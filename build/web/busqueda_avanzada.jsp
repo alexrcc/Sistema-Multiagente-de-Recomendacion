@@ -9,28 +9,36 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%  String user = (String)session.getAttribute("user");
     String name_user = (String)session.getAttribute("name");
+    String profile = (String)session.getAttribute("intelligentProfile");
     int [] estilos = new int[4];
     boolean band=false;
-    if(user==null)
-        response.sendRedirect("index.jsp");
-    try{
-    Virtuoso bdv = new Virtuoso();
-    bdv.conectar("Perfiles");
-    ResultSet results=bdv.GetEstilos(user);
-    while(results.hasNext()){
-           band=true;
-           QuerySolution qs = results.next();
-           estilos[0]=qs.getLiteral("visual").getInt();
-           estilos[1]=qs.getLiteral("aural").getInt();
-           estilos[3]=qs.getLiteral("kinesthetic").getInt();
-           estilos[2]=qs.getLiteral("readwrite").getInt();
-       }
-       if(band==false)
-           response.sendRedirect("testea.jsp");
-    }catch(Exception e){
-        out.print("<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
-                + "No se puede conectar con VIRTUSO OPENLIK!</center></div>");
+    if(user==null){
+%>
+        <jsp:include page="vistas/nav.jsp"/>  
+        <jsp:include page="vistas/modalba.jsp?e=Debe registrarse o iniciar sesión y contestar al menos el cuestionario de VARK, 
+                    para realizar una búsqueda avanzada!"/> 
+<%  
+    }else if(profile==null){
+        try{
+        Virtuoso bdv = new Virtuoso();
+        bdv.conectar("Perfiles");
+        ResultSet results=bdv.GetEstilos(user);
+        while(results.hasNext()){
+               band=true;
+               QuerySolution qs = results.next();
+           }
+            if(band==true){
+                session.setAttribute("intelligentProfile","si");
+                profile=(String)session.getAttribute("intelligentProfile");
+            }else{
+               response.sendRedirect("testea.jsp");
+            }
+        }catch(Exception e){
+            out.print("<div class='alert alert-danger' role='alert'><center>Lo sentimos... "
+                    + "No se puede conectar con VIRTUSO OPENLIK!</center></div>");
+        }
     }
+    if(profile!=null){
 %>
 <!DOCTYPE html>
 <html>
@@ -51,6 +59,21 @@
         <div class="titulo"><h1>Búsqueda avanzada de Objetos de Aprendizaje</h1></div>
         <div id="busqueda">
             <form action="Servlet2" method="POST">
+                
+                        <div class="[ form-group ]">
+                            <input type="checkbox" name="fancy-checkbox-warning" id="fancy-checkbox-warning" autocomplete="off" checked onclick="checkFunct()"/>
+                            <div class="[ btn-group ]">
+                                <label for="fancy-checkbox-warning" class="[ btn btn-warning ]">
+                                    <span class="fas fa-check"></span>
+                                    <span class="fas fa-minus"></span>
+                                </label>
+                                <label for="fancy-checkbox-warning" class="[ btn btn-default active ]">
+                                    Filtrar según mi estilo de aprendizaje predominante.
+                                </label>
+                            </div>
+                        </div>
+
+                  
                 <div class="grupo">
                 <label for="keyword">Palabra clave</label>
                 <input type="text" class="input" id="keyword" name="keyword" placeholder="Buscar objetos de aprendizaje ...">
@@ -104,10 +127,6 @@
                         <label class="form-check-label">Geografía</label>
                     </div>
                     <div class="form-check">
-                       <input class="form-check-input" type="checkbox" value="Geography" name="disciplina">
-                        <label class="form-check-label">Geografía</label>
-                    </div>
-                    <div class="form-check">
                        <input class="form-check-input" type="checkbox" value="Geology" name="disciplina">
                         <label class="form-check-label">Geología</label>
                     </div>
@@ -153,12 +172,9 @@
                     <option value="2">Inglés</option>
                 </select>
                 </div>
-                    <div class="grupo">
-                        <label for="la" id="check">Buscar, basandose en mi estilo de aprendizaje:</label>
-                        <input type="checkbox"  id="checkbox" name="checkbox" checked="true" onclick="checkFunct()" >
-                    </div>
+                    
                     <div id="b_avanzada">
-                        <label id="info">Para buscar por otro estilo de aprendizaje, desmarque la casilla anterior ...</label><br>
+                        <label id="info">Para buscar por otro estilo de aprendizaje, desmarque la casilla superior ...</label><br>
                     <div class="grupo">
                     <label class="oculto">Estilo de aprendizaje:</label>
                     <select class="input" id="estilo" name="estilo" disabled="true">
@@ -169,7 +185,7 @@
                         <option value="3">Kinestésico</option>
                     </select>
                     </div>
-                    <div class="grupo">
+            <!--        <div class="grupo">
                     <label class="oculto" disabled="true">Inteligencia múltiple:</label>
                     <select class="input" id="inteligencia" name="inteligencia" disabled="true">
                         <option value="0">Seleccione la Inteligencia</option>
@@ -182,7 +198,7 @@
                         <option value="7">I7</option>
                         <option value="8">I8</option>
                     </select>
-                    </div>
+                    </div> -->
                 </div>
                 <center><button type="submit" class="btn btn-enviar">Buscar</button></center>   
             </form>
@@ -190,3 +206,4 @@
     </body>
     <jsp:include page="vistas/footer.jsp"/>
 </html>
+<%}%>

@@ -5,14 +5,18 @@ import java.sql.*;
 public class Dao {
     
     public Connection conexion;
-    public final static String userDb = "root";
-    public final static String passDb = "";
-    
-    
+    //public final static String userDb = "root";
+    //public final static String passDb = "";
+//    public final static String userDb = "admin_alex@smawebserver";
+//    public final static String passDb = "@l3xc0nd0y1994";
+    public final static String userDb = "smaweb";
+    public final static String passDb = "alexcondoy1994";
     //Conectar a la Base de datos
     public void conectar() throws SQLException,ClassNotFoundException{
          Class.forName("com.mysql.jdbc.Driver");
-         conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/sma_web",userDb, passDb);
+         //conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/sma_web",userDb, passDb);
+         //conexion=DriverManager.getConnection("jdbc:mysql://smawebserver.mysql.database.azure.com:3306/sma_web",userDb, passDb);
+         conexion=DriverManager.getConnection("jdbc:mysql://104.210.144.119:3306/sma_web",userDb, passDb);
     }
     //Desconectar a la Base de datos
     public void desconectar() throws SQLException, ClassNotFoundException{

@@ -56,3 +56,36 @@
     margin-top: 0.5%;
     float: left;
 }
+.form-group > div {
+    margin-top: 0;
+}
+.form-group input[type="checkbox"] {
+   
+    display: none;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span {
+    width: 10px;
+     color:#fff;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;   
+}
+
+.form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;   
+}
+.form-group .btn-default{
+    color:#fff;
+    background-color: #999;
+}
+.form-group .btn-warning{
+    padding-right:20px ; 
+}

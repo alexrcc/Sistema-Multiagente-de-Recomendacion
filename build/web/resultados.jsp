@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
+    String errorv = (String)session.getAttribute("errorv");
     ArrayList<String []> resultados = (ArrayList<String []>)session.getAttribute("listado");
     String keywords = (String)session.getAttribute("ky");
     String pagina_string =(String)request.getParameter("page");
@@ -48,8 +49,10 @@
        
     <body>
         <div class="encabezado bg-light" >
-            <%if(resultados.size()<=0){%>
-            <span>Lo sentimos, no se han encontrado resultados ...</span>
+            <%if(errorv!=null){%>
+            <span>Lo sentimos, ha ocurrido un error, por favor intente nuevamente ...</span>
+            <%}else if(resultados.size()<=0){%>
+            <span>No se han encontrado resultados para la cadena: <%out.print(keywords);%></span>
             <%}else{%>
             <span><%out.print("Se han encontrado "+resultados.size()+ " resultados para la cadena: "+keywords);%></span>
             <%}%>
