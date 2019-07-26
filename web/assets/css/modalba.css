@@ -40,7 +40,7 @@
         margin: -2px 0 0 -2px;
 }
   #modal_ba h4{
-      color:#dc3545;
+      color:#434e65;
       font-size: 2em;  
       text-align: CENTER;
       
@@ -54,25 +54,19 @@
  #modal_ba .modal-body .btn {
     color: #fff;
     font-size: 1.3em;
-    border-radius: 30px;
+    border-radius: 8px;
         text-decoration: none;
         transition: all 0.4s;
     line-height: normal;    
         margin-top: 10px;
-        padding: 6px 20px;
+        padding: 12px 20px;
         min-width: 150px;
 border: none;
 margin-bottom: 5%;
 
 }
-#modal_ba .modal-body .btn-success{
-    background: #434e65;
-}
-#modal_ba .modal-body .btn-warning{
-    background: #dc3545;
-}
  #modal_ba .modal-body .btn:hover, .modal-body .btn:focus {
-        background: #4C687D;
+        opacity: 0.8;
         outline: none;
 }
 

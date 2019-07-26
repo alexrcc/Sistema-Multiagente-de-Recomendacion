@@ -68,7 +68,7 @@ public class BusquedaSimple extends HttpServlet{
             else{
                 respuesta.setAttribute("listado", al);
                 respuesta.setAttribute("ky",keywords);
-                respuesta.setAttribute("errorv",true);
+                respuesta.setAttribute("errorv","error");
             }
             response.sendRedirect("resultados.jsp?page=1");
   

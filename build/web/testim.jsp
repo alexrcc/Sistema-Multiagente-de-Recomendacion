@@ -28,8 +28,17 @@
 				} 
                                 
                     }
-                    if(radio===0)
+                    if(radio===0){
                         $("#formulario").submit();
+                         $("#loadMe").modal({
+                            backdrop: "static", //remove ability to close modal with click
+                            keyboard: false, //remove option to close with keyboard
+                            show: true //Display loader!
+                          });
+                          setTimeout(function() {
+                                $("#loadMe").modal("hide");
+                              }, 6000);
+                    }
                     else
                         alert("Error: Hay preguntas sin contestar!");
 			
@@ -41,6 +50,7 @@
     else if(msg!=null)
             out.print("<script>$(document).ready(function(){$(\"#mensaje_modal\").modal(\"show\");});</script>");%>
     <jsp:include page="vistas/nav.jsp"/>
+    <jsp:include page="vistas/loading.jsp"/>
     <body>
          <div class='alert alert-warning' role='alert'>
             <div id="encabezado">

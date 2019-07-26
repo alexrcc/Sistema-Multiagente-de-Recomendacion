@@ -67,7 +67,7 @@
                                     <span class="fas fa-check"></span>
                                     <span class="fas fa-minus"></span>
                                 </label>
-                                <label for="fancy-checkbox-warning" class="[ btn btn-default active ]">
+                                <label id="fsea" for="fancy-checkbox-warning" class="[ btn btn-default active ]">
                                     Filtrar según mi estilo de aprendizaje predominante.
                                 </label>
                             </div>
@@ -174,7 +174,7 @@
                 </div>
                     
                     <div id="b_avanzada">
-                        <label id="info">Para buscar por otro estilo de aprendizaje, desmarque la casilla superior ...</label><br>
+                        <label id="info">Para buscar por otro estilo de aprendizaje, desmarque la casilla "Filtrar según mi estilo de aprendizaje predominadate" al inicio de la pagina...</label><br>
                     <div class="grupo">
                     <label class="oculto">Estilo de aprendizaje:</label>
                     <select class="input" id="estilo" name="estilo" disabled="true">

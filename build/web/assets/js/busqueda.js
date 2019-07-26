@@ -35,3 +35,9 @@ $('.oculto').addClass('mostrar');
         document.getElementById("inteligencia").disabled = false;
     }
 }
+function insertText(text) {
+  var elem = document.getElementById("buscar");
+  elem.value ="";
+  elem.value += text;
+}
+

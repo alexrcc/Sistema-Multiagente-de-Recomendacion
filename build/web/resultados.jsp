@@ -51,10 +51,35 @@
         <div class="encabezado bg-light" >
             <%if(errorv!=null){%>
             <span>Lo sentimos, ha ocurrido un error, por favor intente nuevamente ...</span>
-            <%}else if(resultados.size()<=0){%>
-            <span>No se han encontrado resultados para la cadena: <%out.print(keywords);%></span>
+            <%session.removeAttribute("errorv");}else if(resultados.size()<=0){%>
+            <span><strong>No se han encontrado resultados para la cadena: </strong><%out.print("\""+keywords+"\"");%> ,puede probar algunas de nuestras palabras clave:</span>
+            <div class="sugerencias" >
+                <span class="pclaves"><a href="#" onclick="insertText('biología o biology')">Biología</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('química o chemistry')">Química</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('informática o computing')">Informática</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('ingeniería o engineering')">Ingeniería</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('Cultura General')">Cultura General</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('geografía o geography')">Geografía</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('geología o geology')">Geología</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('historia o history')">Historia</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('literatura o literature')">Literatura</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('matemáticas o maths')">Matemáticas</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('musica o music')">Música</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('física o physics')">Física</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('tecnología o technology')">Tecnología</a></span> 
+                <span class="pclaves"><a href="#" onclick="insertText('privacidad o privacity')">Privacidad</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('Netiqueta')"> Netiqueta</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('Grooming')">Grooming</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('Ciberacoso o cyber bullying')">Ciberacoso</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('Sexting')">Sexting</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('suplantación o impersonation')">Suplantación</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('Tecnoadicciones')">Tecnoadicciones</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('virus y fraudes')">virus y fraudes</a></span>
+                <span class="pclaves"><a href="#" onclick="insertText('licencia o licence')">Licencias</a></span>
+            </div>
+            <span></span>
             <%}else{%>
-            <span><%out.print("Se han encontrado "+resultados.size()+ " resultados para la cadena: "+keywords);%></span>
+            <span><%out.print("<strong>Se han encontrado "+resultados.size()+ " resultados para la cadena: </strong>"+"\""+keywords+"\"");%></span>
             <%}%>
         </div>
         <div id="contenedor">
@@ -130,6 +155,9 @@
                 if((pagina-10)>0) 
                     out.print("<li class='page-item mostrar'><a class='page-link' href='resultados.jsp?page="+(pagina-10)+"'>...</a></li>");
                 for(int i=0;i<10&&cont<=paginacion;i++){
+                    if(i+1==pagina)
+                        out.print("<li class='page-item mostrar' ><a style='background:#FBA707;color:#fff;' class='page-link' href='resultados.jsp?page="+cont+"'>"+cont+"</a></li>");
+                    else
                     out.print("<li class='page-item mostrar'><a class='page-link' href='resultados.jsp?page="+cont+"'>"+cont+"</a></li>");
                     cont++;
                 }
@@ -148,5 +176,6 @@
         </div>
        
     </body>
+
     <jsp:include page="vistas/footer.jsp"/>
 </html>

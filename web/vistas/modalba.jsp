@@ -16,12 +16,13 @@
                 <div class="icon-box">
                     <i class="fas fa-exclamation"></i>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <a type="button" class="close" href='\' >&times;</a>
                 </div>
                 <div class="modal-body text-center">
-                    <h4>Acceso Denegado:</h4>	
-                    <p><bold>Motivo: </bold><%out.print(e);%></p>
-                    <a class="btn btn-success" href="index.jsp">Volver</a>
+                    <h4>Para realizar una búsqueda avanzada, por favor Regístrese o Inicie sesión:</h4>	
+                    <a class="btn btn-warning" href="#" id="sesion" data-toggle="modal" data-target="#iniciarSesion" >Iniciar sesi&oacute;n</a>
+                    <a class="btn btn-primary"href="#" id="registro" data-toggle="modal" data-target="#registroModal">Regístrate</a>
+                    
                 </div>
 	</div>
     </div>

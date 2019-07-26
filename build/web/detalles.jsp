@@ -1,3 +1,4 @@
+<%@page import="model.Virtuoso"%>
 <%@page import="java.util.Iterator"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" %>
 <%@page import="org.apache.jena.query.QuerySolution"%>
@@ -12,6 +13,7 @@
 <%  String variable = (String)session.getAttribute("error");
     String e_sesion = (String)session.getAttribute("serror");
     String user = (String)session.getAttribute("user");
+    String bintelligent = (String)session.getAttribute("bintelligent");
     String url = null;
     String rep_url = request.getParameter("url");
     String learningObject  = request.getParameter("lo");
@@ -53,7 +55,32 @@
               if(e_sesion!=null)
                     out.print("<script>$(document).ready(function(){$(\"#iniciarSesion\").modal(\"show\");});</script>");
             %>
-            <%if(user!=null){%>
+            <%
+    
+            if(bintelligent==null&&user!=null){
+                try{
+                    Virtuoso bdv = new Virtuoso();
+                    boolean bandi = false;
+                    bdv.conectar("Perfiles");
+                    ResultSet resultsi=bdv.GetInteligencias(user);
+                    while(resultsi.hasNext()){
+                           bandi=true;
+                           QuerySolution qs = resultsi.next();
+                       }
+                    if (bandi==true){
+                        session.setAttribute("bintelligent","si");
+                        bintelligent=(String)session.getAttribute("bintelligent");}
+                    else{
+                        session.setAttribute("bintelligent","no");
+                        bintelligent=(String)session.getAttribute("bintelligent");
+                    }
+                    bdv.desconectar();
+                    }catch(Exception e){
+                        System.out.println("Error al conectar con virtuoso: "+e);
+                    }
+            }
+    %>
+            <%if(user!=null&&bintelligent.equals("si")){%>
             <script>
                 $(document).ready(function() {
                                 // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -225,5 +252,6 @@
         
         <div id="tabla"></div>
     </body>
+    
     <jsp:include page="vistas/footer.jsp"/>
 </html>

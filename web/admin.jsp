@@ -40,6 +40,13 @@
                             $('#respuestas').html(responseText);
                      }); 
                 }
+                function ObtenerEstadisticas(){
+                    //Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                     $.post('ObtenerEstadisticas', {
+                     }, function(responseText) {
+                            $('#respuestas').html(responseText);
+                     }); 
+                }
         </script>
     </head>
     <body >
@@ -66,7 +73,11 @@
                 %>
             </div>
         </div>
-            
+        <div class="stadistics">
+            <span>Estadísticas de Perfiles: </span>
+        <button class="toolbar_button search_button btn btn-success" onclick="ObtenerEstadisticas();">
+                   Obtener Estadísticas</button>
+        </div>
             <div class="cont_resp"><span>Respuestas</span><div id ="respuestas"></div></div>
             <div class="sesion"><a href="SalirAdm">Cerrar Sesión</a></div>
 

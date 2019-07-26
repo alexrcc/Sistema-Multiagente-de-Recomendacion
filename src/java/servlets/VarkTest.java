@@ -44,33 +44,52 @@ public class VarkTest extends HttpServlet {
             }
             HttpSession session = request.getSession(true);
             String user = (String)session.getAttribute("user");
-            Mensaje mensaje = new Mensaje();
-            for (int i = 1; i <=16; i++) {
-                String checkboxValues  []= request.getParameterValues("p"+i);
-                if(checkboxValues != null){
-                    for (int j = 0;  j<checkboxValues.length; j++) {
-                        resp_vark[i-1][j]=checkboxValues[j];
+            if(user!=null){
+                Mensaje mensaje = new Mensaje();
+                for (int i = 1; i <=16; i++) {
+                    String checkboxValuesV  = request.getParameter("p"+i+"v");
+                    String checkboxValuesA  = request.getParameter("p"+i+"a");
+                    String checkboxValuesR  = request.getParameter("p"+i+"r");
+                    String checkboxValuesK  = request.getParameter("p"+i+"k");
+                    if(checkboxValuesV != null){
+                        resp_vark[i-1][0]=checkboxValuesV;
+                    }
+                    if(checkboxValuesA != null){
+                        resp_vark[i-1][1]=checkboxValuesA;
+                    }
+                    if(checkboxValuesR != null){
+                        resp_vark[i-1][2]=checkboxValuesR;
+                    }
+                    if(checkboxValuesK != null){
+                        resp_vark[i-1][3]=checkboxValuesK;
                     }
                 }
-            }
-            mensaje.setMensaje("EA");
-            mensaje.setUsuario(user);
-            mensaje.setArgumentos(resp_vark); 
-            try{
-                JadeGateway.execute(mensaje); 
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            if(mensaje.getRespuesta().toString().compareToIgnoreCase("Perfil Guardado Correctamente")!=0){
-                session.setAttribute("errors",mensaje.getRespuesta());
-                session.setAttribute("intelligentProfile",true);
-                                    
-                response.sendRedirect("testea.jsp");
+                for (int i = 1; i <= 16; i++) {
+                    System.out.println("-------------");
+                    for (int j = 0;  j<4; j++) {
+                        System.out.println(resp_vark[i-1][j]);
+                    }
+                }
+                mensaje.setMensaje("EA");
+                mensaje.setUsuario(user);
+                mensaje.setArgumentos(resp_vark); 
+                try{
+                    JadeGateway.execute(mensaje); 
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                if(mensaje.getRespuesta().toString().compareToIgnoreCase("Perfil Guardado Correctamente")!=0){
+                    session.setAttribute("errors",mensaje.getRespuesta());
+                    session.setAttribute("intelligentProfile","si");
+
+                    response.sendRedirect("testea.jsp");
+                }else{
+                    session.setAttribute("msgAP",mensaje.getRespuesta());
+                    response.sendRedirect("testim.jsp");
+                }               
             }else{
-                session.setAttribute("msgAP",mensaje.getRespuesta());
-                response.sendRedirect("testim.jsp");
-            }               
-                
+                response.sendRedirect("index.jsp");
+            }  
             
            
             

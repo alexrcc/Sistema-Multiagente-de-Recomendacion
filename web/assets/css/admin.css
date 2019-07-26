@@ -1,12 +1,8 @@
 .centrado-porcentual {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
     border: solid 1px #47c9a2;
     padding: 2%;
     border-radius: 5px;
+    margin:1% 10%;
 
 }
 .centrado-porcentual h1{
@@ -121,4 +117,12 @@ form{
     width: 100%;
     margin: auto;
     text-align: center;
+}
+.stadistics{
+    border: solid 1px #47c9a2;
+    padding: 10px 0px;
+    margin: 3px auto;
+}
+.stadistics button{
+    margin-top: 0;
 }

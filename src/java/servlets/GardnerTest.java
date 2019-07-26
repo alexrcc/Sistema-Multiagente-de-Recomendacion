@@ -54,6 +54,7 @@ public class GardnerTest extends HttpServlet {
                 response.sendRedirect("testim.jsp");
             }else{
                 session.setAttribute("msgAP1",mensaje.getRespuesta());
+                session.setAttribute("bintelligent","si");
                 response.sendRedirect("perfil.jsp");
             }               
                 

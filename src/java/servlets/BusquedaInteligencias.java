@@ -32,7 +32,6 @@ private JadeGateway gateway = null;
         Mensaje mensaje = new Mensaje();
         mensaje.setMensaje("BI");
         mensaje.setUsuario(user);
-        System.out.println("USER: "+user);
         try{
             JadeGateway.execute(mensaje); 
         }catch(Exception e){

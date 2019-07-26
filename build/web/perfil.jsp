@@ -107,30 +107,46 @@
                     <span>Estilos de Aprendizaje VARK</span><span class="help far fa-question-circle">
                         <div id="help_ea"><span class="triangle"></span><span class="texto">El test de VARK clasifica a las personas de acuerdo a su preferencia 
                                 sensorial al procesar información. Las preferencias modales sensoriales son (Visual= Visual, Aural = Auditivo, 
-                                Read/Write = lectura/escritura, Kinesthetic = Quinestésico por las siglas en inglés)."</span>
+                                Read/Write = lectura/escritura, Kinesthetic = Kinestésico por las siglas en inglés)."</span>
                         </div>
                         
                     </span>
                     <% if(!band)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
-                                + "cuestionario de VARK para determinar su estilo de aprendizaje predominante.</div>");
+                                + " cuestionario de VARK para determinar su estilo de aprendizaje predominante.</div>");
                         %>
-                    <div class="estilo"><span class="v_etiqueta">Visual: </span>
+                    <div class="estilo">
+                        <span class="help_est1 help_inf far fa-question-circle">
+                        <div id="help_in1" class="help_info"><span class="texto">Preferencia por imágenes, cuadros, diagramas, láminas, etcétera.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Visual: </span>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-primary" style="width: <%out.print(porcent[0]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[0]);%>%</div>
                         </div>
                     </div>
-                    <div class="estilo"><span class="v_etiqueta">Aural: </span>
+                    <div class="estilo">
+                        <span class="help_est2 help_inf far fa-question-circle">
+                        <div id="help_in2" class="help_info"><span class="texto">Preferencia por las exposiciones orales, discusiones y todo lo que involucre escuchar.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Auditivo: </span>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" style="width: <%out.print(porcent[1]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[1]);%>%</div>
                         </div>
                     </div>
-                    <div class="estilo"><span class="v_etiqueta">Read-write: </span>
+                    <div class="estilo">
+                        <span class="help_est3 help_inf far fa-question-circle">
+                        <div id="help_in3" class="help_info"><span class="texto">Prefiere todo lo que tenga que ver con leer o escribir.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Lectura-Escritura: </span>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-info" style="width: <%out.print(porcent[2]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[2]);%>%</div>
                         </div>
                     </div>
-                    <div class="estilo"><span class="v_etiqueta">Kinesthetic: </span>
-                         <div class="progress">
+                    <div class="estilo">
+                        <span class="help_est4 help_inf far fa-question-circle">
+                        <div id="help_in4" class="help_info"><span class="texto">Preferencia por la experiencia y la práctica (simulada o real).</span></div>
+                    </span> 
+                        <span class="v_etiqueta">Kinestésico: </span>
+                        <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-danger" style="width: <%out.print(porcent[3]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcent[3]);%>%</div>
                         </div>
                     </div>
@@ -143,39 +159,67 @@
                             las mismas que se muestran en la presente sección.</span></div>
                     </span>
                     <% if(!bandim)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
-                                + "cuestionario de Gardener para determinar sus inteligencias múltiples.</div>");
+                                + " cuestionario de Gardener para determinar sus inteligencias múltiples.</div>");
                         %>
-                    <div class="inteligencia"><span class="v_etiqueta">Verbal: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf1 help_inf far fa-question-circle">
+                        <div id="help_ea1" class="help_info"><span class="texto">Habilidad para utilizar el lenguaje oral y escrito de manera efectiva.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Verbal: </span>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-primary" style="width: <%out.print(porcentim[0]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[0]);%>%</div>
                         </div>
                     </div>
-                    <div class="inteligencia"><span class="v_etiqueta">Lógico-matemática: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf2 help_inf far fa-question-circle">
+                        <div id="help_ea2" class="help_info"><span class="texto">Habilidad de operar con números de forma precisa y de razonar correctamente.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Lógico-matemática: </span>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-secondary" style="width: <%out.print(porcentim[1]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[1]);%>%</div>
                         </div>
                     </div>
-                    <div class="inteligencia"><span class="v_etiqueta">Visual-espacial: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf3 help_inf far fa-question-circle">
+                        <div id="help_ea3" class="help_info"><span class="texto">Habilidad de pensar y formar un modelo mental del mundo en tres dimensiones.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Visual-espacial: </span>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-success" style="width: <%out.print(porcentim[2]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[2]);%>%</div>
                         </div>
                     </div>
-                    <div class="inteligencia"><span class="v_etiqueta">Kinestesica: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf4 help_inf far fa-question-circle">
+                        <div id="help_ea4" class="help_info"><span class="texto">Capacidad de utilizar el cuerpo para resolver problemas, realizar actividades,  expresar ideas o sentimientos. </span></div>
+                    </span>
+                        <span class="v_etiqueta">Kinestesica: </span>
                          <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-danger" style="width: <%out.print(porcentim[3]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[3]);%>%</div>
                         </div>
                     </div>
-                    <div class="inteligencia"><span class="v_etiqueta">Músical: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf5 help_inf far fa-question-circle">
+                        <div id="help_ea5" class="help_info"><span class="texto">Habilidad para escuchar, cantar, y tocar instrumentos.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Músical: </span>
                          <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-warning" style="width: <%out.print(porcentim[4]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[4]);%>%</div>
                         </div>
                     </div>
-                    <div class="inteligencia"><span class="v_etiqueta">Intrapersonal: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf6 help_inf far fa-question-circle">
+                        <div id="help_ea6" class="help_info"><span class="texto">Habilidad para tomar conciencia de uno mismo y conocer las  emociones, fortalezas y debilidades propias.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Intrapersonal: </span>
                          <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-info" style="width: <%out.print(porcentim[5]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[5]);%>%</div>
                         </div>
                     </div>
-                    <div class="inteligencia"><span class="v_etiqueta">Interpersonal: </span>
+                    <div class="inteligencia">
+                        <span class="help_inf7 help_inf far fa-question-circle">
+                        <div id="help_ea7" class="help_info"><span class="texto">Habilidad que permite entender a los demás y captar los sentimientos y necesidades de otros.</span></div>
+                    </span>
+                        <span class="v_etiqueta">Interpersonal: </span>
                          <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-dark" style="width: <%out.print(porcentim[6]);%>%" aria-valuemin="0" aria-valuemax="100"><%out.print(porcentim[6]);%>%</div>
                         </div>

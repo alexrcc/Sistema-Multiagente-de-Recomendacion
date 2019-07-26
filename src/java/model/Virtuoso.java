@@ -1,4 +1,5 @@
 package model;
+import controller.Acentos;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -175,6 +176,13 @@ public class Virtuoso {
             if(!esConector(a)){
                 stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
                 stringQuery=stringQuery + "||regex(?ky,'"+a+"','i')";
+                if(a.contains("á")||a.contains("Á")||a.contains("é")||a.contains("É")
+                        ||a.contains("í")||a.contains("Í")||a.contains("ó")||a.contains("Ó")||a.contains("ú")||a.contains("Ú")){
+                String kysinacento=Acentos.eliminarAcentos(a);
+                stringQuery=stringQuery + "||regex(?ky,'"+kysinacento+"','i')";
+                stringQuery=stringQuery + "||regex(?title,'"+kysinacento+"','i')";
+                
+                }
             }
          
         if(estilo_dominante!=-1){
@@ -310,6 +318,13 @@ public ResultSet BusquedaSimple(String keyaux,String [] keywords){
             if(!esConector(a)){
                 stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
                 stringQuery=stringQuery + "||regex(?ky,'"+a+"','i')";
+                if(a.contains("á")||a.contains("Á")||a.contains("é")||a.contains("É")
+                        ||a.contains("í")||a.contains("Í")||a.contains("ó")||a.contains("Ó")||a.contains("ú")||a.contains("Ú")){
+                String kysinacento=Acentos.eliminarAcentos(a);
+                stringQuery=stringQuery + "||regex(?ky,'"+kysinacento+"','i')";
+                stringQuery=stringQuery + "||regex(?title,'"+kysinacento+"','i')";
+                
+                }
            }
         
         stringQuery = stringQuery +").}";
@@ -350,6 +365,38 @@ public ResultSet BusquedaSimple(String keyaux,String [] keywords){
         }
             return true;
     }
+    public ResultSet GetStaditicsEstilos(){
+        String stringQuery = 
+        "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "?ind smas:visual ?visual."
+              + "?ind smas:aural ?aural."
+              + "?ind smas:kinesthetic ?kinesthetic."
+              + "?ind smas:readwrite ?readwrite."
+                + "filter regex(?ind,'LE-').}";     
+        Query query = QueryFactory.create(stringQuery);
+        // Ejecutar la consulta y obtener los resultados
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+        return results;
+    }
+    public ResultSet GetStaditicsInteligencias(){
+         String stringQuery = 
+        "PREFIX smas: <"+smas+">"
+              + "SELECT * WHERE {"
+              + "?ind smas:verbal ?verbal."
+              + "?ind smas:logicalmath ?logical."
+              + "?ind smas:visual ?visual."
+              + "?ind smas:kinesthetic ?kinesthetic."
+              + "?ind smas:musical ?musical."
+              + "?ind smas:intrapersonal ?intrapersonal."
+              + "?ind smas:interpersonal ?interpersonal."
+                 + "filter regex(?ind,'MI-').}";        
+        Query query = QueryFactory.create(stringQuery);
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+        return results;
+    }
     
      public boolean UpdateDate(String url){
          try{
@@ -385,7 +432,8 @@ public ResultSet BusquedaSimple(String keyaux,String [] keywords){
     private boolean esConector(String Cadena){
         String conectores [] ={"ante","bajo","cabe","con","de","desde","en",
             "entre","hacia","hasta","para","por","segun","según","sin","so","sobre",
-            "tras","el","la","los","las","lo","al","del","un","uno","una","unos"};
+            "tras","el","la","los","las","lo","al","del","un","uno","una","unos","y",
+            "a","e","i","o","u","mas","más"};
         for(String c:conectores){
             if(c.equalsIgnoreCase(Cadena))
                 return true;

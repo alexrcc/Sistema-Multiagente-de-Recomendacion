@@ -30,6 +30,7 @@
     }
 %>
 <link rel="stylesheet" href="assets/css/searchbar.css"/>
+<script src="assets/js/busqueda.js"></script>
 <div id="navsearch">
     <div class="volver">
             <button type="button" class="btn btn-success btn-circle"  onclick="history.back()"><i class="fas fa-arrow-left"></i>
@@ -39,7 +40,7 @@
         <form action="Servlet" method="POST">
 <div class="input-group md-form form-sm form-2 pl-0">
     
-  <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Buscar..." name ="keywords" aria-label="Search" autocomplete="off">
+    <input id="buscar" class="form-control my-0 py-1 amber-border" type="text" placeholder="Buscar..." name ="keywords" aria-label="Search" spellcheck="true" required>
   <div class="input-group-append">
       <button type="submit" class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
         aria-hidden="true"></i></button>

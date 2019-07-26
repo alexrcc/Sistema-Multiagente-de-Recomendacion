@@ -102,9 +102,61 @@
 .help:not(.texto){
     width: 5%;
     font-size: 1.7em;
+    float:left;
 }
 
 .help:hover #help_ea{
+    display:block;
+    
+}
+.help_inf:not(.texto){
+    width: 4%;
+    font-size: 0.9em;
+    float:left;
+    margin-right: 1%; 
+}
+.help_est1:hover #help_in1{
+    display:block;
+    
+}
+.help_est2:hover #help_in2{
+    display:block;
+    
+}
+.help_est3:hover #help_in3{
+    display:block;
+    
+}
+.help_est4:hover #help_in4{
+    display:block;
+    
+}
+
+.help_inf1:hover #help_ea1{
+    display:block;
+    
+}
+.help_inf2:hover #help_ea2{
+    display:block;
+    
+}
+.help_inf3:hover #help_ea3{
+    display:block;
+    
+}
+.help_inf4:hover #help_ea4{
+    display:block;
+    
+}
+.help_inf5:hover #help_ea5{
+    display:block;
+    
+}
+.help_inf6:hover #help_ea6{
+    display:block;
+    
+}
+.help_inf7:hover #help_ea7{
     display:block;
     
 }
@@ -115,13 +167,13 @@
 }
 .estilo .v_etiqueta{
     float: left;
-    width: 15%;
+    width:25%;
     text-align: left;
     font-weight: 600;
     
 }
 .estilo .progress{
-    width: 80%;
+    width: 70%;
     float: right;
 }
 .perfil .if_inteligencias {
@@ -140,7 +192,7 @@
     
 }
 .inteligencia .progress{
-    width: 70%;
+    width: 65%;
 }
 .alert{
     margin-top:2%;
@@ -162,8 +214,27 @@
     text-align: left;
     
 }
+.help_info{
+    width: 30%;
+    position: absolute;
+    padding: 5px;
+    border:none;
+    border-radius: 7px;
+    margin-top: -20px;
+    margin-left: 25px;
+    text-align: left;
+    font-family: sans-serif;
+    background:#fff;
+    border:solid 1px #d9d9d9;
+    display:none;
+    text-align: left;
+}
 #help_ea .texto{
     font-size: 1.2rem;
+    text-justify: distribute;
+}
+.help_info .texto{
+    font-size: 0.8rem;
     text-justify: distribute;
 }
 

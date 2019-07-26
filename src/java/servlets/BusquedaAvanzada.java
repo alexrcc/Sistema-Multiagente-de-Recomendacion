@@ -83,7 +83,7 @@ public class BusquedaAvanzada extends HttpServlet{
             else{
                 session.setAttribute("listado", al);
                 session.setAttribute("ky",keyword);
-                session.setAttribute("errorv",true);
+                session.setAttribute("errorv","error");
             }
             response.sendRedirect("resultados.jsp?page=1");
         }catch(Exception e){

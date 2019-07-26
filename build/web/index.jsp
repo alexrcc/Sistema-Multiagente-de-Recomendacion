@@ -39,7 +39,7 @@
                     <center><h1>Buscar</h1></center>
                   <div class="search">
                     <form action="Servlet" method="POST">
-                    <input class="asearch_box search_input" name="keywords" type="text" placeholder="Buscar recursos educativos ..." autocomplete="off">
+                    <input class="asearch_box search_input" name="keywords" type="text" placeholder="Buscar recursos educativos ..." spellcheck="true" lang="es" required>
                     
                     <button class="toolbar_button search_button">
                       <img class="search_button_img" src="assets/img/search.png">
@@ -149,5 +149,6 @@
             </div>
             <br>
     </body>
+
     <jsp:include page="vistas/footer.jsp"/>
 </html>
