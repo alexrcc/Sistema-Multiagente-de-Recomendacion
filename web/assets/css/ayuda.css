@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+.ayuda{
+    width: 90%;
+    margin: 2% 5%;
+    text-align:justify;
+   font-family: "Montserrat";
+    padding: 1%;
+}
+.ayuda h6{
+    padding: 5px 10px;
+}
+.numero{
+  
+    width: 10%;
+    float: left;
+}
+.tip{
+    width: 90%;
+    margin: 0.5% 5%; 
+    float:left;
+    border: solid 1px #FBA707;
+    border-radius: 10px;
+    padding: 15px 15px;
+}
+.imagen{
+    float: left;
+    width: 100%;
+}
+.detalle{
+    
+}
+.circle
+  {
+    float: right;
+    margin-right: 30%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; 
+    background: #212529;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding-top:3px;
+    color: #fff;
+  }

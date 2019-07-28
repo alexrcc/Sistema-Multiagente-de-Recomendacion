@@ -1,0 +1,14 @@
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+.acerca{
+    width: 80%;
+    margin: 5% auto;
+    text-align:justify;
+    border: solid 2px #FBA707;
+    border-radius: 10px;
+    padding: 1%;
+}
+.acerca span{
+    width: 100%;
+    font-family: "Montserrat";
+}

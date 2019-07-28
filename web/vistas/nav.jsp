@@ -31,8 +31,8 @@
 			</ul>
 		</li>
                 <li><a href="busqueda_avanzada.jsp">Búsqueda avanzada</a></li>  
-		<li><a href="#">Acerca de</a></li>  
-                <li><a href="#">Ayuda</a></li>
+		<li><a href="acercade.jsp">Acerca de</a></li>  
+                <li><a href="ayuda.jsp">Ayuda</a></li>
                 <% if(user==null){
                     out.print("<li class=\"ingreso\"><a href=\"#\" id=\"sesion\" data-toggle=\"modal\" data-target=\"#iniciarSesion\" >Iniciar sesi&oacute;n</a></li>");
                     out.print("<li class=\"ingreso\"><a href=\"#\" id=\"registro\" data-toggle=\"modal\" data-target=\"#registroModal\">Regístrate</a></li>");

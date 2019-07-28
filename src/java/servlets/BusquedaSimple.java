@@ -13,6 +13,7 @@ import jade.util.leap.Properties;
 import jade.wrapper.gateway.JadeGateway;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
+import model.Ordenamiento;
 
 
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
@@ -62,6 +63,8 @@ public class BusquedaSimple extends HttpServlet{
            ArrayList<String[]> al = new ArrayList<String[]>();
             if(mensaje.getRespuesta() instanceof ArrayList){
                 al =(ArrayList<String[]>) mensaje.getRespuesta();
+                if(keywords!=null&&keywords!="")
+                    al = Ordenamiento.Ordenar(al,keywords);
                 respuesta.setAttribute("listado", al);
                 respuesta.setAttribute("ky", keywords);
             }

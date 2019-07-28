@@ -16,7 +16,7 @@
                 <div class="icon-box">
                     <i class="fas fa-exclamation"></i>
                 </div>
-                <a type="button" class="close" href='\' >&times;</a>
+                <a type="button" class="close" href='/' >&times;</a>
                 </div>
                 <div class="modal-body text-center">
                     <h4>Para realizar una búsqueda avanzada, por favor Regístrese o Inicie sesión:</h4>	

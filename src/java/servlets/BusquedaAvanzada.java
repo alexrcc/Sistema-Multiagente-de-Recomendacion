@@ -12,6 +12,7 @@ import jade.util.leap.Properties;
 import jade.wrapper.gateway.JadeGateway;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
+import model.Ordenamiento;
 
 
 /**
@@ -77,6 +78,8 @@ public class BusquedaAvanzada extends HttpServlet{
             ArrayList<String[]> al = new ArrayList<String[]>();
             if(mensaje.getRespuesta() instanceof ArrayList){
                 al =(ArrayList<String[]>) mensaje.getRespuesta();
+                if(keyword!=null&&keyword!="")
+                    al = Ordenamiento.Ordenar(al,keyword);
                 session.setAttribute("listado", al);
                 session.setAttribute("ky", keyword);
             }

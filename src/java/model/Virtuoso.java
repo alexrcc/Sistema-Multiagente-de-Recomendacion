@@ -33,6 +33,9 @@ public class Virtuoso {
          model = VirtModel.openDatabaseModel(bd, URL, uid, pwd);
          this.bd=bd;
     }
+    public void desconectar(){
+         model.close();
+    }
     public boolean SetEstilos(int [] array,String user){
         try{
             VirtGraph set = new VirtGraph (URL, uid, pwd);
@@ -147,8 +150,7 @@ public class Virtuoso {
         QueryExecution qe = QueryExecutionFactory.create(query, model);
         ResultSet results = qe.execSelect();
         return results;
-    }
-    
+    } 
     public ResultSet BusquedaAvanzada(int idioma,  String [] keyaux,String [] keywords,
             String [] materias,int estilo_dominante){
             String stringQuery = "PREFIX smas: <"+smas+">"+
@@ -169,7 +171,7 @@ public class Virtuoso {
                 "OPTIONAL{?General smas:description ?desc}."+
                 "OPTIONAL{?General rn:keyword ?ky}.";
                     if(!keyaux[0].equals("")&&!keyaux[0].equals(" "))
-                        stringQuery=stringQuery + "FILTER((regex(?title,'"+keyaux[0]+"','i')||regex(?desc,'"+keyaux[0]+"','i')";
+                        stringQuery=stringQuery + "FILTER((regex(?title,'"+keyaux[0]+"','i')";
                     else
                         stringQuery=stringQuery + "FILTER((regex(?LearningObject,'LO')";
         for(String a:keywords)
@@ -227,7 +229,7 @@ public class Virtuoso {
                 }
                 stringQuery=stringQuery + ")";
             }
-        stringQuery = stringQuery +").}";
+        stringQuery = stringQuery +").} ORDER BY RAND()";
         System.out.println(stringQuery);
         Query query = QueryFactory.create(stringQuery);
         // Ejecutar la consulta y obtener los resultados
@@ -272,9 +274,7 @@ public class Virtuoso {
             ResultSet results = qe.execSelect();
             return results;
     }
-    public void desconectar(){
-         model.close();
-    }
+    
     public ResultSet BusquedaInicio(){
         String stringQuery = "PREFIX smas: <"+smas+">"+
                 "PREFIX rn: <"+rn+">"+
@@ -313,7 +313,7 @@ public ResultSet BusquedaSimple(String keyaux,String [] keywords){
                 "?General vcard:title ?title."+
                 "OPTIONAL{?General rn:keyword ?ky}."+
                 "OPTIONAL{?General smas:description ?desc}."+
-                "FILTER(regex(?title,'"+keyaux+"','i')||regex(?desc,'"+keyaux+"','i')";
+                "FILTER(regex(?title,'"+keyaux+"','i')";
         for(String a:keywords)
             if(!esConector(a)){
                 stringQuery=stringQuery + "||regex(?title,'"+a+"','i')";
@@ -327,7 +327,7 @@ public ResultSet BusquedaSimple(String keyaux,String [] keywords){
                 }
            }
         
-        stringQuery = stringQuery +").}";
+        stringQuery = stringQuery +").} ORDER BY RAND()";
         System.out.println(stringQuery);
         Query query = QueryFactory.create(stringQuery);
         // Ejecutar la consulta y obtener los resultados

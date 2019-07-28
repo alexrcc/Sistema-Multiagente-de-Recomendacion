@@ -72,7 +72,7 @@
             <div class="seccion_preg">
                 <div class="numero"><span class="circle">1</span></div>
             <div class="pregunta">
-                <span class="item">Usted cocinará algo especial para su familia. Ud:</span>
+                <span class="item">Va a cocinar algún platillo especial para su familia. Usted.:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p1a">
                     <label class="form-check-label" for="p1r1">
@@ -103,7 +103,7 @@
          <div class="seccion_preg">
                 <div class="numero"><span class="circle">2</span></div>
             <div class="pregunta">
-                <span class="item">Usted escogerá alimento en un restaurante o un café. Ud:</span>
+                <span class="item">Va a elegir sus alimentos en un restaurante o café. Usted.:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p2a">
                     <label class="form-check-label" for="p2r1">
@@ -166,7 +166,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">4</span></div>
             <div class="pregunta">
-                <span class="item">Ha acabado una competencia o una prueba y quisiera una retroalimentación. Quisiera tener la retroalimentación:</span>
+                <span class="item">Ha acabado una competencia o una prueba y quisiera una retroalimentación. ¿Cómo le gustaría recibirla?:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p4r">
                     <label class="form-check-label" for="p4r1">
@@ -228,7 +228,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">6</span></div>
             <div class="pregunta">
-                <span class="item">Usted está a punto de comprar una cámara digital o teléfono o móvil.  ¿Además del precio, qué más influye en su decisión?.</span>
+                <span class="item">Usted está a punto de comprar una cámara digital o teléfono o móvil. ¿Además del precio, qué más influye en su decisión?.</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p6k">
                     <label class="form-check-label" for="p6r1">
@@ -260,7 +260,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">7</span></div>
             <div class="pregunta">
-                <span class="item">Usted no está seguro como se deletrea "trascendente" o "tracendente", ¿Usted qué haría?.</span>
+                <span class="item">No está seguro como se deletrea "trascendente" o "tracendente", ¿Usted qué haría?.</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p7k">
                     <label class="form-check-label" for="p7r1">
@@ -322,7 +322,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">9</span></div>
             <div class="pregunta">
-                <span class="item">Usted está planeando unas vacaciones para un grupo, y quiere alguna observación de ellos acerca del plan. Usted qué haría:</span>
+                <span class="item">Está planeando unas vacaciones para un grupo, y quiere alguna observación de ellos acerca del plan. Usted qué haría:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="V" name="p9v">
                     <label class="form-check-label" for="p9r1">
@@ -354,7 +354,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">10</span></div>
             <div class="pregunta">
-                <span class="item">Usted está usando un libro, disco compacto o página de Internet para aprender a tomar fotos con su cámara digital nueva. Usted le gustaría tener:</span>
+                <span class="item">Está utilizando un libro, CD o sitio web para aprender cómo tomar fotografías con su nueva cámara digital. Le gustaría tener:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value=A name="p10a">
                     <label class="form-check-label" for="p10r1">
@@ -385,7 +385,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">11</span></div>
             <div class="pregunta">
-                <span class="item">Usted quiere aprender un programa nuevo, habilidad o juego en una computadora. Usted qué haría:</span>
+                <span class="item">Quiere aprender un programa nuevo, habilidad o juego en una computadora. Usted qué haría:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="A" name="p11a">
                     <label class="form-check-label" for="p11r1">
@@ -417,7 +417,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">12</span></div>
             <div class="pregunta">
-                <span class="item">Estás ayudando a alguien que quiere a ir al aeropuerto, al centro del pueblo o la estación del ferrocarril. Ud.:</span>
+                <span class="item">Estás ayudando a alguien que quiere a ir al aeropuerto, al centro del pueblo o la estación del ferrocarril. Usted.:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p12k">
                     <label class="form-check-label" for="p12r1">
@@ -448,7 +448,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">13</span></div>
             <div class="pregunta">
-                <span class="item">Recuerde un momento en su vida en que Ud. aprendió a hacer algo nuevo. Trate de evitar escoger una destreza física, como andar en bicicleta. Ud. Aprendió mejor:</span>
+                <span class="item">Recuerde la vez cuando aprendió cómo hacer algo nuevo. Evite elegir una destreza física, como montar bicicleta. ¿Cómo aprendió mejor?:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p13k">
                     <label class="form-check-label" for="p13r1">
@@ -479,7 +479,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">14</span></div>
             <div class="pregunta">
-                <span class="item">Ud. Prefiere a un profesor o un expositor que utiliza:</span>
+                <span class="item">Usted prefiere a un profesor o un expositor que utiliza:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="K" name="p14k">
                     <label class="form-check-label" for="p14r1">
@@ -543,7 +543,7 @@
         <div class="seccion_preg">
                 <div class="numero"><span class="circle">16</span></div>
             <div class="pregunta">
-                <span class="item">Usted tiene que hacer un discurso para una conferencia u ocasión especial. Ud.:</span>
+                <span class="item">Tiene que hacer un discurso para una conferencia u ocasión especial. Usted.:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="R" name="p16r">
                     <label class="form-check-label" for="p16r1">

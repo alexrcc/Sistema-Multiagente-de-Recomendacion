@@ -112,7 +112,7 @@
                         
                     </span>
                     <% if(!band)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
-                                + " cuestionario de VARK para determinar su estilo de aprendizaje predominante.</div>");
+                                + " test de VARK para determinar su estilo de aprendizaje predominante.</div>");
                         %>
                     <div class="estilo">
                         <span class="help_est1 help_inf far fa-question-circle">
@@ -159,7 +159,7 @@
                             las mismas que se muestran en la presente sección.</span></div>
                     </span>
                     <% if(!bandim)out.print("<div class='alert alert-warning' role='alert'>Por favor, conteste el"
-                                + " cuestionario de Gardener para determinar sus inteligencias múltiples.</div>");
+                                + " test de Gardner para determinar sus inteligencias múltiples.</div>");
                         %>
                     <div class="inteligencia">
                         <span class="help_inf1 help_inf far fa-question-circle">
