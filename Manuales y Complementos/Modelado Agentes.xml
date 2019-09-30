@@ -1,0 +1,5846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project cid="0" version="1.2">
+<projectproperties>
+<projectproperty id="extfolder" module="IDK"  name="Extension Module Folder" value="ext"  tooltip="Folder where the IDE will find its new modules" />
+ <openeddiagram>IACoodinador-AGestor de Repositorio</openeddiagram></projectproperties>
+<leafpackages>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+    <package id="Agente Intefaz"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+    <package id="Agente Gestor de Repositorios"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+    <package id="Agente Coordinador"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+    <package id="Agente Perfil del Estudiante"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+    <package id="Agente Recomendador"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+    <package id="OT Agente Interfaz"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+    <package id="OT Agente Coordinador"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+    <package id="OT Agente Gestor de Repositorio"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+    <package id="OT Agente Perfil del Estudiante"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+    <package id="OT Agente Recomendador"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+    <package id="IAInterfaz-Acoordinador"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+    <package id="IACoodinador-AGestor de Repositorio"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+    <package id="IACoodinador-ARecomedador"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+    <package id="IARecomendador-APerfil del Estudiante"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+    <package id="IAInterfaz-APerfil del estudiante"/>
+   </path>
+</leafpackages>
+<objects>
+<object id="Mouse" type="ingenias.editor.entities.Resource">
+<mapproperties>
+<key id="CurrentValue"></key>
+<key id="MinValue"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="MaxValue"></key>
+</mapproperties>
+</object>
+<object id="Ontología" type="ingenias.editor.entities.Resource">
+<mapproperties>
+<key id="CurrentValue"></key>
+<key id="MinValue"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="MaxValue"></key>
+</mapproperties>
+</object>
+<object id="Detectar Cadena de Búsqueda" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Detectar Busqueda" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Detectar Clic" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Mostrar Datos" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Enviar Cadena Busqueda" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Recibir Resultados" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Transmitir Peticiones entre Agentes" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Escuchar Solicitud" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Conectarse al Servicio Web del Repositorio" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Detectar Repositorios" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Traducir" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Determinar Estilo de Aprendizaje" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Determinar Inteligencias Múltiples" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Registrar Perfil en Ontología" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Presentar Formularios" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Enviar Cadena de Búsqueda a Ontología" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Enviar Resultados" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Recuperar Perfil del Estudiante" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Agente Interfaz" type="ingenias.editor.entities.Agent">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Agente Coordinador" type="ingenias.editor.entities.Agent">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Agente Perfil del Estudiante" type="ingenias.editor.entities.Agent">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Agente Gestor de Repositorios" type="ingenias.editor.entities.Agent">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Agente Recomendador" type="ingenias.editor.entities.Agent">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Interacción Agente Coordinador - Agente interfaz" type="ingenias.editor.entities.Interaction">
+<objectproperty id="TransferredInfo" collection="true">
+</objectproperty>
+<mapproperties>
+<key id="Nature"></key>
+<key id="SpeechAct"></key>
+<key id="Timeout"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Interacción Agente Coordinador-Agente Recomendador" type="ingenias.editor.entities.Interaction">
+<objectproperty id="TransferredInfo" collection="true">
+</objectproperty>
+<mapproperties>
+<key id="Nature"></key>
+<key id="SpeechAct"></key>
+<key id="Timeout"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Interacción Agente Recomedador-Agente Perfil Estudiante" type="ingenias.editor.entities.Interaction">
+<objectproperty id="TransferredInfo" collection="true">
+</objectproperty>
+<mapproperties>
+<key id="Nature"></key>
+<key id="SpeechAct"></key>
+<key id="Timeout"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Interacción Agente Coordinador - Agente Gestor de Repositorio" type="ingenias.editor.entities.Interaction">
+<objectproperty id="TransferredInfo" collection="true">
+</objectproperty>
+<mapproperties>
+<key id="Nature"></key>
+<key id="SpeechAct"></key>
+<key id="Timeout"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Interacción Agente Interfaz - Agente Perfil del estudiante" type="ingenias.editor.entities.Interaction">
+<objectproperty id="TransferredInfo" collection="true">
+</objectproperty>
+<mapproperties>
+<key id="Nature"></key>
+<key id="SpeechAct"></key>
+<key id="Timeout"></key>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Capturar Datos" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Presentar Resultados" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Gestionar Búsqueda" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Comunicar Agentes" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Comunicar a Repositorio" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Traducir Datos en Ontología" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Gestionar Servicios Web" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Determinar Perfil Inteligente" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Guardar Perfil del Estudiante" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Recomendar OAs" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Gestionar OAs en Ontología" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Buscar OAs Acorde al Perfil" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Contestar Busqueda" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Gestionar Solicitud Respuesta" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Recomendar Acorde al Perfil del Estudiante" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Gestionar Perfil Inteligente" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Inicializar Servicios Web" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+<key id="ExecutionContext"></key>
+</mapproperties>
+</object>
+<object id="Captura de Datos" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Presenta Resultados" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Cumple Peticiones" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Gestionar Comunicación" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Gestor Repositorios" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Determinador de Perfiles" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="Recomendador" type="ingenias.editor.entities.Role">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+</objects>
+<relationships>
+<relationship id="2" type="ingenias.editor.entities.GTPursues">
+<object id="2" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Interfaz" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="1024705">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Presentar Resultados" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="27301145">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="3" type="ingenias.editor.entities.WFPlays">
+<object id="3" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Captura de Datos" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="9511863">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Interfaz" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="1024705">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="4" type="ingenias.editor.entities.WFPlays">
+<object id="4" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Interfaz" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="1024705">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Presenta Resultados" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="26863155">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="0" type="ingenias.editor.entities.GTPursues">
+<object id="0" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Interfaz" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="1024705">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Capturar Datos" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="29474891">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="5" type="ingenias.editor.entities.WFPlays">
+<object id="5" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Interfaz" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="1024705">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Cumple Peticiones" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="25361436">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="11" type="ingenias.editor.entities.WFPlays">
+<object id="11" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestor Repositorios" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="28018933">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Gestor de Repositorios" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="19018011">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="9" type="ingenias.editor.entities.GTPursues">
+<object id="9" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Servicios Web" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="4831624">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Gestor de Repositorios" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="19018011">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="8" type="ingenias.editor.entities.GTPursues">
+<object id="8" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Traducir Datos en Ontología" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="8530402">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Gestor de Repositorios" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="19018011">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="10" type="ingenias.editor.entities.GTPursues">
+<object id="10" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Comunicar a Repositorio" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="4088736">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Gestor de Repositorios" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="19018011">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="7" type="ingenias.editor.entities.WFPlays">
+<object id="7" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Comunicación" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="27103606">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Coordinador" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="5812750">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="6" type="ingenias.editor.entities.GTPursues">
+<object id="6" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Comunicar Agentes" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="25017597">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Coordinador" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="5812750">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="1" type="ingenias.editor.entities.GTPursues">
+<object id="1" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Búsqueda" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="7435331">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Coordinador" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="5812750">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="14" type="ingenias.editor.entities.GTPursues">
+<object id="14" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Guardar Perfil del Estudiante" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="2496051">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Perfil del Estudiante" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="6678162">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="13" type="ingenias.editor.entities.WFPlays">
+<object id="13" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Perfil del Estudiante" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="6678162">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Determinador de Perfiles" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="28127131">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="12" type="ingenias.editor.entities.GTPursues">
+<object id="12" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Perfil del Estudiante" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="6678162">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Determinar Perfil Inteligente" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="7433208">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="16" type="ingenias.editor.entities.GTPursues">
+<object id="16" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar OAs en Ontología" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="22018425">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Recomendador" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="12502636">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="15" type="ingenias.editor.entities.GTPursues">
+<object id="15" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Recomendador" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="12502636">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Recomendar OAs" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="1120051">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="17" type="ingenias.editor.entities.GTPursues">
+<object id="17" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Buscar OAs Acorde al Perfil" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="3497546">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Recomendador" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="12502636">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="19" type="ingenias.editor.entities.WFPlays">
+<object id="19" type="ingenias.editor.entities.WFPlays">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Agente Recomendador" class="ingenias.editor.entities.Agent" roleName="WFPlayssource" type="ingenias.editor.entities.WFPlayssourceRole" dgcid="12502636">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Recomendador" class="ingenias.editor.entities.Role" roleName="WFPlaystarget" type="ingenias.editor.entities.WFPlaystargetRole" dgcid="21013125">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="24" type="ingenias.editor.entities.GTSatisfies">
+<object id="24" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Presentar Resultados" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="14929397">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Mostrar Datos" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="26270786">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="20" type="ingenias.editor.entities.GTSatisfies">
+<object id="20" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Detectar Busqueda" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="14687850">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Capturar Datos" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="23818144">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="23" type="ingenias.editor.entities.WFDecomposes">
+<object id="23" type="ingenias.editor.entities.WFDecomposes">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Detectar Clic" class="ingenias.editor.entities.Task" roleName="WFDecomposestarget" type="ingenias.editor.entities.WFDecomposestargetRole" dgcid="7516202">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Detectar Busqueda" class="ingenias.editor.entities.Task" roleName="WFDecomposessource" type="ingenias.editor.entities.WFDecomposessourceRole" dgcid="14687850">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="22" type="ingenias.editor.entities.WFDecomposes">
+<object id="22" type="ingenias.editor.entities.WFDecomposes">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Detectar Busqueda" class="ingenias.editor.entities.Task" roleName="WFDecomposessource" type="ingenias.editor.entities.WFDecomposessourceRole" dgcid="14687850">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Detectar Cadena de Búsqueda" class="ingenias.editor.entities.Task" roleName="WFDecomposestarget" type="ingenias.editor.entities.WFDecomposestargetRole" dgcid="3933812">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="21" type="ingenias.editor.entities.WFUses">
+<object id="21" type="ingenias.editor.entities.WFUses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Detectar Clic" class="ingenias.editor.entities.Task" roleName="WFUsessource" type="ingenias.editor.entities.WFUsessourceRole" dgcid="7516202">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Mouse" class="ingenias.editor.entities.Resource" roleName="WFUsestarget" type="ingenias.editor.entities.WFUsestargetRole" dgcid="9029984">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+<key id="Label"></key>
+</mapproperties>
+</role></relationship>
+<relationship id="25" type="ingenias.editor.entities.IAccesses">
+<object id="25" type="ingenias.editor.entities.IAccesses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Mostrar Datos" class="ingenias.editor.entities.Task" roleName="IAccessessource" type="ingenias.editor.entities.IAccessessourceRole" dgcid="26270786">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador - Agente interfaz" class="ingenias.editor.entities.Interaction" roleName="IAccessestarget" type="ingenias.editor.entities.IAccessestargetRole" dgcid="15782918">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="39" type="ingenias.editor.entities.GTSatisfies">
+<object id="39" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Presentar Formularios" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="11074918">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Capturar Datos" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="23818144">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="30" type="ingenias.editor.entities.GTSatisfies">
+<object id="30" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Transmitir Peticiones entre Agentes" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="12337175">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Comunicar Agentes" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="9006345">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="26" type="ingenias.editor.entities.GTSatisfies">
+<object id="26" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Búsqueda" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="3240367">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Enviar Cadena Busqueda" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="24155255">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="27" type="ingenias.editor.entities.IAccesses">
+<object id="27" type="ingenias.editor.entities.IAccesses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Enviar Cadena Busqueda" class="ingenias.editor.entities.Task" roleName="IAccessessource" type="ingenias.editor.entities.IAccessessourceRole" dgcid="24155255">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador-Agente Recomendador" class="ingenias.editor.entities.Interaction" roleName="IAccessestarget" type="ingenias.editor.entities.IAccessestargetRole" dgcid="3447894">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="28" type="ingenias.editor.entities.GTSatisfies">
+<object id="28" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Búsqueda" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="3240367">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Recibir Resultados" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="8530775">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="29" type="ingenias.editor.entities.IAccesses">
+<object id="29" type="ingenias.editor.entities.IAccesses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Recibir Resultados" class="ingenias.editor.entities.Task" roleName="IAccessessource" type="ingenias.editor.entities.IAccessessourceRole" dgcid="8530775">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador-Agente Recomendador" class="ingenias.editor.entities.Interaction" roleName="IAccessestarget" type="ingenias.editor.entities.IAccessestargetRole" dgcid="3447894">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="35" type="ingenias.editor.entities.GTDecomposes">
+<object id="35" type="ingenias.editor.entities.GTDecomposes">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Servicios Web" class="ingenias.editor.entities.Goal" roleName="GTDecomposestarget" type="ingenias.editor.entities.GTDecomposestargetRole" dgcid="17930070">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Comunicar a Repositorio" class="ingenias.editor.entities.Goal" roleName="GTDecomposessource" type="ingenias.editor.entities.GTDecomposessourceRole" dgcid="2129635">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="34" type="ingenias.editor.entities.GTSatisfies">
+<object id="34" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Servicios Web" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="17930070">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Detectar Repositorios" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="26495399">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="32" type="ingenias.editor.entities.GTSatisfies">
+<object id="32" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Escuchar Solicitud" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="29526950">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Traducir Datos en Ontología" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="4353297">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="33" type="ingenias.editor.entities.GTSatisfies">
+<object id="33" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Traducir" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="2588880">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Traducir Datos en Ontología" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="4353297">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="36" type="ingenias.editor.entities.WFDecomposes">
+<object id="36" type="ingenias.editor.entities.WFDecomposes">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Conectarse al Servicio Web del Repositorio" class="ingenias.editor.entities.Task" roleName="WFDecomposessource" type="ingenias.editor.entities.WFDecomposessourceRole" dgcid="10736653">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Detectar Repositorios" class="ingenias.editor.entities.Task" roleName="WFDecomposestarget" type="ingenias.editor.entities.WFDecomposestargetRole" dgcid="26495399">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="42" type="ingenias.editor.entities.WFUses">
+<object id="42" type="ingenias.editor.entities.WFUses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Registrar Perfil en Ontología" class="ingenias.editor.entities.Task" roleName="WFUsessource" type="ingenias.editor.entities.WFUsessourceRole" dgcid="32698387">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Ontología" class="ingenias.editor.entities.Resource" roleName="WFUsestarget" type="ingenias.editor.entities.WFUsestargetRole" dgcid="22681976">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+<key id="Label"></key>
+</mapproperties>
+</role></relationship>
+<relationship id="37" type="ingenias.editor.entities.GTSatisfies">
+<object id="37" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Determinar Perfil Inteligente" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="1847017">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Determinar Inteligencias Múltiples" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="27939188">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="31" type="ingenias.editor.entities.GTSatisfies">
+<object id="31" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Determinar Estilo de Aprendizaje" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="9129906">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Determinar Perfil Inteligente" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="1847017">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="41" type="ingenias.editor.entities.GTSatisfies">
+<object id="41" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Guardar Perfil del Estudiante" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="14780194">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Registrar Perfil en Ontología" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="32698387">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="40" type="ingenias.editor.entities.Contribute">
+<object id="40" type="ingenias.editor.entities.Contribute">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Guardar Perfil del Estudiante" class="ingenias.editor.entities.Goal" roleName="Contributetarget" type="ingenias.editor.entities.ContributetargetRole" dgcid="14780194">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Determinar Perfil Inteligente" class="ingenias.editor.entities.Goal" roleName="Contributesource" type="ingenias.editor.entities.ContributesourceRole" dgcid="1847017">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="38" type="ingenias.editor.entities.GTDepends">
+<object id="38" type="ingenias.editor.entities.GTDepends">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Determinar Perfil Inteligente" class="ingenias.editor.entities.Goal" roleName="GTDependssource" type="ingenias.editor.entities.GTDependssourceRole" dgcid="1847017">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Capturar Datos" class="ingenias.editor.entities.Goal" roleName="GTDependstarget" type="ingenias.editor.entities.GTDependstargetRole" dgcid="22263828">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="47" type="ingenias.editor.entities.GTDecomposes">
+<object id="47" type="ingenias.editor.entities.GTDecomposes">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Buscar OAs Acorde al Perfil" class="ingenias.editor.entities.Goal" roleName="GTDecomposestarget" type="ingenias.editor.entities.GTDecomposestargetRole" dgcid="21088723">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Gestionar OAs en Ontología" class="ingenias.editor.entities.Goal" roleName="GTDecomposessource" type="ingenias.editor.entities.GTDecomposessourceRole" dgcid="23347774">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="46" type="ingenias.editor.entities.GTDecomposes">
+<object id="46" type="ingenias.editor.entities.GTDecomposes">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Contestar Busqueda" class="ingenias.editor.entities.Goal" roleName="GTDecomposestarget" type="ingenias.editor.entities.GTDecomposestargetRole" dgcid="9270535">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Gestionar OAs en Ontología" class="ingenias.editor.entities.Goal" roleName="GTDecomposessource" type="ingenias.editor.entities.GTDecomposessourceRole" dgcid="23347774">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="45" type="ingenias.editor.entities.GTSatisfies">
+<object id="45" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Enviar Resultados" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="19276797">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Contestar Busqueda" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="9270535">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="43" type="ingenias.editor.entities.WFUses">
+<object id="43" type="ingenias.editor.entities.WFUses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Ontología" class="ingenias.editor.entities.Resource" roleName="WFUsestarget" type="ingenias.editor.entities.WFUsestargetRole" dgcid="29946324">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+<key id="Label"></key>
+</mapproperties>
+</role><role idEntity="Enviar Cadena de Búsqueda a Ontología" class="ingenias.editor.entities.Task" roleName="WFUsessource" type="ingenias.editor.entities.WFUsessourceRole" dgcid="12206782">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="44" type="ingenias.editor.entities.GTSatisfies">
+<object id="44" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Buscar OAs Acorde al Perfil" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="21088723">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Enviar Cadena de Búsqueda a Ontología" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="12206782">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="18" type="ingenias.editor.entities.GTSatisfies">
+<object id="18" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Buscar OAs Acorde al Perfil" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="21088723">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Recuperar Perfil del Estudiante" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="1322130">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="48" type="ingenias.editor.entities.IAccesses">
+<object id="48" type="ingenias.editor.entities.IAccesses">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Recuperar Perfil del Estudiante" class="ingenias.editor.entities.Task" roleName="IAccessessource" type="ingenias.editor.entities.IAccessessourceRole" dgcid="1322130">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Recomedador-Agente Perfil Estudiante" class="ingenias.editor.entities.Interaction" roleName="IAccessestarget" type="ingenias.editor.entities.IAccessestargetRole" dgcid="32789063">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="51" type="ingenias.editor.entities.IColaborates">
+<object id="51" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Interacción Agente Coordinador - Agente interfaz" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="15413035">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Cumple Peticiones" class="ingenias.editor.entities.Role" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="7120509">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="49" type="ingenias.editor.entities.IColaborates">
+<object id="49" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Interacción Agente Coordinador - Agente interfaz" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="15413035">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Presenta Resultados" class="ingenias.editor.entities.Role" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="3937089">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="50" type="ingenias.editor.entities.IPursues">
+<object id="50" type="ingenias.editor.entities.IPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Interacción Agente Coordinador - Agente interfaz" class="ingenias.editor.entities.Interaction" roleName="IPursuessource" type="ingenias.editor.entities.IPursuessourceRole" dgcid="15413035">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Gestionar Solicitud Respuesta" class="ingenias.editor.entities.Goal" roleName="IPursuestarget" type="ingenias.editor.entities.IPursuestargetRole" dgcid="33305504">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="52" type="ingenias.editor.entities.IColaborates">
+<object id="52" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestor Repositorios" class="ingenias.editor.entities.Role" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="26548085">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador - Agente Gestor de Repositorio" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="26997923">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="53" type="ingenias.editor.entities.IInitiates">
+<object id="53" type="ingenias.editor.entities.IInitiates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Comunicación" class="ingenias.editor.entities.Role" roleName="IInitiatestarget" type="ingenias.editor.entities.IInitiatestargetRole" dgcid="27489748">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador - Agente Gestor de Repositorio" class="ingenias.editor.entities.Interaction" roleName="IInitiatessource" type="ingenias.editor.entities.IInitiatessourceRole" dgcid="26997923">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="54" type="ingenias.editor.entities.IPursues">
+<object id="54" type="ingenias.editor.entities.IPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Inicializar Servicios Web" class="ingenias.editor.entities.Goal" roleName="IPursuestarget" type="ingenias.editor.entities.IPursuestargetRole" dgcid="32727659">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador - Agente Gestor de Repositorio" class="ingenias.editor.entities.Interaction" roleName="IPursuessource" type="ingenias.editor.entities.IPursuessourceRole" dgcid="26997923">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="57" type="ingenias.editor.entities.IPursues">
+<object id="57" type="ingenias.editor.entities.IPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Búsqueda" class="ingenias.editor.entities.Goal" roleName="IPursuestarget" type="ingenias.editor.entities.IPursuestargetRole" dgcid="8372427">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador-Agente Recomendador" class="ingenias.editor.entities.Interaction" roleName="IPursuessource" type="ingenias.editor.entities.IPursuessourceRole" dgcid="29422897">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="56" type="ingenias.editor.entities.IInitiates">
+<object id="56" type="ingenias.editor.entities.IInitiates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Recomendador" class="ingenias.editor.entities.Role" roleName="IInitiatestarget" type="ingenias.editor.entities.IInitiatestargetRole" dgcid="6536982">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Coordinador-Agente Recomendador" class="ingenias.editor.entities.Interaction" roleName="IInitiatessource" type="ingenias.editor.entities.IInitiatessourceRole" dgcid="29422897">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="55" type="ingenias.editor.entities.IColaborates">
+<object id="55" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Interacción Agente Coordinador-Agente Recomendador" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="29422897">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Agente Coordinador" class="ingenias.editor.entities.Agent" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="12184660">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="59" type="ingenias.editor.entities.IColaborates">
+<object id="59" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Recomendador" class="ingenias.editor.entities.Role" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="24134055">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Recomedador-Agente Perfil Estudiante" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="33445023">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="58" type="ingenias.editor.entities.IColaborates">
+<object id="58" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Interacción Agente Recomedador-Agente Perfil Estudiante" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="33445023">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Determinador de Perfiles" class="ingenias.editor.entities.Role" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="10988850">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="60" type="ingenias.editor.entities.IPursues">
+<object id="60" type="ingenias.editor.entities.IPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Recomendar Acorde al Perfil del Estudiante" class="ingenias.editor.entities.Goal" roleName="IPursuestarget" type="ingenias.editor.entities.IPursuestargetRole" dgcid="18004678">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Recomedador-Agente Perfil Estudiante" class="ingenias.editor.entities.Interaction" roleName="IPursuessource" type="ingenias.editor.entities.IPursuessourceRole" dgcid="33445023">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="63" type="ingenias.editor.entities.IPursues">
+<object id="63" type="ingenias.editor.entities.IPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Gestionar Perfil Inteligente" class="ingenias.editor.entities.Goal" roleName="IPursuestarget" type="ingenias.editor.entities.IPursuestargetRole" dgcid="16546412">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Interfaz - Agente Perfil del estudiante" class="ingenias.editor.entities.Interaction" roleName="IPursuessource" type="ingenias.editor.entities.IPursuessourceRole" dgcid="18874077">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="62" type="ingenias.editor.entities.IColaborates">
+<object id="62" type="ingenias.editor.entities.IColaborates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Determinador de Perfiles" class="ingenias.editor.entities.Role" roleName="IColaboratestarget" type="ingenias.editor.entities.IColaboratestargetRole" dgcid="4060027">
+<mapproperties>
+<key id="Cardinality"></key>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Interfaz - Agente Perfil del estudiante" class="ingenias.editor.entities.Interaction" roleName="IColaboratessource" type="ingenias.editor.entities.IColaboratessourceRole" dgcid="18874077">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="61" type="ingenias.editor.entities.IInitiates">
+<object id="61" type="ingenias.editor.entities.IInitiates">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="Captura de Datos" class="ingenias.editor.entities.Role" roleName="IInitiatestarget" type="ingenias.editor.entities.IInitiatestargetRole" dgcid="25158534">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="Interacción Agente Interfaz - Agente Perfil del estudiante" class="ingenias.editor.entities.Interaction" roleName="IInitiatessource" type="ingenias.editor.entities.IInitiatessourceRole" dgcid="18874077">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+</relationships>
+<models> 
+ <model id="Agente Intefaz" type="ingenias.editor.models.AgentModelModelJGraph">
+<object id="Agente Intefaz" type="ingenias.editor.entities.AgentModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="0" nid="node3" type="GTPursues">
+		<attr name="bounds">
+			<rectangle x="493" y="99" width="78" height="19"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	<connected id="node10">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="5" nid="node4" type="WFPlays">
+		<attr name="bounds">
+			<rectangle x="360" y="221" width="62" height="16"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	<connected id="node9">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="2" nid="node0" type="GTPursues">
+		<attr name="bounds">
+			<rectangle x="369" y="117" width="77" height="16"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	<connected id="node6">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="3" nid="node1" type="WFPlays">
+		<attr name="bounds">
+			<rectangle x="508" y="210" width="65" height="19"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	<connected id="node7">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Agente Interfaz" nid="node5" type="Agent">
+		<attr name="bounds">
+			<rectangle x="434" y="142" width="82" height="76"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="4" nid="node2" type="WFPlays">
+		<attr name="bounds">
+			<rectangle x="444" y="244" width="62" height="16"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	<connected id="node8">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Presentar Resultados" nid="node6" type="Goal">
+		<attr name="bounds">
+			<rectangle x="257" y="0" width="124" height="108"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Presenta Resultados" nid="node8" type="Role">
+		<attr name="bounds">
+			<rectangle x="394" y="286" width="162" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Captura de Datos" nid="node7" type="Role">
+		<attr name="bounds">
+			<rectangle x="565" y="252" width="170" height="68"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Cumple Peticiones" nid="node9" type="Role">
+		<attr name="bounds">
+			<rectangle x="217" y="255" width="189" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Capturar Datos" nid="node10" type="Goal">
+		<attr name="bounds">
+			<rectangle x="522" y="28" width="104" height="60"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="493" y="99" width="78" height="19"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="360" y="221" width="62" height="16"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="369" y="117" width="77" height="16"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="508" y="210" width="65" height="19"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="434" y="142" width="82" height="76"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="444" y="244" width="62" height="16"></rectangle>		</attr>
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="257" y="0" width="124" height="108"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="bounds">
+			<rectangle x="394" y="286" width="162" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="565" y="252" width="170" height="68"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node9">
+		<attr name="bounds">
+			<rectangle x="217" y="255" width="189" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node10">
+		<attr name="bounds">
+			<rectangle x="522" y="28" width="104" height="60"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="Agente Gestor de Repositorios" type="ingenias.editor.models.AgentModelModelJGraph">
+<object id="Agente Gestor de Repositorios" type="ingenias.editor.entities.AgentModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="10" nid="node8" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="229" y="206" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node6">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Gestionar Servicios Web" nid="node3" type="Goal">
+		<attr name="bounds">
+			<rectangle x="92" y="42" width="129" height="90"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestor Repositorios" nid="node4" type="Role">
+		<attr name="bounds">
+			<rectangle x="604" y="172" width="81" height="72"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="9" nid="node1" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="233" y="134" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Comunicar a Repositorio" nid="node6" type="Goal">
+		<attr name="bounds">
+			<rectangle x="48" y="178" width="165" height="84"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="8" nid="node7" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="373" y="122" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Agente Gestor de Repositorios" nid="node2" type="Agent">
+		<attr name="bounds">
+			<rectangle x="322" y="162" width="178" height="94"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Traducir Datos en Ontología" nid="node5" type="Goal">
+		<attr name="bounds">
+			<rectangle x="328" y="26" width="167" height="72"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="11" nid="node0" type="WFPlays">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="521" y="200" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node8">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="229" y="206" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="92" y="42" width="129" height="90"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="604" y="172" width="81" height="72"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="233" y="134" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="48" y="178" width="165" height="84"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="373" y="122" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="322" y="162" width="178" height="94"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="328" y="26" width="167" height="72"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="521" y="200" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="Agente Coordinador" type="ingenias.editor.models.AgentModelModelJGraph">
+<object id="Agente Coordinador" type="ingenias.editor.entities.AgentModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="Agente Coordinador" nid="node3" type="Agent">
+		<attr name="bounds">
+			<rectangle x="428" y="184" width="120" height="90"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="6" nid="node1" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="465" y="144" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node6">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="7" nid="node0" type="WFPlays">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="590" y="223" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="1" nid="node5" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="349" y="162" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node2">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Gestionar Comunicación" nid="node4" type="Role">
+		<attr name="bounds">
+			<rectangle x="694" y="197" width="106" height="74"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar Búsqueda" nid="node2" type="Goal">
+		<attr name="bounds">
+			<rectangle x="227" y="81" width="120" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Comunicar Agentes" nid="node6" type="Goal">
+		<attr name="bounds">
+			<rectangle x="460" y="34" width="117" height="86"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="428" y="184" width="120" height="90"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="465" y="144" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="590" y="223" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="349" y="162" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="694" y="197" width="106" height="74"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="227" y="81" width="120" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="460" y="34" width="117" height="86"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="Agente Perfil del Estudiante" type="ingenias.editor.models.AgentModelModelJGraph">
+<object id="Agente Perfil del Estudiante" type="ingenias.editor.entities.AgentModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="Determinador de Perfiles" nid="node3" type="Role">
+		<attr name="bounds">
+			<rectangle x="759" y="227" width="121" height="70"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="13" nid="node2" type="WFPlays">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="654" y="252" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="14" nid="node0" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="324" y="176" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node1">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Guardar Perfil del Estudiante" nid="node1" type="Goal">
+		<attr name="bounds">
+			<rectangle x="189" y="83" width="117" height="89"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="12" nid="node6" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="475" y="139" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Agente Perfil del Estudiante" nid="node5" type="Agent">
+		<attr name="bounds">
+			<rectangle x="419" y="215" width="192" height="88"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Determinar Perfil Inteligente" nid="node4" type="Goal">
+		<attr name="bounds">
+			<rectangle x="428" y="20" width="166" height="60"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="759" y="227" width="121" height="70"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="654" y="252" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="324" y="176" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="189" y="83" width="117" height="89"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="475" y="139" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="419" y="215" width="192" height="88"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="428" y="20" width="166" height="60"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="Agente Recomendador" type="ingenias.editor.models.AgentModelModelJGraph">
+<object id="Agente Recomendador" type="ingenias.editor.entities.AgentModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo Agentes"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="Agente Recomendador" nid="node4" type="Agent">
+		<attr name="bounds">
+			<rectangle x="461" y="173" width="139" height="89"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Recomendar OAs" nid="node3" type="Goal">
+		<attr name="bounds">
+			<rectangle x="280" y="53" width="135" height="83"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar OAs en Ontología" nid="node1" type="Goal">
+		<attr name="bounds">
+			<rectangle x="222" y="189" width="111" height="82"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="19" nid="node8" type="WFPlays">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="644" y="213" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node4"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node7">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="15" nid="node2" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="400" y="147" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node4"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="16" nid="node0" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="359" y="216" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node4"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node1">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Buscar OAs Acorde al Perfil" nid="node5" type="Goal">
+		<attr name="bounds">
+			<rectangle x="449" y="25" width="119" height="97"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="17" nid="node6" type="GTPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="481" y="139" width="77" height="16"></rectangle>		</attr>
+
+
+	<connected id="node4"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Recomendador" nid="node7" type="Role">
+		<attr name="bounds">
+			<rectangle x="750" y="203" width="98" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="461" y="173" width="139" height="89"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="280" y="53" width="135" height="83"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="222" y="189" width="111" height="82"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="644" y="213" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="400" y="147" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="359" y="216" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="449" y="25" width="119" height="97"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="481" y="139" width="77" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="750" y="203" width="98" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="OT Agente Interfaz" type="ingenias.editor.models.TasksAndGoalsModelModelJGraph">
+<object id="OT Agente Interfaz" type="ingenias.editor.entities.TasksAndGoalsModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="22" nid="node6" type="WFDecomposes">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="493" y="104" width="107" height="16"></rectangle>		</attr>
+
+
+	<connected id="node7"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node9">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="20" nid="node3" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="379" y="172" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node7"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Interacción Agente Coordinador - Agente interfaz" nid="node0" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="729" y="239" width="263" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="24" nid="node1" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="360" y="256" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node12"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node2">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="25" nid="node13" type="IAccesses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="625" y="258" width="71" height="16"></rectangle>		</attr>
+
+
+	<connected id="node12"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node0">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="21" nid="node11" type="WFUses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="768" y="116" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node10"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node8">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Capturar Datos" nid="node4" type="Goal">
+		<attr name="bounds">
+			<rectangle x="253" y="149" width="92" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Detectar Clic" nid="node10" type="Task">
+		<attr name="bounds">
+			<rectangle x="763" y="156" width="70" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="39" nid="node15" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="260" y="97" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node14"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Detectar Cadena de Búsqueda" nid="node9" type="Task">
+		<attr name="bounds">
+			<rectangle x="463" y="21" width="170" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Presentar Resultados" nid="node2" type="Goal">
+		<attr name="bounds">
+			<rectangle x="160" y="232" width="124" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Presentar Formularios" nid="node14" type="Task">
+		<attr name="bounds">
+			<rectangle x="237" y="18" width="124" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Detectar Busqueda" nid="node7" type="Task">
+		<attr name="bounds">
+			<rectangle x="491" y="160" width="106" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Mostrar Datos" nid="node12" type="Task">
+		<attr name="bounds">
+			<rectangle x="515" y="244" width="77" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="23" nid="node5" type="WFDecomposes">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="633" y="172" width="107" height="16"></rectangle>		</attr>
+
+
+	<connected id="node7"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node10">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Mouse" nid="node8" type="Resource">
+		<attr name="bounds">
+			<rectangle x="769" y="9" width="64" height="84"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="493" y="104" width="107" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="379" y="172" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="729" y="239" width="263" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="360" y="256" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node13">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="625" y="258" width="71" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node11">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="768" y="116" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="253" y="149" width="92" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node10">
+		<attr name="bounds">
+			<rectangle x="763" y="156" width="70" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node15">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="260" y="97" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node9">
+		<attr name="bounds">
+			<rectangle x="463" y="21" width="170" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="160" y="232" width="124" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node14">
+		<attr name="bounds">
+			<rectangle x="237" y="18" width="124" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="491" y="160" width="106" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node12">
+		<attr name="bounds">
+			<rectangle x="515" y="244" width="77" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="633" y="172" width="107" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="bounds">
+			<rectangle x="769" y="9" width="64" height="84"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="OT Agente Coordinador" type="ingenias.editor.models.TasksAndGoalsModelModelJGraph">
+<object id="OT Agente Coordinador" type="ingenias.editor.entities.TasksAndGoalsModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="Transmitir Peticiones entre Agentes" nid="node1" type="Task">
+		<attr name="bounds">
+			<rectangle x="495" y="242" width="205" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="27" nid="node8" type="IAccesses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="634" y="59" width="71" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node7">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="30" nid="node0" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="320" y="257" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node1"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="29" nid="node10" type="IAccesses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="630" y="103" width="71" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node7">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Gestionar Búsqueda" nid="node3" type="Goal">
+		<attr name="bounds">
+			<rectangle x="103" y="19" width="118" height="79"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Enviar Cadena Busqueda" nid="node5" type="Task">
+		<attr name="bounds">
+			<rectangle x="431" y="36" width="154" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Interacción Agente Coordinador-Agente Recomendador" nid="node7" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="754" y="24" width="167" height="105"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Recibir Resultados" nid="node2" type="Task">
+		<attr name="bounds">
+			<rectangle x="448" y="121" width="128" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Comunicar Agentes" nid="node4" type="Goal">
+		<attr name="bounds">
+			<rectangle x="106" y="237" width="117" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="26" nid="node6" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="287" y="50" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="28" nid="node9" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="295" y="92" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="495" y="242" width="205" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="634" y="59" width="71" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="320" y="257" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node10">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="630" y="103" width="71" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="103" y="19" width="118" height="79"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="431" y="36" width="154" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="754" y="24" width="167" height="105"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="448" y="121" width="128" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="106" y="237" width="117" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="287" y="50" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node9">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="295" y="92" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="OT Agente Gestor de Repositorio" type="ingenias.editor.models.TasksAndGoalsModelModelJGraph">
+<object id="OT Agente Gestor de Repositorio" type="ingenias.editor.entities.TasksAndGoalsModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="Detectar Repositorios" nid="node2" type="Task">
+		<attr name="bounds">
+			<rectangle x="260" y="143" width="202" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Comunicar a Repositorio" nid="node5" type="Goal">
+		<attr name="bounds">
+			<rectangle x="63" y="122" width="146" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Traducir Datos en Ontología" nid="node4" type="Goal">
+		<attr name="bounds">
+			<rectangle x="314" y="10" width="167" height="79"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="35" nid="node0" type="GTDecomposes">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="79" y="206" width="106" height="19"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="34" nid="node1" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="192" y="220" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="32" nid="node8" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="220" y="39" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node6"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="36" nid="node11" type="WFDecomposes">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="415" y="216" width="107" height="16"></rectangle>		</attr>
+
+
+	<connected id="node7"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node2">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Escuchar Solicitud" nid="node6" type="Task">
+		<attr name="bounds">
+			<rectangle x="51" y="24" width="153" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar Servicios Web" nid="node3" type="Goal">
+		<attr name="bounds">
+			<rectangle x="56" y="249" width="146" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="33" nid="node10" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="543" y="41" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node9"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Traducir" nid="node9" type="Task">
+		<attr name="bounds">
+			<rectangle x="683" y="27" width="64" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Conectarse al Servicio Web del Repositorio" nid="node7" type="Task">
+		<attr name="bounds">
+			<rectangle x="423" y="261" width="305" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="260" y="143" width="202" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="63" y="122" width="146" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="314" y="10" width="167" height="79"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="79" y="206" width="106" height="19"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="192" y="220" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="220" y="39" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node11">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="415" y="216" width="107" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="51" y="24" width="153" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="56" y="249" width="146" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node10">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="543" y="41" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node9">
+		<attr name="bounds">
+			<rectangle x="683" y="27" width="64" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="423" y="261" width="305" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="OT Agente Perfil del Estudiante" type="ingenias.editor.models.TasksAndGoalsModelModelJGraph">
+<object id="OT Agente Perfil del Estudiante" type="ingenias.editor.entities.TasksAndGoalsModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="31" nid="node7" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="218" y="51" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node6"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Ontología" nid="node1" type="Resource">
+		<attr name="bounds">
+			<rectangle x="714" y="220" width="64" height="84"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="37" nid="node2" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="472" y="53" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="38" nid="node12" type="GTDepends">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="394" y="113" width="81" height="16"></rectangle>		</attr>
+
+
+	<connected id="node11">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="41" nid="node9" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="322" y="250" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node8">
+
+
+
+
+		<attr name="points">
+			<list>
+		<attr name="points0">
+			<point x="315.0" y="266.0"></point>
+		</attr>
+		<attr name="points1">
+			<point x="494.5" y="267.0"></point>
+		</attr>
+
+</list>
+		</attr>
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+		<attr name="points">
+			<list>
+		<attr name="points0">
+			<point x="315.0" y="266.0"></point>
+		</attr>
+		<attr name="points1">
+			<point x="160.0" y="246.5"></point>
+		</attr>
+
+</list>
+		</attr>
+
+	</connected>
+	</node>
+			
+	<node id="40" nid="node10" type="Contribute">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="245" y="155" width="71" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Capturar Datos" nid="node11" type="Goal">
+		<attr name="bounds">
+			<rectangle x="444" y="144" width="92" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Determinar Estilo de Aprendizaje" nid="node6" type="Task">
+		<attr name="bounds">
+			<rectangle x="19" y="36" width="180" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="42" nid="node0" type="WFUses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="622" y="254" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node8">
+
+
+
+
+		<attr name="points">
+			<list>
+		<attr name="points0">
+			<point x="669.0" y="267.0"></point>
+		</attr>
+		<attr name="points1">
+			<point x="494.5" y="267.0"></point>
+		</attr>
+
+</list>
+		</attr>
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node1">
+
+
+
+
+
+		<attr name="points">
+			<list>
+		<attr name="points0">
+			<point x="669.0" y="267.0"></point>
+		</attr>
+		<attr name="points1">
+			<point x="769.0" y="248.0"></point>
+		</attr>
+
+</list>
+		</attr>
+
+	</connected>
+	</node>
+			
+	<node id="Determinar Inteligencias Múltiples" nid="node3" type="Task">
+		<attr name="bounds">
+			<rectangle x="599" y="40" width="187" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Guardar Perfil del Estudiante" nid="node4" type="Goal">
+		<attr name="bounds">
+			<rectangle x="117" y="225" width="168" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Determinar Perfil Inteligente" nid="node5" type="Goal">
+		<attr name="bounds">
+			<rectangle x="316" y="21" width="108" height="81"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Registrar Perfil en Ontología" nid="node8" type="Task">
+		<attr name="bounds">
+			<rectangle x="438" y="240" width="155" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node7">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="218" y="51" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="714" y="220" width="64" height="84"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="472" y="53" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node12">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="394" y="113" width="81" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node9">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="322" y="250" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node10">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="245" y="155" width="71" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node11">
+		<attr name="bounds">
+			<rectangle x="444" y="144" width="92" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="19" y="36" width="180" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="622" y="254" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="599" y="40" width="187" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="117" y="225" width="168" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="316" y="21" width="108" height="81"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="bounds">
+			<rectangle x="438" y="240" width="155" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="OT Agente Recomendador" type="ingenias.editor.models.TasksAndGoalsModelModelJGraph">
+<object id="OT Agente Recomendador" type="ingenias.editor.entities.TasksAndGoalsModelDataEntity">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelo de Objetivos y Tareas"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="45" nid="node3" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="113" y="102" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node11"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node8">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Recuperar Perfil del Estudiante" nid="node0" type="Task">
+		<attr name="bounds">
+			<rectangle x="596" y="31" width="172" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Contestar Busqueda" nid="node8" type="Goal">
+		<attr name="bounds">
+			<rectangle x="94" y="19" width="118" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Enviar Cadena de Búsqueda a Ontología" nid="node9" type="Task">
+		<attr name="bounds">
+			<rectangle x="312" y="270" width="223" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Enviar Resultados" nid="node11" type="Task">
+		<attr name="bounds">
+			<rectangle x="83" y="141" width="136" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar OAs en Ontología" nid="node7" type="Goal">
+		<attr name="bounds">
+			<rectangle x="375" y="2" width="94" height="79"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="47" nid="node1" type="GTDecomposes">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="371" y="102" width="105" height="16"></rectangle>		</attr>
+
+
+	<connected id="node7"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node6">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="18" nid="node13" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="513" y="108" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node0"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node6">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Interacción Agente Recomedador-Agente Perfil Estudiante" nid="node12" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="685" y="133" width="434" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="43" nid="node4" type="WFUses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="627" y="280" width="62" height="16"></rectangle>		</attr>
+
+
+	<connected id="node9"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="44" nid="node10" type="GTSatisfies">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="385" y="236" width="78" height="16"></rectangle>		</attr>
+
+
+	<connected id="node9"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node6">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Ontología" nid="node5" type="Resource">
+		<attr name="bounds">
+			<rectangle x="782" y="245" width="64" height="84"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="48" nid="node14" type="IAccesses">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="771" y="106" width="71" height="16"></rectangle>		</attr>
+
+
+	<connected id="node0"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node12">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="46" nid="node2" type="GTDecomposes">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="241" y="37" width="105" height="16"></rectangle>		</attr>
+
+
+	<connected id="node7"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node8">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Buscar OAs Acorde al Perfil" nid="node6" type="Goal">
+		<attr name="bounds">
+			<rectangle x="342" y="140" width="166" height="79"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node3">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="113" y="102" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="596" y="31" width="172" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node8">
+		<attr name="bounds">
+			<rectangle x="94" y="19" width="118" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node9">
+		<attr name="bounds">
+			<rectangle x="312" y="270" width="223" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node11">
+		<attr name="bounds">
+			<rectangle x="83" y="141" width="136" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="375" y="2" width="94" height="79"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="371" y="102" width="105" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node13">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="513" y="108" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node12">
+		<attr name="bounds">
+			<rectangle x="685" y="133" width="434" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="627" y="280" width="62" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node10">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="385" y="236" width="78" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="782" y="245" width="64" height="84"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node14">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="771" y="106" width="71" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="241" y="37" width="105" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="342" y="140" width="166" height="79"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="IAInterfaz-Acoordinador" type="ingenias.editor.models.InteractionModelModelJGraph">
+<object id="IAInterfaz-Acoordinador" type="ingenias.editor.entities.InteractionModelDataEntity">
+<objectproperty id="InteractionConsidered">
+</objectproperty>
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="51" nid="node0" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="428" y="217" width="85" height="16"></rectangle>		</attr>
+
+
+	<connected id="node1">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="50" nid="node6" type="IPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="419" y="108" width="64" height="19"></rectangle>		</attr>
+
+
+	<connected id="node3"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="49" nid="node2" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="425" y="163" width="85" height="19"></rectangle>		</attr>
+
+
+	<connected id="node4">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Presenta Resultados" nid="node4" type="Role">
+		<attr name="bounds">
+			<rectangle x="554" y="153" width="117" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar Solicitud Respuesta" nid="node5" type="Goal">
+		<attr name="bounds">
+			<rectangle x="521" y="46" width="182" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Interacción Agente Coordinador - Agente interfaz" nid="node3" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="118" y="141" width="263" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Cumple Peticiones" nid="node1" type="Role">
+		<attr name="bounds">
+			<rectangle x="560" y="240" width="105" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="428" y="217" width="85" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="419" y="108" width="64" height="19"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="425" y="163" width="85" height="19"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="554" y="153" width="117" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="521" y="46" width="182" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="118" y="141" width="263" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="560" y="240" width="105" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="IACoodinador-AGestor de Repositorio" type="ingenias.editor.models.InteractionModelModelJGraph">
+<object id="IACoodinador-AGestor de Repositorio" type="ingenias.editor.entities.InteractionModelDataEntity">
+<objectproperty id="InteractionConsidered">
+</objectproperty>
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="53" nid="node4" type="IInitiates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="369" y="202" width="60" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node0">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="52" nid="node1" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="366" y="162" width="85" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node2">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Inicializar Servicios Web" nid="node5" type="Goal">
+		<attr name="bounds">
+			<rectangle x="472" y="31" width="162" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Interacción Agente Coordinador - Agente Gestor de Repositorio" nid="node2" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="146" y="104" width="160" height="193"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="54" nid="node6" type="IPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="357" y="122" width="64" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Gestor Repositorios" nid="node3" type="Role">
+		<attr name="bounds">
+			<rectangle x="511" y="122" width="111" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar Comunicación" nid="node0" type="Role">
+		<attr name="bounds">
+			<rectangle x="493" y="198" width="137" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node4">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="369" y="202" width="60" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="366" y="162" width="85" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="472" y="31" width="162" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="146" y="104" width="160" height="193"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="357" y="122" width="64" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="511" y="122" width="111" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="493" y="198" width="137" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="IACoodinador-ARecomedador" type="ingenias.editor.models.InteractionModelModelJGraph">
+<object id="IACoodinador-ARecomedador" type="ingenias.editor.entities.InteractionModelDataEntity">
+<objectproperty id="InteractionConsidered">
+</objectproperty>
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="Interacción Agente Coordinador-Agente Recomendador" nid="node5" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="368" y="186" width="304" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar Búsqueda" nid="node1" type="Goal">
+		<attr name="bounds">
+			<rectangle x="466" y="46" width="118" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="57" nid="node0" type="IPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="490" y="138" width="64" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node1">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Agente Coordinador" nid="node6" type="Agent">
+		<attr name="bounds">
+			<rectangle x="127" y="186" width="110" height="58"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="55" nid="node4" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="260" y="206" width="85" height="16"></rectangle>		</attr>
+
+
+	<connected id="node6">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="56" nid="node2" type="IInitiates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="686" y="207" width="60" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Recomendador" nid="node3" type="Role">
+		<attr name="bounds">
+			<rectangle x="761" y="195" width="86" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="368" y="186" width="304" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="466" y="46" width="118" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="490" y="138" width="64" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="127" y="186" width="110" height="58"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="260" y="206" width="85" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="686" y="207" width="60" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="761" y="195" width="86" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="IARecomendador-APerfil del Estudiante" type="ingenias.editor.models.InteractionModelModelJGraph">
+<object id="IARecomendador-APerfil del Estudiante" type="ingenias.editor.entities.InteractionModelDataEntity">
+<objectproperty id="InteractionConsidered">
+</objectproperty>
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="60" nid="node6" type="IPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="433" y="117" width="64" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node0">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="58" nid="node5" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="203" y="172" width="85" height="16"></rectangle>		</attr>
+
+
+	<connected id="node4">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Recomendar Acorde al Perfil del Estudiante" nid="node0" type="Goal">
+		<attr name="bounds">
+			<rectangle x="392" y="12" width="145" height="82"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Interacción Agente Recomedador-Agente Perfil Estudiante" nid="node3" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="307" y="156" width="318" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Determinador de Perfiles" nid="node4" type="Role">
+		<attr name="bounds">
+			<rectangle x="45" y="148" width="138" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="59" nid="node1" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="644" y="177" width="85" height="16"></rectangle>		</attr>
+
+
+	<connected id="node2">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node3">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Recomendador" nid="node2" type="Role">
+		<attr name="bounds">
+			<rectangle x="747" y="164" width="86" height="44"></rectangle>		</attr>
+
+
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="433" y="117" width="64" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="203" y="172" width="85" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="392" y="12" width="145" height="82"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="307" y="156" width="318" height="55"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="45" y="148" width="138" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="644" y="177" width="85" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="747" y="164" width="86" height="44"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="IAInterfaz-APerfil del estudiante" type="ingenias.editor.models.InteractionModelModelJGraph">
+<object id="IAInterfaz-APerfil del estudiante" type="ingenias.editor.entities.InteractionModelDataEntity">
+<objectproperty id="InteractionConsidered">
+</objectproperty>
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+    <package id="Tesis"/>
+    <package id="Modelos de Interacción"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="62" nid="node2" type="IColaborates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="672" y="227" width="85" height="16"></rectangle>		</attr>
+
+
+	<connected id="node3">
+
+
+
+
+
+<attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+	</connected>
+	<connected id="node5">
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="Captura de Datos" nid="node4" type="Role">
+		<attr name="bounds">
+			<rectangle x="88" y="220" width="97" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Determinador de Perfiles" nid="node3" type="Role">
+		<attr name="bounds">
+			<rectangle x="781" y="210" width="138" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Gestionar Perfil Inteligente" nid="node1" type="Goal">
+		<attr name="bounds">
+			<rectangle x="409" y="34" width="170" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="Interacción Agente Interfaz - Agente Perfil del estudiante" nid="node5" type="Interaction">
+		<attr name="bounds">
+			<rectangle x="342" y="198" width="306" height="87"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="61" nid="node6" type="IInitiates">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="233" y="233" width="60" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node4">
+
+
+
+
+
+
+	</connected>
+	</node>
+			
+	<node id="63" nid="node0" type="IPursues">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="462" y="138" width="64" height="16"></rectangle>		</attr>
+
+
+	<connected id="node5"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+
+
+
+	</connected>
+	<connected id="node1">
+
+
+
+
+
+
+	</connected>
+	</node><parentship>
+</parentship>
+<entityconstraints>
+</entityconstraints>
+
+
+	</graph>
+
+
+	<layout>
+			
+	<node id="node2">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="672" y="227" width="85" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="88" y="220" width="97" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="781" y="210" width="138" height="44"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="409" y="34" width="170" height="60"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="342" y="198" width="306" height="87"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node6">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="233" y="233" width="60" height="16"></rectangle>		</attr>
+
+
+	</node>
+			
+	<node id="node0">
+		<attr name="view">
+			<string>ingenias</string>
+		</attr>
+
+		<attr name="bounds">
+			<rectangle x="462" y="138" width="64" height="16"></rectangle>		</attr>
+
+
+	</node>
+	</layout>
+</gxl> </model>
+</models>
+</project>
